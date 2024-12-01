@@ -17,8 +17,10 @@ def main():
     w = welcome_win()  # Создание экземпляра начального окна регистрации
     w.show()  # Показ окна
     app.exec()  # Запуск цикла приложения
-
+    global nickname
 
 
 if __name__ == '__main__':
     main()
+
+example = {'nickname': 'mun', 'password': 'xxZxzxczxczcz'}

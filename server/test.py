@@ -14,9 +14,9 @@ def post():
 
 
 def get():
-    response = requests.get('http://127.0.0.1:5000/data/users').json()
+    response = requests.get('http://127.0.0.1:5000/data/repair_hardware').json()
     for index, row in enumerate(response):
-        print(index, row)
+        print(row)
 
 
 def put():

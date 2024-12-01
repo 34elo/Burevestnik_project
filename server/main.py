@@ -15,6 +15,7 @@ from flask_server.put_func import *
 from flask_server.post_func import *
 from flask_server.delete_func import *
 
+
 async def start_bot():
     bot = Bot(token=TOKEN)
     dp = Dispatcher()
@@ -24,8 +25,6 @@ async def start_bot():
 
 def run_flask():
     app.run(port=5000)
-
-
 
 
 if __name__ == "__main__":
