@@ -20,13 +20,15 @@ class login_win(QMainWindow, client.login.login_window.Ui_reg2):
         password_check = self.lineEdit_passwor_log.text()
         try:
             password = requests.post('http://127.0.0.1:5000/password', json={'password': password_check}).json()
-            response = requests.get('http://127.0.0.1:5000/data/users').json()
-        except Exception:
+            response = requests.get('http://127.0.0.1:5000/data/users')
+            if response.status_code == 200:
+                print('success login')
+        except Exception as e:
+            print(e)
             QMessageBox.critical(self, 'Critical', 'Прод упал, попробуйте позже')
-
         password = password.get('password')
 
-        for i in response:
+        for i in response.json():
             if i.get('nickname') == nickname_check and i.get('password') == password:
                 print('User login')
                 self.window = Ui_MainWindow2(nickname_check)  # Открывает основное окно для пользователя

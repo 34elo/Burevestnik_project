@@ -11,17 +11,16 @@ class welcome_win(QMainWindow, client.welcome.welcome_window.Ui_Dialog):
         super().__init__()
         self.setupUi(self)  # Настройка интерфейса из файла дизайна
         # Подключение кнопок к соответствующим функциям
-        self.pushButton_login_reg.clicked.connect(self.sign_vhod)
-        self.pushButton_registration.clicked.connect(self.sign_reg)
+        self.pushButton_login_reg.clicked.connect(self.to_login)
+        self.pushButton_registration.clicked.connect(self.to_registration)
 
-
-    def sign_vhod(self):
+    def to_login(self):
         # Открытие окна входа
         self.window = login_win()
         self.window.show()
         self.close()  # Закрывает окно регистрации
 
-    def sign_reg(self):
+    def to_registration(self):
         # Открытие окна регистрации
         self.window = register_win()
         self.window.show()

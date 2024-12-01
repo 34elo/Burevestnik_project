@@ -1,6 +1,8 @@
 import requests
 
-new_data = {'age': 25, 'busy': 0, 'experience': 5, 'middle_name': 'Васильевич', 'name': 'Максим', 'nickname': 'mun', 'password': 'xxZxzxczxczcz', 'post': 'Инженер', 'skill_level': 6, 'surname': 'Кириллов', 'team': 1, 'telegram': None}
+new_data = {'age': 25, 'busy': 0, 'experience': 5, 'middle_name': 'Васильевич', 'name': 'Максим', 'nickname': 'mun',
+            'password': 'xxZxzxczxczcz', 'post': 'Инженер', 'skill_level': 6, 'surname': 'Кириллов', 'team': 1,
+            'telegram': None}
 
 
 def post():
@@ -12,16 +14,18 @@ def post():
         print("Ошибка при добавлении данных:", response.json())
 
 
-
 def get():
-    response = requests.get('http://127.0.0.1:5000/data/repair_hardware').json()
-    for index, row in enumerate(response):
-        print(row)
+    response = requests.get('http://127.0.0.1:5000/data/users').json()
+    nickname = 'vava'
+    for row in response:
+        if row.get('nickname') == nickname:
+            req = row
+    print(str(req.get('nickname')))
+    print(str(req['nickname']))
 
 
 def put():
     response = requests.put('http://127.0.0.1:5000/data/users/ben', json=new_data)
-    print(response.status_code)
-    print(response.json())
+
 
 get()

@@ -32,6 +32,7 @@ class register_win(QMainWindow, client.register.register_window.Ui_Dialog):
         try:
             response = requests.post('http://127.0.0.1:5000/data/users', json=user)
             if response.status_code == 201:
+                print('success register')
                 self.window = login_win()
                 self.window.show()
                 self.close()

@@ -1,11 +1,23 @@
-from PyQt6.QtWidgets import QMainWindow
+import requests
+from PyQt6.QtWidgets import QMainWindow, QMessageBox
 
 from client.menu import menu_dispetcher
 
 
-def send_to_db(nik_work, id_problem):
-    pass
+def send_to_db(nickname, id_problem, self):
+    repair_hardware = {'nickname': nickname}
+    user = {'nickname': nickname, 'busy': 1}
+    response_repair_hardware_nickname = requests.get('http://127.0.0.1:5000/data/users').json()
 
+    for row in response_repair_hardware_nickname:
+        if row.get('nickname') == nickname:
+            if row.get('busy') == 1:
+                QMessageBox.critical(self, 'Critical', 'Работник уже занят, выберите другого')
+                break
+
+    response_repair_hardware = requests.put(f'http://127.0.0.1:5000/data/repair_hardware/{id_problem}',
+                                            json=repair_hardware)
+    response_users = requests.put(f'http://127.0.0.1:5000/data/users/{nickname}', json=user)
     """UPDATE users SET busy = ? WHERE nickname = ?
     UPDATE repair_hardware SET nickname = ? WHERE id = ?"""
 
@@ -24,7 +36,7 @@ class Ui_MainWindow1(QMainWindow, menu_dispetcher.Ui_MainWindow):
         # Отправка информации о заказе в базу данных
         nik_work = self.lineEdit_nik_work.text()  # Получение ника работника
         id_problem = self.lineEdit_id_problem.text()  # Получение ID проблемы
-        send_to_db(nik_work, id_problem)  # Отправка в базу данных
+        send_to_db(nik_work, id_problem, self)  # Отправка в базу данных
 
     def refresh_bd(self):
         # Обновление данных, отображаемых в таблицах

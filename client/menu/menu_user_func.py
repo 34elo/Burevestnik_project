@@ -21,7 +21,6 @@ def send_application(self, id_hardware, comment_applicant):
                        'start': start_time}
     response = requests.post('http://127.0.0.1:5000/data/repair_hardware', json=repair_hardware)
 
-
 def update_good_status(nickname):
     end_time = time_now()
     repair_hardware = {'done': 1,
@@ -30,7 +29,6 @@ def update_good_status(nickname):
                        'nickname': nickname}
     user = {'nickname': nickname, 'busy': 0}
     response_repair_hardware_nickname = requests.get('http://127.0.0.1:5000/data/repair_hardware').json()
-
     for row in response_repair_hardware_nickname:
         if row.get('nickname') == nickname:
             id_repair_hardware = row.get('id')
@@ -40,9 +38,7 @@ def update_good_status(nickname):
                                             json=repair_hardware)
     response_users = requests.put(f'http://127.0.0.1:5000/data/users/{nickname}', json=user)
 
-
 def update_bad_status(nickname, comment_worker):
-    end_time = time_now()
     repair_hardware = {'done': 0,
                        'comment_work': comment_worker,
                        'nickname': None}
@@ -56,6 +52,7 @@ def update_bad_status(nickname, comment_worker):
 
     response_repair_hardware = requests.put(f'http://127.0.0.1:5000/data/repair_hardware/{id_repair_hardware}',
                                             json=repair_hardware)
+
     response_users = requests.put(f'http://127.0.0.1:5000/data/users/{nickname}', json=user)
 
 
@@ -81,8 +78,24 @@ class Ui_MainWindow2(QMainWindow, menu_user.Ui_MainWindow):
         self.pushButton_send_order.clicked.connect(self.send_application)
         self.pushButton_send_order_2.clicked.connect(self.send_good_statement)
         self.pushButton_send_order_3.clicked.connect(self.send_bad_statement)
-
         self.widget_5.setHidden(True)
+        self.account_page()
+
+    def account_page(self):
+        response = requests.get('http://127.0.0.1:5000/data/users').json()
+        req: dict = {}
+        for row in response:
+            if row.get('nickname') == self.nickname:
+                req = row
+
+        self.label_nik.setText(str(req['nickname']))
+        self.label_midlename.setText(str(req['middle_name']))
+        self.label_secondnaame.setText(str(req['surname']))
+        self.label_name.setText(str(req['name']))
+        self.label_post.setText(str(req['post']))
+        self.label_age.setText(str(req['age']))
+        self.label_level.setText(str(req['skill_level']))
+        self.label_exp.setText(str(req['experience']))
 
     def switch_to_money(self):
         self.stackedWidget.setCurrentIndex(0)  # Переключение на страницу "Деньги"

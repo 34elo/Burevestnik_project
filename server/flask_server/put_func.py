@@ -9,7 +9,6 @@ from server.settings import DATABASE
 @app.route('/data/users/<string:data_nickname>', methods=['PUT'])
 def update_data_users(data_nickname):
     data = request.get_json()
-    print(data)
     conn = sqlite3.connect(DATABASE)
     cursor = conn.cursor()
 
