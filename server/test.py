@@ -22,10 +22,13 @@ def get():
             req = row
     print(str(req.get('nickname')))
     print(str(req['nickname']))
+    return response
 
 
 def put():
     response = requests.put('http://127.0.0.1:5000/data/users/ben', json=new_data)
 
 
-get()
+for i in get():
+    print(i.keys)
+print(get().keys())

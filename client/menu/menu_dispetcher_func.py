@@ -1,7 +1,24 @@
+import sys
+
 import requests
-from PyQt6.QtWidgets import QMainWindow, QMessageBox
+from PyQt6.QtCore import QAbstractTableModel, Qt
+
+from PyQt6.QtWidgets import QMainWindow, QMessageBox, QTableView, QVBoxLayout
+import json
+
+from PyQt6.uic.properties import QtWidgets
 
 from client.menu import menu_dispetcher
+
+
+def get_users():
+    response_users = requests.get('http://127.0.0.1:5000/data/users').json()
+    return response_users
+
+
+def get_repair_hardware():
+    response_repair_hardware = requests.get('http://127.0.0.1:5000/data/repair_hardware').json()
+    return response_repair_hardware
 
 
 def send_to_db(nickname, id_problem, self):
@@ -22,6 +39,32 @@ def send_to_db(nickname, id_problem, self):
     UPDATE repair_hardware SET nickname = ? WHERE id = ?"""
 
 
+class JsonTableModel(QAbstractTableModel):
+    def __init__(self, data):
+        super().__init__()
+        self._data = data
+
+    def data(self, index, role):
+        if role == Qt.ItemDataRole.DisplayRole:
+            return self._data[index.row()][index.column()]
+
+    def rowCount(self, index):
+        return len(self._data)
+
+    def columnCount(self, index):
+        if self._data:
+            return len(self._data[0])
+        return 0
+
+    def headerData(self, section, orientation, role):
+        if role == Qt.ItemDataRole.DisplayRole:
+            if orientation == Qt.Orientation.Horizontal:
+                return self._headers[section] if self._headers else str(section)
+            else:
+                return str(section)
+        return None
+
+
 class Ui_MainWindow1(QMainWindow, menu_dispetcher.Ui_MainWindow):
     # Класс основного окна администратора
     def __init__(self):
@@ -39,21 +82,18 @@ class Ui_MainWindow1(QMainWindow, menu_dispetcher.Ui_MainWindow):
         send_to_db(nik_work, id_problem, self)  # Отправка в базу данных
 
     def refresh_bd(self):
-        # Обновление данных, отображаемых в таблицах
-        db = QSqlDatabase.addDatabase('QSQLITE')  # Указание типа базы данных
-        db.setDatabaseName('db/tab.db')  # Установка имени базы данных
-        db.open()  # Открытие соединения с базой данных
-
-        # Создание модели для таблицы пользователей и установка её в представление таблицы
-        model = QSqlTableModel(self, db)
-        model.setTable('users')
-        model.select()
-        self.tableView_2.setModel(model)
-        self.tableView_2.setStyleSheet("color: black; background-color: white;")
-
-        # Создание модели для таблицы ремонтов и установка её в представление таблицы
-        model = QSqlTableModel(self, db)
-        model.setTable('repair_hardware')
-        model.select()
-        self.tableView.setModel(model)
+        users = get_users()
+        repair_hardware = get_repair_hardware()
+        headers = list(users[0].keys())  # Заголовки из ключей первого словаря
+        rows = [[row[header] for header in headers] for row in users]
+        model_users = JsonTableModel(rows)
+        model_users._headers = headers
+        self.tableView.setModel(model_users)
         self.tableView.setStyleSheet("color: black; background-color: white;")
+
+        headers = list(repair_hardware[0].keys())  # Заголовки из ключей первого словаря
+        rows = [[row[header] for header in headers] for row in repair_hardware]
+        model_repair_hardware = JsonTableModel(rows)
+        model_repair_hardware._headers = headers
+        self.tableView_2.setModel(model_repair_hardware)
+        self.tableView_2.setStyleSheet("color: black; background-color: white;")

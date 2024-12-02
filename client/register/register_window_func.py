@@ -25,18 +25,18 @@ class register_win(QMainWindow, client.register.register_window.Ui_Dialog):
         name = self.lineEdit_name_reg.text()
         post = self.lineEdit_post_reg.text()
         age = self.lineEdit_age_reg.text()
-        team = random.randint(1,3)
-        user = {'experience': experience, 'skill_level': skill_level, 'nickname': nickname, 'password': password, 'surname': surname, 'name': name, 'post': post, 'age': age, 'busy': 0, 'team': team, 'middle_name': middle_name}
-
-
-        try:
-            response = requests.post('http://127.0.0.1:5000/data/users', json=user)
-            if response.status_code == 201:
-                print('success register')
+        if experience and skill_level and nickname and middle_name and password and surname and name and post and age:
+            team = random.randint(1, 3)
+            user = {'experience': experience, 'skill_level': skill_level, 'nickname': nickname, 'password': password,
+                    'surname': surname, 'name': name, 'post': post, 'age': age, 'busy': 0, 'team': team,
+                    'middle_name': middle_name}
+            try:
+                response = requests.post('http://127.0.0.1:5000/data/users', json=user)
                 self.window = login_win()
                 self.window.show()
                 self.close()
-            else:
-                print("Ошибка входа")
-        except Exception as e:
-            QMessageBox.critical(self, 'Critical', 'Прод упал, попробуйте позже')
+            except Exception as e:
+                print(e)
+                QMessageBox.critical(self, 'Critical', 'Прод упал, попробуйте позже')
+        else:
+            QMessageBox.critical(self, 'Critical', 'Вы ввели не все данные')
