@@ -6,6 +6,7 @@ from PyQt6.QtWidgets import QMainWindow, QMessageBox
 import client.login.login_window
 from client.menu.menu_dispetcher_func import Ui_MainWindow1
 from client.menu.menu_user_func import Ui_MainWindow2
+from client.settings import API_URL
 
 
 class login_win(QMainWindow, client.login.login_window.Ui_reg2):
@@ -19,8 +20,8 @@ class login_win(QMainWindow, client.login.login_window.Ui_reg2):
         nickname_check = self.lineEdit_log_log.text()
         password_check = self.lineEdit_passwor_log.text()
         try:
-            password = requests.post('http://127.0.0.1:5000/password', json={'password': password_check}).json()
-            response = requests.get('http://127.0.0.1:5000/data/users')
+            password = requests.post(f'{API_URL}/password', json={'password': password_check}).json()
+            response = requests.get(f'{API_URL}/data/users')
         except Exception as e:
             print(e)
             QMessageBox.critical(self, 'Critical', 'Прод упал, попробуйте позже')

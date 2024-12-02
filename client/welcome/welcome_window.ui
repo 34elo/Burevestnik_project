@@ -1,111 +1,110 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
-    <class>Dialog</class>
-    <widget class="QDialog" name="Dialog">
-        <property name="enabled">
-            <bool>true</bool>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>0</x>
-                <y>0</y>
-                <width>442</width>
-                <height>515</height>
-            </rect>
-        </property>
-        <property name="windowTitle">
-            <string>Dialog</string>
-        </property>
-        <property name="styleSheet">
-            <string notr="true">background-color: rgb(45, 44, 44);</string>
-        </property>
-        <widget class="QLabel" name="label">
-            <property name="geometry">
-                <rect>
-                    <x>110</x>
-                    <y>80</y>
-                    <width>211</width>
-                    <height>171</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string/>
-            </property>
-            <property name="pixmap">
-                <pixmap resource="resourses.qrc">:/res/1732856356407-fotor-bg-remover-202411298154.png</pixmap>
-            </property>
-            <property name="scaledContents">
-                <bool>true</bool>
-            </property>
-        </widget>
-        <widget class="QPushButton" name="pushButton_login_reg">
-            <property name="geometry">
-                <rect>
-                    <x>150</x>
-                    <y>280</y>
-                    <width>131</width>
-                    <height>41</height>
-                </rect>
-            </property>
-            <property name="styleSheet">
-                <string notr="true">background-color: rgb(0, 153, 81);
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>442</width>
+    <height>512</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(45, 44, 44);</string>
+  </property>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>110</x>
+     <y>80</y>
+     <width>211</width>
+     <height>171</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="../resourses.qrc">:/res/1732856356407-fotor-bg-remover-202411298154 — копия-fotor-20241202195841.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_login_reg">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>280</y>
+     <width>131</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(0, 153, 81);
                     color: white;
                     border-radius: 20px;
                 </string>
-            </property>
-            <property name="text">
-                <string>Вход</string>
-            </property>
-        </widget>
-        <widget class="QPushButton" name="pushButton_registration">
-            <property name="geometry">
-                <rect>
-                    <x>150</x>
-                    <y>330</y>
-                    <width>131</width>
-                    <height>41</height>
-                </rect>
-            </property>
-            <property name="styleSheet">
-                <string notr="true">background-color: rgb(0, 153, 81);
+   </property>
+   <property name="text">
+    <string>Вход</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_registration">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>330</y>
+     <width>131</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(0, 153, 81);
                     color: white;
                     border-radius: 20px;
                 </string>
-            </property>
-            <property name="text">
-                <string>Зарегистрироваться</string>
-            </property>
-        </widget>
-        <widget class="QPushButton" name="pushButton_forgot">
-            <property name="geometry">
-                <rect>
-                    <x>150</x>
-                    <y>370</y>
-                    <width>131</width>
-                    <height>31</height>
-                </rect>
-            </property>
-            <property name="cursor">
-                <cursorShape>ArrowCursor</cursorShape>
-            </property>
-            <property name="styleSheet">
-                <string notr="true">border-radius: 20px;
+   </property>
+   <property name="text">
+    <string>Зарегистрироваться</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_forgot">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>370</y>
+     <width>131</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>ArrowCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-radius: 20px;
                     color: rgb(6, 255, 172);
                 </string>
-            </property>
-            <property name="text">
-                <string>Забыли пароль?</string>
-            </property>
-        </widget>
-        <zorder>pushButton_forgot</zorder>
-        <zorder>label</zorder>
-        <zorder>pushButton_login_reg</zorder>
-        <zorder>pushButton_registration</zorder>
-    </widget>
-    <resources>
-        <include location="resourses.qrc"/>
-        <include location="resourses.qrc"/>
-    </resources>
-    <connections/>
+   </property>
+   <property name="text">
+    <string>Забыли пароль?</string>
+   </property>
+  </widget>
+  <zorder>pushButton_forgot</zorder>
+  <zorder>label</zorder>
+  <zorder>pushButton_login_reg</zorder>
+  <zorder>pushButton_registration</zorder>
+ </widget>
+ <resources>
+  <include location="../resourses.qrc"/>
+  <include location="resourses.qrc"/>
+ </resources>
+ <connections/>
 </ui>
-

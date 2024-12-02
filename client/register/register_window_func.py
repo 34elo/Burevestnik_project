@@ -5,6 +5,7 @@ from PyQt6.QtWidgets import QMainWindow, QMessageBox
 
 import client.register.register_window
 from client.login.login_window_func import login_win
+from client.settings import API_URL
 
 
 class register_win(QMainWindow, client.register.register_window.Ui_Dialog):
@@ -31,7 +32,7 @@ class register_win(QMainWindow, client.register.register_window.Ui_Dialog):
                     'surname': surname, 'name': name, 'post': post, 'age': age, 'busy': 0, 'team': team,
                     'middle_name': middle_name}
             try:
-                response = requests.post('http://127.0.0.1:5000/data/users', json=user)
+                response = requests.post(f'{API_URL}/data/users', json=user)
                 self.window = login_win()
                 self.window.show()
                 self.close()

@@ -21,11 +21,12 @@ def add_data_users():
     experience = data.get('experience')
     busy = data.get('busy')
     team = data.get('team')
+    completed_task = data.get('completed_task')
 
     conn = sqlite3.connect(DATABASE)
     cursor = conn.cursor()
-    cursor.execute("INSERT INTO users (nickname, password, middle_name, surname, name, post, age, telegram, skill_level, experience, busy, team) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                   (nickname, password, middle_name, surname, name, post, age, telegram, skill_level, experience, busy, team))
+    cursor.execute("INSERT INTO users (nickname, password, middle_name, surname, name, post, age, telegram, skill_level, experience, busy, team, completed_task) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                   (nickname, password, middle_name, surname, name, post, age, telegram, skill_level, experience, busy, team, completed_task))
     conn.commit()
     conn.close()
     return jsonify({'message': 'Data added successfully'}), 201

@@ -9,22 +9,23 @@ import json
 from PyQt6.uic.properties import QtWidgets
 
 from client.menu import menu_dispetcher
+from client.settings import API_URL
 
 
 def get_users():
-    response_users = requests.get('http://127.0.0.1:5000/data/users').json()
+    response_users = requests.get(f'{API_URL}/data/users').json()
     return response_users
 
 
 def get_repair_hardware():
-    response_repair_hardware = requests.get('http://127.0.0.1:5000/data/repair_hardware').json()
+    response_repair_hardware = requests.get(f'{API_URL}/data/repair_hardware').json()
     return response_repair_hardware
 
 
 def send_to_db(nickname, id_problem, self):
     repair_hardware = {'nickname': nickname}
     user = {'nickname': nickname, 'busy': 1}
-    response_repair_hardware_nickname = requests.get('http://127.0.0.1:5000/data/users').json()
+    response_repair_hardware_nickname = requests.get(f'{API_URL}/data/users').json()
 
     for row in response_repair_hardware_nickname:
         if row.get('nickname') == nickname:
@@ -32,9 +33,9 @@ def send_to_db(nickname, id_problem, self):
                 QMessageBox.critical(self, 'Critical', 'Работник уже занят, выберите другого')
                 break
 
-    response_repair_hardware = requests.put(f'http://127.0.0.1:5000/data/repair_hardware/{id_problem}',
+    response_repair_hardware = requests.put(f'{API_URL}/data/repair_hardware/{id_problem}',
                                             json=repair_hardware)
-    response_users = requests.put(f'http://127.0.0.1:5000/data/users/{nickname}', json=user)
+    response_users = requests.put(f'{API_URL}/data/users/{nickname}', json=user)
     """UPDATE users SET busy = ? WHERE nickname = ?
     UPDATE repair_hardware SET nickname = ? WHERE id = ?"""
 

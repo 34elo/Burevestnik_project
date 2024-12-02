@@ -23,7 +23,8 @@ def get_data_users():
                      'skill_level': row[8],
                      'experience': row[9],
                      'busy': row[10],
-                     'team': row[11]
+                     'team': row[11],
+                     'completed_task': row[12]
                      }
                     for row in rows])
 

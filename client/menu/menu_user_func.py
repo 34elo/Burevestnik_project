@@ -8,6 +8,7 @@ from PyQt6.QtWidgets import QMainWindow, QMessageBox
 
 from client.menu import menu_user
 from client.misc.func_with_time import time_now
+from client.settings import API_URL
 
 
 def send_application(self, id_hardware, comment_applicant):
@@ -19,7 +20,8 @@ def send_application(self, id_hardware, comment_applicant):
                        'id_hardware': id_hardware,
                        'nickname': None,
                        'start': start_time}
-    response = requests.post('http://127.0.0.1:5000/data/repair_hardware', json=repair_hardware)
+    response = requests.post(f'{API_URL}/data/repair_hardware', json=repair_hardware)
+
 
 def update_good_status(nickname):
     end_time = time_now()
@@ -28,32 +30,42 @@ def update_good_status(nickname):
                        'comment_work': 'No problems',
                        'nickname': nickname}
     user = {'nickname': nickname, 'busy': 0}
-    response_repair_hardware_nickname = requests.get('http://127.0.0.1:5000/data/repair_hardware').json()
+    response_repair_hardware_nickname = requests.get(f'{API_URL}/data/repair_hardware').json()
     for row in response_repair_hardware_nickname:
         if row.get('nickname') == nickname:
             id_repair_hardware = row.get('id')
             break
 
-    response_repair_hardware = requests.put(f'http://127.0.0.1:5000/data/repair_hardware/{id_repair_hardware}',
+    response_repair_hardware = requests.put(f'{API_URL}/data/repair_hardware/{id_repair_hardware}',
                                             json=repair_hardware)
-    response_users = requests.put(f'http://127.0.0.1:5000/data/users/{nickname}', json=user)
+    response_users = requests.put(f'{API_URL}/data/users/{nickname}', json=user)
+
 
 def update_bad_status(nickname, comment_worker):
     repair_hardware = {'done': 0,
                        'comment_work': comment_worker,
                        'nickname': None}
     user = {'nickname': nickname, 'busy': 0}
-    response_repair_hardware_nickname = requests.get('http://127.0.0.1:5000/data/repair_hardware').json()
+    response_repair_hardware_nickname = requests.get(f'{API_URL}/data/repair_hardware').json()
     id_repair_hardware = 0
     for row in response_repair_hardware_nickname:
         if row.get('nickname') == nickname:
             id_repair_hardware = row.get('id')
             break
 
-    response_repair_hardware = requests.put(f'http://127.0.0.1:5000/data/repair_hardware/{id_repair_hardware}',
+    response_repair_hardware = requests.put(f'{API_URL}/data/repair_hardware/{id_repair_hardware}',
                                             json=repair_hardware)
 
-    response_users = requests.put(f'http://127.0.0.1:5000/data/users/{nickname}', json=user)
+    response_users = requests.put(f'{API_URL}/data/users/{nickname}', json=user)
+
+def get_task(nickname):
+    response = requests.get(f'{API_URL}/data/repair_hardware').json()
+    datas = {}
+    for i in response:
+        if i.get('nickname') == nickname:
+            datas = i
+
+    return datas
 
 
 class Ui_MainWindow2(QMainWindow, menu_user.Ui_MainWindow):
@@ -63,7 +75,11 @@ class Ui_MainWindow2(QMainWindow, menu_user.Ui_MainWindow):
         self.setupUi(self)
         self.setWindowTitle('SideBar Menu')
         self.pushButton_link1.clicked.connect(self.open_link1)
+
+        # все что связано с ником
         self.nickname = nickname
+        self.label_nick2.setText(self.nickname)
+        self.label_nick.setText(self.nickname)
 
         # Подключение кнопок к их функционалу
         self.pushButton_education1us.clicked.connect(self.switch_to_money)
@@ -72,17 +88,21 @@ class Ui_MainWindow2(QMainWindow, menu_user.Ui_MainWindow):
         self.pushButton_acc2_us.clicked.connect(self.switch_to_trackng)
         self.pushButton_acc1_us.clicked.connect(self.switch_to_trackng)
 
+        self.pushButton_tasks2.clicked.connect(self.switch_to_notifications)
+        self.pushButton_task1.clicked.connect(self.switch_to_notifications)
+
         self.pushButton_orde1_2.clicked.connect(self.switch_to_order)
         self.pushButton_order2_2.clicked.connect(self.switch_to_order)
 
-        self.pushButton_send_order.clicked.connect(self.send_application)
-        self.pushButton_send_order_2.clicked.connect(self.send_good_statement)
-        self.pushButton_send_order_3.clicked.connect(self.send_bad_statement)
+        self.pushButton_send_order.clicked.connect(self.send_application)  # Отправка заявки на починку
+        self.pushButton_send_order_sucses.clicked.connect(self.send_good_statement)  # Отправка отчета об успешной починке
+        self.pushButton_send_order_unsucses.clicked.connect(self.send_bad_statement)  # Отправка отчета о неуспешной починке
+
         self.widget_5.setHidden(True)
         self.account_page()
 
     def account_page(self):
-        response = requests.get('http://127.0.0.1:5000/data/users').json()
+        response = requests.get(f'{API_URL}/data/users').json()
         req: dict = {}
         for row in response:
             if row.get('nickname') == self.nickname:
@@ -99,6 +119,12 @@ class Ui_MainWindow2(QMainWindow, menu_user.Ui_MainWindow):
 
     def switch_to_money(self):
         self.stackedWidget.setCurrentIndex(0)  # Переключение на страницу "Деньги"
+
+    def update_task(self):
+        data = get_task(self.nickname)
+
+        self.label_coment_disp.setText(data.get('comment'))
+        self.label_number_machine.setText(data.get('id_hardware'))
 
     def open_link1(self):
         url = QUrl("https://dpoprof.ru/povyshenie/povyshenie-kvalifikacii-tokar/")
@@ -117,6 +143,9 @@ class Ui_MainWindow2(QMainWindow, menu_user.Ui_MainWindow):
 
     def switch_to_order(self):
         self.stackedWidget.setCurrentIndex(2)  # Переключение на страницу "Заказ"
+
+    def switch_to_notifications(self):
+        self.stackedWidget.setCurrentIndex(3)
 
     def send_application(self):
         # Отправка деталей заявки в базу данных

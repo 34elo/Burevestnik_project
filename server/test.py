@@ -16,6 +16,7 @@ def post():
 
 def get():
     response = requests.get('http://127.0.0.1:5000/data/users').json()
+    print(response)
     nickname = 'vava'
     for row in response:
         if row.get('nickname') == nickname:
@@ -29,6 +30,4 @@ def put():
     response = requests.put('http://127.0.0.1:5000/data/users/ben', json=new_data)
 
 
-for i in get():
-    print(i.keys)
-print(get().keys())
+get()

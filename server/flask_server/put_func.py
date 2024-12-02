@@ -51,6 +51,9 @@ def update_data_users(data_nickname):
     if 'team' in data:
         updates.append("team = ?")
         params.append(data['team'])
+    if 'completed_task' in data:
+        updates.append("completed_task = ?")
+        params.append(data['completed_task'])
 
 
     if not updates:
