@@ -47,7 +47,7 @@
           <string notr="true">background-color: rgb(45, 44, 44);</string>
          </property>
          <property name="currentIndex">
-          <number>2</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="money_page">
           <layout class="QVBoxLayout" name="verticalLayout_12">
@@ -173,6 +173,16 @@
              <property name="frameShadow">
               <enum>QFrame::Raised</enum>
              </property>
+             <widget class="PlotWidget" name="graphicsView_statistic">
+              <property name="geometry">
+               <rect>
+                <x>250</x>
+                <y>160</y>
+                <width>256</width>
+                <height>192</height>
+               </rect>
+              </property>
+             </widget>
             </widget>
            </item>
            <item>
@@ -358,8 +368,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>791</width>
-                <height>251</height>
+                <width>825</width>
+                <height>263</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_10">
@@ -409,8 +419,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>791</width>
-                <height>251</height>
+                <width>825</width>
+                <height>263</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_11">
@@ -1235,6 +1245,13 @@
    </layout>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>PlotWidget</class>
+   <extends>QGraphicsView</extends>
+   <header location="global">pyqtgraph</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="../resourses.qrc"/>
   <include location="../resourses.qrc"/>

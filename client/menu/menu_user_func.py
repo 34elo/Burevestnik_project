@@ -159,6 +159,6 @@ class Ui_MainWindow2(QMainWindow, menu_user.Ui_MainWindow):
         update_good_status(self.nickname)  # Обновление статуса хороших ремонтов
 
     def send_bad_statement(self):
-        comment_worker = self.textEdit_com_2.toPlainText()  # Получение комментария о плохом состоянии
-        self.textEdit_com_2.clear()  # Очистка текстового поля комментария
+        comment_worker = self.pushButton_send_order_unsucses.toPlainText()  # Получение комментария о плохом состоянии
+        self.pushButton_send_order_unsucses.clear()  # Очистка текстового поля комментария
         update_bad_status(self.nickname, comment_worker)  # Обновление статуса с плохим ремонтом

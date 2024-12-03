@@ -28,10 +28,8 @@ def run_flask():
 
 
 if __name__ == "__main__":
-    # Запуск Flask
     flask_thread = threading.Thread(target=run_flask, daemon=True)
     flask_thread.start()
-    # Запуск Telegramm
     try:
         asyncio.run(start_bot())
     except KeyboardInterrupt:
