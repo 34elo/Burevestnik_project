@@ -1,40 +1,20 @@
-import sys
+import os
 
 import requests
-from PyQt6.QtCore import QAbstractTableModel, Qt
 
 from PyQt6.QtWidgets import QMainWindow, QMessageBox
 from pyqtgraph import DateAxisItem
 
+from client.exceptions import ReportException, EmptyLineError
 from client.menu import menu_dispetcher
+from client.menu.JSONTableModel import JsonTableModel
+from client.menu.extra_func import get_users, get_repair_hardware
+from client.menu.reporting import docs_report, csv_report
+from client.misc.func_with_time import get_dates
 from client.settings import API_URL
 
 import pyqtgraph as pg
-from pyqtgraph.Qt import QtGui, QtCore
 from datetime import datetime
-
-from datetime import date, timedelta
-
-
-def get_dates(period):
-    today = date.today()
-
-    if period == 'year':
-        year_start = date(today.year, 1, 1)
-        year_end = date(today.year, 12, 31)
-        dates = [year_start + timedelta(days=x) for x in range((year_end - year_start).days + 1)]
-    elif period == 'month':
-        month_start = date(today.year, today.month, 1)
-        next_month = month_start.replace(day=28) + timedelta(days=4)
-        month_end = next_month - timedelta(days=next_month.day)
-        dates = [month_start + timedelta(days=x) for x in range((month_end - month_start).days + 1)]
-    elif period == 'week':
-        start_of_week = today - timedelta(days=today.weekday())
-        dates = [start_of_week + timedelta(days=x) for x in range(7)]
-    else:
-        return None  # Некорректный период
-    formatted_dates = [d.strftime('%Y-%m-%d') for d in dates]
-    return formatted_dates
 
 
 def create_top_users(data):
@@ -95,14 +75,11 @@ def create_top_team(data):
     return columns, sorted(rows, key=lambda x: x[1], reverse=True)
 
 
-def get_users():
-    response_users = requests.get(f'{API_URL}/data/users').json()
-    return response_users
-
-
-def get_repair_hardware():
-    response_repair_hardware = requests.get(f'{API_URL}/data/repair_hardware').json()
-    return response_repair_hardware
+def do_report(name, statistic, docs=True, csv=False):
+    if docs:
+        return docs_report(name, statistic)
+    if csv:
+        return csv_report(name, statistic)
 
 
 def send_to_db(nickname, id_problem, self):
@@ -119,35 +96,6 @@ def send_to_db(nickname, id_problem, self):
     response_repair_hardware = requests.put(f'{API_URL}/data/repair_hardware/{id_problem}',
                                             json=repair_hardware)
     response_users = requests.put(f'{API_URL}/data/users/{nickname}', json=user)
-    """UPDATE users SET busy = ? WHERE nickname = ?
-    UPDATE repair_hardware SET nickname = ? WHERE id = ?"""
-
-
-class JsonTableModel(QAbstractTableModel):
-    def __init__(self, data):
-        super().__init__()
-        self._data = data
-
-    def data(self, index, role):
-        if role == Qt.ItemDataRole.DisplayRole:
-            return self._data[index.row()][index.column()]
-
-    def rowCount(self, index):
-        return len(self._data)
-
-    def columnCount(self, index):
-        if self._data:
-            return len(self._data[0])
-        return 0
-
-    def headerData(self, section, orientation, role):
-        if role == Qt.ItemDataRole.DisplayRole:
-            if orientation == Qt.Orientation.Horizontal:
-                return self._headers[section] if self._headers else str(section)
-            else:
-                return str(section)
-        return None
-
 
 class DateAxisItem(pg.AxisItem):  # Определение DateAxisItem здесь
     def tickStrings(self, values, scale, spacing):
@@ -184,23 +132,36 @@ class Ui_MainWindow1(QMainWindow, menu_dispetcher.Ui_MainWindow):
 
         self.pushButton_graph.clicked.connect(self.build_graph)
 
+        self.pushButton_report_2.clicked.connect(self.get_report)
+
     def statistic_year(self):
         self.statistic = 'year'
-        print(self.statistic)
 
     def statistic_month(self):
         self.statistic = 'month'
-        print(self.statistic)
 
     def statistic_week(self):
         self.statistic = 'week'
-        print(self.statistic)
 
     def send_order(self):
         # Отправка информации о заказе в базу данных
         nik_work = self.lineEdit_nik_work.text()  # Получение ника работника
         id_problem = self.lineEdit_id_problem.text()  # Получение ID проблемы
         send_to_db(nik_work, id_problem, self)  # Отправка в базу данных
+
+    def get_report(self):
+        docs = self.radioButton_2.isChecked()
+        csv = self.radioButton.isChecked()
+        name = self.lineEdit.text()
+        statistic = self.statistic
+        if name == '':
+            QMessageBox.critical(self, 'Critical', 'Заполни поля, дебил')
+        else:
+            try:
+                message = do_report(name, statistic, csv=csv, docs=docs)
+                QMessageBox.information(self, 'Успех', message)
+            except ReportException:
+                QMessageBox.critical(self, 'Critical', 'Error')
 
     def refresh_top_team(self):
         users = get_users()
@@ -252,7 +213,6 @@ class Ui_MainWindow1(QMainWindow, menu_dispetcher.Ui_MainWindow):
     def build_graph(self):
         self.graphicsView_statistic.clear()
         repair_hardware = get_repair_hardware()
-        # ("2024-01-01 00", 10)
         all_dates = get_dates(self.statistic)
         datas = [i for i in repair_hardware if i.get('done') == 1]
         data = []
@@ -262,8 +222,6 @@ class Ui_MainWindow1(QMainWindow, menu_dispetcher.Ui_MainWindow):
                 if j.get('end')[:10] == i:
                     res += 1
             data.append((i, res))
-        print(data)
-        print(self.statistic)
         x_data = [datetime.strptime(date_str.split()[0], '%Y-%m-%d').timestamp() for date_str, _ in data]
         y_data = [count for _, count in data]
 

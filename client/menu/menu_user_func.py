@@ -7,11 +7,12 @@ from PyQt6.QtGui import QDesktopServices
 from PyQt6.QtWidgets import QMainWindow, QMessageBox
 
 from client.menu import menu_user
+from client.menu.extra_func import get_task
 from client.misc.func_with_time import time_now
 from client.settings import API_URL
 
 
-def send_application(self, id_hardware, comment_applicant):
+def send_application(id_hardware, comment_applicant):
     start_time = time_now()
     repair_hardware = {'comment_applicant': comment_applicant,
                        'comment_work': None,
@@ -58,15 +59,6 @@ def update_bad_status(nickname, comment_worker):
 
     response_users = requests.put(f'{API_URL}/data/users/{nickname}', json=user)
 
-def get_task(nickname):
-    response = requests.get(f'{API_URL}/data/repair_hardware').json()
-    datas = {}
-    for i in response:
-        if i.get('nickname') == nickname:
-            datas = i
-
-    return datas
-
 
 class Ui_MainWindow2(QMainWindow, menu_user.Ui_MainWindow):
     # Класс основного окна пользователя
@@ -95,8 +87,10 @@ class Ui_MainWindow2(QMainWindow, menu_user.Ui_MainWindow):
         self.pushButton_order2_2.clicked.connect(self.switch_to_order)
 
         self.pushButton_send_order.clicked.connect(self.send_application)  # Отправка заявки на починку
-        self.pushButton_send_order_sucses.clicked.connect(self.send_good_statement)  # Отправка отчета об успешной починке
-        self.pushButton_send_order_unsucses.clicked.connect(self.send_bad_statement)  # Отправка отчета о неуспешной починке
+        self.pushButton_send_order_sucses.clicked.connect(
+            self.send_good_statement)  # Отправка отчета об успешной починке
+        self.pushButton_send_order_unsucses.clicked.connect(
+            self.send_bad_statement)  # Отправка отчета о неуспешной починке
 
         self.widget_5.setHidden(True)
         self.account_page()
@@ -151,7 +145,7 @@ class Ui_MainWindow2(QMainWindow, menu_user.Ui_MainWindow):
         # Отправка деталей заявки в базу данных
         id_hardware = self.lineEdit_id_input.text()
         comment_applicant = self.textEdit_com_1.toPlainText()
-        send_application(self, id_hardware, comment_applicant)  # Вызов функции для отправки заявки
+        send_application(id_hardware, comment_applicant)  # Вызов функции для отправки заявки
         self.textEdit_com_1.clear()  # Очистка текстового поля комментария
         self.lineEdit_id_input.clear()  # Очистка текстового поля ввода ID оборудования
 

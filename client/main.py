@@ -8,7 +8,6 @@ def my_exception_hook(exctype, value, traceback):
     # Обработчик исключений, который выводит информацию об исключении и завершает приложение
     print(exctype, value, traceback)
     sys._excepthook(exctype, value, traceback)
-    sys.exit(1)
 
 
 def main():
