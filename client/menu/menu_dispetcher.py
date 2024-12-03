@@ -186,7 +186,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName("scrollArea")
         self.scrollAreaWidgetContents = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 846, 310))
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 791, 251))
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
         self.verticalLayout_10 = QtWidgets.QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_10.setObjectName("verticalLayout_10")
@@ -210,7 +210,7 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.scrollArea_2.setObjectName("scrollArea_2")
         self.scrollAreaWidgetContents_2 = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents_2.setGeometry(QtCore.QRect(0, 0, 846, 309))
+        self.scrollAreaWidgetContents_2.setGeometry(QtCore.QRect(0, 0, 791, 251))
         self.scrollAreaWidgetContents_2.setObjectName("scrollAreaWidgetContents_2")
         self.verticalLayout_11 = QtWidgets.QVBoxLayout(self.scrollAreaWidgetContents_2)
         self.verticalLayout_11.setObjectName("verticalLayout_11")
@@ -333,6 +333,9 @@ class Ui_MainWindow(object):
         self.frame_2.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.frame_2.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_2.setObjectName("frame_2")
+        self.tableView_top_team = QtWidgets.QTableView(parent=self.frame_2)
+        self.tableView_top_team.setGeometry(QtCore.QRect(90, 50, 256, 192))
+        self.tableView_top_team.setObjectName("tableView_top_team")
         self.verticalLayout_18.addWidget(self.frame_2)
         self.horizontalLayout_16 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_16.setObjectName("horizontalLayout_16")
@@ -366,6 +369,9 @@ class Ui_MainWindow(object):
         self.frame_3.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.frame_3.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_3.setObjectName("frame_3")
+        self.tableView_top_useres = QtWidgets.QTableView(parent=self.frame_3)
+        self.tableView_top_useres.setGeometry(QtCore.QRect(170, 100, 256, 192))
+        self.tableView_top_useres.setObjectName("tableView_top_useres")
         self.verticalLayout_17.addWidget(self.frame_3)
         self.horizontalLayout_15 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_15.setObjectName("horizontalLayout_15")
@@ -611,7 +617,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(2)
         self.pushButton.toggled['bool'].connect(self.widget_4.setHidden) # type: ignore
         self.pushButton.toggled['bool'].connect(self.widget_5.setVisible) # type: ignore
         self.pushButton_23.toggled['bool'].connect(MainWindow.close) # type: ignore

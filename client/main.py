@@ -18,6 +18,7 @@ def main():
     app = QApplication(sys.argv)  # Инициализация приложения
     w = welcome_win()  # Создание экземпляра начального окна регистрации
     w.show()  # Показ окна
+    print('Start app')
     app.exec()  # Запуск цикла приложения
 
 

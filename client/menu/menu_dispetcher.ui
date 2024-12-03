@@ -47,7 +47,7 @@
           <string notr="true">background-color: rgb(45, 44, 44);</string>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>2</number>
          </property>
          <widget class="QWidget" name="money_page">
           <layout class="QVBoxLayout" name="verticalLayout_12">
@@ -358,8 +358,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>846</width>
-                <height>310</height>
+                <width>791</width>
+                <height>251</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_10">
@@ -409,8 +409,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>846</width>
-                <height>309</height>
+                <width>791</width>
+                <height>251</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_11">
@@ -650,6 +650,16 @@
                  <property name="frameShadow">
                   <enum>QFrame::Raised</enum>
                  </property>
+                 <widget class="QTableView" name="tableView_top_team">
+                  <property name="geometry">
+                   <rect>
+                    <x>90</x>
+                    <y>50</y>
+                    <width>256</width>
+                    <height>192</height>
+                   </rect>
+                  </property>
+                 </widget>
                 </widget>
                </item>
                <item>
@@ -713,6 +723,16 @@
                  <property name="frameShadow">
                   <enum>QFrame::Raised</enum>
                  </property>
+                 <widget class="QTableView" name="tableView_top_useres">
+                  <property name="geometry">
+                   <rect>
+                    <x>170</x>
+                    <y>100</y>
+                    <width>256</width>
+                    <height>192</height>
+                   </rect>
+                  </property>
+                 </widget>
                 </widget>
                </item>
                <item>
@@ -1217,7 +1237,7 @@
  </widget>
  <resources>
   <include location="../resourses.qrc"/>
-  <include location="resourses.qrc"/>
+  <include location="../resourses.qrc"/>
  </resources>
  <connections>
   <connection>

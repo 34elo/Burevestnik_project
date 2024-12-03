@@ -11,6 +11,65 @@ from PyQt6.uic.properties import QtWidgets
 from client.menu import menu_dispetcher
 from client.settings import API_URL
 
+def create_top_users(data):
+
+    # Проверка наличия необходимых ключей
+    required_keys = ['name', 'middle_name', 'surname', 'completed_task', 'post']
+    for item in data:
+        if not all(key in item for key in required_keys):
+            print(f"Ошибка: Отсутствуют необходимые ключи в словаре: {item}")
+            return None
+
+    # Обработка completed_task (преобразование в число и обработка)
+    for item in data:
+      try:
+        item['completed_task'] = int(item.get('completed_task', 0))
+      except ValueError:
+        return None
+
+
+    # Сортировка пользователей по completed_task в убывающем порядке
+    sorted_users = sorted(data, key=lambda x: x['completed_task'], reverse=True)
+
+
+    # Создание списка названий столбцов
+    columns = ['ФИО', 'Выполненные задания', 'Должность']
+
+    # Создание списка строк
+    rows = [[
+        f"{user['name']} {user['middle_name']} {user['surname']}",
+        user['completed_task'],
+        user['post']
+    ] for user in sorted_users]
+
+    return columns, rows
+
+def create_top_team(data):
+    teams = {}
+    for item in data:
+        team_id = int(item['team'])
+        if team_id not in teams:
+            teams[team_id] = []
+        teams[team_id].append(item)
+
+    team_data = []
+    for team_id, team_members in teams.items():
+
+        completed_tasks = sum(int(item.get('completed_task', 0)) for item in team_members if isinstance(item.get('completed_task'), (int, float)))
+        try:
+            best_worker = max(team_members, key=lambda x: x.get('completed_task', 0))
+            best_worker_fio = f"{best_worker['name']} {best_worker['middle_name']} {best_worker['surname']}"
+        except (ValueError, KeyError, TypeError):  #Обработка различных ошибок
+            best_worker_fio = "N/A"
+        team_data.append({'team': team_id, 'completed_tasks': completed_tasks, 'best_worker_fio': best_worker_fio})
+    columns = ['team', 'completed_tasks', 'best_worker_fio']
+
+    # Создание списка строк
+    rows = [[str(item['team']), str(item['completed_tasks']), item['best_worker_fio']] for item in team_data]
+
+    return columns, sorted(rows, key=lambda x: x[1], reverse=True)
+
+
 
 def get_users():
     response_users = requests.get(f'{API_URL}/data/users').json()
@@ -76,17 +135,49 @@ class Ui_MainWindow1(QMainWindow, menu_dispetcher.Ui_MainWindow):
         self.refresh_btn.clicked.connect(self.refresh_bd)
         self.widget_5.setHidden(True)
 
+        self.pushButton_tracing1.clicked.connect(self.switch_to_work)
+        self.pushButton_tracing2.clicked.connect(self.switch_to_work)
+
+        self.pushButton_team.clicked.connect(self.switch_to_top)
+        self.pushButton_team2.clicked.connect(self.switch_to_top)
+
+        self.pushButton_money1.clicked.connect(self.switch_to_statistic)
+        self.pushButton_money2.clicked.connect(self.switch_to_statistic)
+
+        self.pushButton_graph_4.clicked.connect(self.refresh_top_team)
+        self.pushButton_graph_5.clicked.connect(self.refresh_top_users)
+
     def send_order(self):
         # Отправка информации о заказе в базу данных
         nik_work = self.lineEdit_nik_work.text()  # Получение ника работника
         id_problem = self.lineEdit_id_problem.text()  # Получение ID проблемы
         send_to_db(nik_work, id_problem, self)  # Отправка в базу данных
 
+    def refresh_top_team(self):
+        users = get_users()
+        headers, rows = create_top_team(users)
+        model_users = JsonTableModel(rows)
+        model_users._headers = headers
+        self.tableView_top_team.setModel(model_users)
+        self.tableView_top_team.setStyleSheet("color: black; background-color: white;")
+
+    def refresh_top_users(self):
+        users = get_users()
+        headers, rows = create_top_users(users)
+        model_users = JsonTableModel(rows)
+        model_users._headers = headers
+        self.tableView_top_useres.setModel(model_users)
+        self.tableView_top_useres.setStyleSheet("color: black; background-color: white;")
+
     def refresh_bd(self):
         users = get_users()
         repair_hardware = get_repair_hardware()
-        headers = list(users[0].keys())  # Заголовки из ключей первого словаря
-        rows = [[row[header] for header in headers] for row in users]
+        headers = list(repair_hardware[0].keys())  # Заголовки из ключей первого словаря
+        rows = [[row[header] for header in headers if row['done'] == 0] for row in repair_hardware]
+        try:
+            rows.remove([])
+        except ValueError:
+            pass
         model_users = JsonTableModel(rows)
         model_users._headers = headers
         self.tableView.setModel(model_users)
@@ -98,3 +189,12 @@ class Ui_MainWindow1(QMainWindow, menu_dispetcher.Ui_MainWindow):
         model_repair_hardware._headers = headers
         self.tableView_2.setModel(model_repair_hardware)
         self.tableView_2.setStyleSheet("color: black; background-color: white;")
+
+    def switch_to_statistic(self):
+        self.stackedWidget.setCurrentIndex(0)
+
+    def switch_to_top(self):
+        self.stackedWidget.setCurrentIndex(2)
+
+    def switch_to_work(self):
+        self.stackedWidget.setCurrentIndex(1)

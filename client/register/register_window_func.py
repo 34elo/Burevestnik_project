@@ -13,24 +13,24 @@ class register_win(QMainWindow, client.register.register_window.Ui_Dialog):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
-        self.pushButton_reg_reg.clicked.connect(self.registration)
+        self.pushButton_reg_reg_2.clicked.connect(self.registration)
 
     def registration(self):
         # Регистрация нового пользователя
-        experience = self.lineEdit_expirience_reg.text()
-        skill_level = self.lineEdit_level_reg.text()
-        nickname = self.lineEdit_login_reg.text()
-        middle_name = self.lineEdit_midlname_reg.text()
-        password = self.lineEdit_paswword_reg.text()
-        surname = self.lineEdit_secondname_reg.text()
-        name = self.lineEdit_name_reg.text()
-        post = self.lineEdit_post_reg.text()
-        age = self.lineEdit_age_reg.text()
+        experience = self.lineEdit_expirience_reg_3.text()
+        skill_level = self.lineEdit_level_reg_3.text()
+        nickname = self.lineEdit_login_reg_3.text()
+        middle_name = self.lineEdit_midlname_reg_3.text()
+        password = self.lineEdit_paswword_reg_3.text()
+        surname = self.lineEdit_secondname_reg_3.text()
+        name = self.lineEdit_name_reg_3.text()
+        post = self.lineEdit_post_reg_3.text()
+        age = self.lineEdit_age_reg_3.text()
         if experience and skill_level and nickname and middle_name and password and surname and name and post and age:
             team = random.randint(1, 3)
             user = {'experience': experience, 'skill_level': skill_level, 'nickname': nickname, 'password': password,
                     'surname': surname, 'name': name, 'post': post, 'age': age, 'busy': 0, 'team': team,
-                    'middle_name': middle_name}
+                    'middle_name': middle_name, 'completed_task': 0}
             try:
                 response = requests.post(f'{API_URL}/data/users', json=user)
                 self.window = login_win()
