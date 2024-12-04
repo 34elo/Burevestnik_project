@@ -1,3 +1,5 @@
 START_MESSAGE_ANSWER = "Здравствуйте..."
-ANSWER_ABOUT_LOGIN = "ВВедите логин"
-ANSWER_ABOUT_PASSWORD = "хуй знает"
+ANSWER_ABOUT_LOGIN = "Введите логин"
+ANSWER_ABOUT_PASSWORD = "Введите пароль"
+ANSWER_ABOUT_111 = "Авторизация успешна"
+AUTH_NOT_SUCCESS = "Авторизация неуспешна"

@@ -9,32 +9,37 @@ from server.telegramm.messages import *
 router = Router()
 
 
-class Register(StatesGroup):
+async def get_user(db, user_id):
+    async with db.execute() as cursor:
+        row = await cursor.fetchone()
+        return row[0] if row else None
+
+
+class Login(StatesGroup):
     name = State()
     password = State()
     id_user = State()
-    phone_user = State()
 
 
 @router.message(CommandStart())
 async def cmd_start(message: types.Message):
     await message.answer_sticker(sticker="CAACAgIAAxkBAAKWQGYwoJnQtmM453xUE46hATztgheOAAKsEwACOJ4hS9HIZVrp3vjbNAQ")
     await message.answer(START_MESSAGE_ANSWER, reply_markup=kb.main)
+    # message.from_user.id
 
 
 @router.message(Command("Вход"))
-async def cmd_start(message: types.Message):
-    await state.set_state(Register.name)
+async def cmd_login(message: types.Message):
+    await state.set_state(Login.name)
     await message.answer(ANSWER_ABOUT_LOGIN)
 
 
-@router.message(Register.name)
-async def reg_name(messange: Message, state: FSMContext):
-    await state.update_data(name=messange.text)
-    await state.set_state(Register.password)
-    await messange.answer(ANSWER_ABOUT_PASSWORD)
+@router.message(state=Login.name)
+async def reg_name(message: Message, state: FSMContext):
+    await state.update_data(name=message.text)
+    await state.set_state(Login.password)
+    await message.answer(ANSWER_ABOUT_PASSWORD)
 
 
-@router.message(Register.password)
-async def reg_age(messange: Message, state: FSMContext):
-    pass
+@router.message(state=Login.password)
+async def reg(message: Message, state: FSMContext):

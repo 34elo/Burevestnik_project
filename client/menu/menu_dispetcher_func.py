@@ -92,12 +92,12 @@ def send_to_db(nickname, id_problem, self):  # Notification + send
         if row.get('nickname') == nickname:
             if row.get('busy') == 1:
                 QMessageBox.critical(self, 'Critical', 'Работник уже занят, выберите другого')
-                break
+                return
 
     requests.put(f'{API_URL}/data/repair_hardware/{id_problem}',
                  json=repair_hardware)
     requests.put(f'{API_URL}/data/users/{nickname}', json=user)
-    requests.post(f'{API_URL}/send_message', json=user)
+    print(requests.post(f'{API_URL}/send_message', json=user).json())
 
 
 class DateAxisItem(pg.AxisItem):  # Определение DateAxisItem здесь
@@ -183,11 +183,18 @@ class Ui_MainWindow1(QMainWindow, menu_dispetcher.Ui_MainWindow):
         self.tableView_top_useres.setStyleSheet("color: black; background-color: white;")
 
     def refresh_bd(self):
+        print("refresh_db")
         users = get_users()
         repair_hardware = get_repair_hardware()
 
-        headers = list(repair_hardware[0].keys())  # Заголовки из ключей первого словаря
-        rows = [[row[header] for header in headers if row['done'] == 0] for row in repair_hardware]
+        try:
+            headers = list(repair_hardware[0].keys())  # Заголовки из ключей первого словаря
+            rows = [[row[header] for header in headers if
+                     row['done'] == 0 and (row['nickname'] == "" or row['nickname'] is None)] for row in
+                    repair_hardware]
+        except IndexError:
+            QMessageBox.warning(self, 'Error', 'Отсутсвуют данные')
+
         try:
             if [] in rows:
                 while [] in rows:
@@ -196,13 +203,12 @@ class Ui_MainWindow1(QMainWindow, menu_dispetcher.Ui_MainWindow):
             pass
         print(rows)
         if not rows:
-            model_users = JsonTableModel(['Оборудование'])
-            model_users._headers = ['В данный момент на предприятии всё оборудование исправно']
+            print('not_rows')
+            model_users = JsonTableModel([['']])
+            model_users._headers = ['Отсутсвуют']
             self.tableView.setModel(model_users)
             self.tableView.setStyleSheet("color: black; background-color: white;")
-            print('sdfsdf')
         else:
-            print('aaaaaaa')
             model_users = JsonTableModel(rows)
             model_users._headers = headers
             self.tableView.setModel(model_users)
@@ -219,8 +225,9 @@ class Ui_MainWindow1(QMainWindow, menu_dispetcher.Ui_MainWindow):
             pass
         print(rows)
         if not rows:
-            model_users = JsonTableModel(['Работники'])
-            model_users._headers = ['В данный момент на предприятии всё работники заняты']
+            print('not_rows')
+            model_users = JsonTableModel([['']])
+            model_users._headers = ['Отсутсвуют']
             self.tableView_2.setModel(model_users)
             self.tableView_2.setStyleSheet("color: black; background-color: white;")
         else:

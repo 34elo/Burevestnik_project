@@ -7,8 +7,8 @@ main = ReplyKeyboardMarkup(one_time_keyboard=True,
                            ], resize_keyboard=True,
                            input_field_placeholder="Выберите пункт меню...")
 
-login = ReplyKeyboardMarkup(one_time_keyboard=True,
+password = ReplyKeyboardMarkup(one_time_keyboard=True,
                            keyboard=[
-                               [KeyboardButton(text="Вход")]
+                               [KeyboardButton(text="Пароль")]
                            ], resize_keyboard=True,
                            input_field_placeholder="Выберите пункт меню...")
