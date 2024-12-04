@@ -1,4 +1,5 @@
 import requests
+
 from client.settings import API_URL
 
 
@@ -21,3 +22,10 @@ def get_task(nickname):
 
     return datas
 
+
+def get_good_dates_repair_hardware(dates, in_dates):
+    result = []
+    for i in dates:
+        if i.get('start')[:10] in in_dates:
+            result.append(i)
+    return result

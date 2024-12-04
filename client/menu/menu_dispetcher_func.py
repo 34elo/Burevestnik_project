@@ -2,7 +2,8 @@ import os
 
 import requests
 
-from PyQt6.QtWidgets import QMainWindow, QMessageBox
+from PyQt6.QtWidgets import QMainWindow, QMessageBox, QTableWidgetItem
+from PyQt6.uic.properties import QtWidgets
 from pyqtgraph import DateAxisItem
 
 from client.exceptions import ReportException, EmptyLineError
@@ -97,6 +98,7 @@ def send_to_db(nickname, id_problem, self):
                                             json=repair_hardware)
     response_users = requests.put(f'{API_URL}/data/users/{nickname}', json=user)
 
+
 class DateAxisItem(pg.AxisItem):  # Определение DateAxisItem здесь
     def tickStrings(self, values, scale, spacing):
         return [datetime.fromtimestamp(value).strftime('%Y-%m-%d') for value in values]
@@ -182,33 +184,63 @@ class Ui_MainWindow1(QMainWindow, menu_dispetcher.Ui_MainWindow):
     def refresh_bd(self):
         users = get_users()
         repair_hardware = get_repair_hardware()
+
         headers = list(repair_hardware[0].keys())  # Заголовки из ключей первого словаря
         rows = [[row[header] for header in headers if row['done'] == 0] for row in repair_hardware]
         try:
-            rows.remove([])
+            if [] in rows:
+                while [] in rows:
+                    rows.remove([])
         except ValueError:
             pass
-        model_users = JsonTableModel(rows)
-        model_users._headers = headers
-        self.tableView.setModel(model_users)
-        self.tableView.setStyleSheet("color: black; background-color: white;")
+        print(rows)
+        if not rows:
+            model_users = JsonTableModel(['Оборудование'])
+            model_users._headers = ['В данный момент на предприятии всё оборудование исправно']
+            self.tableView.setModel(model_users)
+            self.tableView.setStyleSheet("color: black; background-color: white;")
+            print('sdfsdf')
+        else:
+            print('aaaaaaa')
+            model_users = JsonTableModel(rows)
+            model_users._headers = headers
+            self.tableView.setModel(model_users)
+            self.tableView.setStyleSheet("color: black; background-color: white;")
+
 
         headers = list(users[0].keys())
         headers.remove('password')
-        rows = [[row[header] for header in headers] for row in users]
-        model_repair_hardware = JsonTableModel(rows)
-        model_repair_hardware._headers = headers
-        self.tableView_2.setModel(model_repair_hardware)
-        self.tableView_2.setStyleSheet("color: black; background-color: white;")
+        rows = [[row[header] for header in headers if row['busy'] == 0] for row in users]
+        try:
+            if [] in rows:
+                while [] in rows:
+                    rows.remove([])
+        except ValueError:
+            pass
+        print(rows)
+        if not rows:
+            model_users = JsonTableModel(['Работники'])
+            model_users._headers = ['В данный момент на предприятии всё работники заняты']
+            self.tableView_2.setModel(model_users)
+            self.tableView_2.setStyleSheet("color: black; background-color: white;")
+        else:
+            model_users = JsonTableModel(rows)
+            model_users._headers = headers
+            self.tableView_2.setModel(model_users)
+            self.tableView_2.setStyleSheet("color: black; background-color: white;")
+
 
     def switch_to_statistic(self):
         self.stackedWidget.setCurrentIndex(0)
 
+
     def switch_to_top(self):
         self.stackedWidget.setCurrentIndex(2)
 
+
     def switch_to_work(self):
         self.stackedWidget.setCurrentIndex(1)
+
 
     def build_graph(self):
         self.graphicsView_statistic.clear()

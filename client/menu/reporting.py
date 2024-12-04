@@ -2,12 +2,11 @@ import os
 
 from docx.shared import Pt
 
-from client.menu.extra_func import get_repair_hardware
+from client.menu.extra_func import get_repair_hardware, get_good_dates_repair_hardware
 from client.misc.func_with_time import time_now, calculate_time_difference, compare_dates
 from client.misc.func_with_time import get_dates
 import csv
 from docx import Document  # Импортируем библиотеку для работы с документами Word
-
 
 def docs_report(name, statistic):
     document = Document()  # Создание нового документа Word
@@ -20,8 +19,8 @@ def docs_report(name, statistic):
     equipment_under_repair = 0  # Количество оборудования в ремонте
     unused_equipment = 0  # Общее время простаивания оборудования
     count_applications = 0  # Общее количество заявок
+    repair_hardware = get_good_dates_repair_hardware(get_repair_hardware(), dates)
 
-    repair_hardware = get_repair_hardware()
 
     for i in repair_hardware:
         start = i.get('start')
@@ -57,9 +56,8 @@ def docs_report(name, statistic):
 
 
 def csv_report(name, statistic):
-    datas = get_repair_hardware()
+    data = get_good_dates_repair_hardware(get_repair_hardware(), get_dates(statistic))
     path = f'reports/{name}.csv'
-
     with open(path, 'w', newline='', encoding="utf8") as f:
         writer = csv.DictWriter(
             f, fieldnames=list(data[0].keys()),

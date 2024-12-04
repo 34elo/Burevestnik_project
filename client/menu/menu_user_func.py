@@ -24,7 +24,7 @@ def send_application(id_hardware, comment_applicant):
     response = requests.post(f'{API_URL}/data/repair_hardware', json=repair_hardware)
 
 
-def update_good_status(nickname):
+def update_good_status(self, nickname):
     end_time = time_now()
     repair_hardware = {'done': 1,
                        'end': end_time,
@@ -32,32 +32,41 @@ def update_good_status(nickname):
                        'nickname': nickname}
     user = {'nickname': nickname, 'busy': 0}
     response_repair_hardware_nickname = requests.get(f'{API_URL}/data/repair_hardware').json()
+    id_repair_hardware_ = 0
     for row in response_repair_hardware_nickname:
         if row.get('nickname') == nickname:
-            id_repair_hardware = row.get('id')
+            id_repair_hardware_ = row.get('id')
             break
 
-    response_repair_hardware = requests.put(f'{API_URL}/data/repair_hardware/{id_repair_hardware}',
-                                            json=repair_hardware)
-    response_users = requests.put(f'{API_URL}/data/users/{nickname}', json=user)
+    if id_repair_hardware_ == 0:
+        QMessageBox.critical(self, "Error", 'У тебя нет задач')
+    else:
+
+        response_repair_hardware = requests.put(f'{API_URL}/data/repair_hardware/{id_repair_hardware_}',
+                                                json=repair_hardware)
+        response_users = requests.put(f'{API_URL}/data/users/{nickname}', json=user)
+        QMessageBox.information(self, "Success", 'Успех')
 
 
-def update_bad_status(nickname, comment_worker):
+def update_bad_status(self, nickname, comment_worker):
     repair_hardware = {'done': 0,
                        'comment_work': comment_worker,
                        'nickname': None}
     user = {'nickname': nickname, 'busy': 0}
     response_repair_hardware_nickname = requests.get(f'{API_URL}/data/repair_hardware').json()
-    id_repair_hardware = 0
+    id_repair_hardware_ = 0
     for row in response_repair_hardware_nickname:
         if row.get('nickname') == nickname:
             id_repair_hardware = row.get('id')
             break
+    if id_repair_hardware_ == 0:
+        QMessageBox.critical(self, "Error", 'У тебя нет задач')
+    else:
+        response_repair_hardware = requests.put(f'{API_URL}/data/repair_hardware/{id_repair_hardware_}',
+                                                json=repair_hardware)
 
-    response_repair_hardware = requests.put(f'{API_URL}/data/repair_hardware/{id_repair_hardware}',
-                                            json=repair_hardware)
-
-    response_users = requests.put(f'{API_URL}/data/users/{nickname}', json=user)
+        response_users = requests.put(f'{API_URL}/data/users/{nickname}', json=user)
+        QMessageBox.information(self, "Success", 'Успех')
 
 
 class Ui_MainWindow2(QMainWindow, menu_user.Ui_MainWindow):
@@ -150,9 +159,9 @@ class Ui_MainWindow2(QMainWindow, menu_user.Ui_MainWindow):
         self.lineEdit_id_input.clear()  # Очистка текстового поля ввода ID оборудования
 
     def send_good_statement(self):
-        update_good_status(self.nickname)  # Обновление статуса хороших ремонтов
+        update_good_status(self, self.nickname)  # Обновление статуса хороших ремонтов
 
     def send_bad_statement(self):
         comment_worker = self.pushButton_send_order_unsucses.toPlainText()  # Получение комментария о плохом состоянии
         self.pushButton_send_order_unsucses.clear()  # Очистка текстового поля комментария
-        update_bad_status(self.nickname, comment_worker)  # Обновление статуса с плохим ремонтом
+        update_bad_status(self, self.nickname, comment_worker)  # Обновление статуса с плохим ремонтом
