@@ -83,7 +83,7 @@ def do_report(name, statistic, docs=True, csv=False):
         return csv_report(name, statistic)
 
 
-def send_to_db(nickname, id_problem, self):
+def send_to_db(nickname, id_problem, self):  # Notification + send
     repair_hardware = {'nickname': nickname}
     user = {'nickname': nickname, 'busy': 1}
     response_repair_hardware_nickname = requests.get(f'{API_URL}/data/users').json()
@@ -94,9 +94,10 @@ def send_to_db(nickname, id_problem, self):
                 QMessageBox.critical(self, 'Critical', 'Работник уже занят, выберите другого')
                 break
 
-    response_repair_hardware = requests.put(f'{API_URL}/data/repair_hardware/{id_problem}',
-                                            json=repair_hardware)
-    response_users = requests.put(f'{API_URL}/data/users/{nickname}', json=user)
+    requests.put(f'{API_URL}/data/repair_hardware/{id_problem}',
+                 json=repair_hardware)
+    requests.put(f'{API_URL}/data/users/{nickname}', json=user)
+    requests.post(f'{API_URL}/send_message', json=user)
 
 
 class DateAxisItem(pg.AxisItem):  # Определение DateAxisItem здесь
@@ -207,7 +208,6 @@ class Ui_MainWindow1(QMainWindow, menu_dispetcher.Ui_MainWindow):
             self.tableView.setModel(model_users)
             self.tableView.setStyleSheet("color: black; background-color: white;")
 
-
         headers = list(users[0].keys())
         headers.remove('password')
         rows = [[row[header] for header in headers if row['busy'] == 0] for row in users]
@@ -229,18 +229,14 @@ class Ui_MainWindow1(QMainWindow, menu_dispetcher.Ui_MainWindow):
             self.tableView_2.setModel(model_users)
             self.tableView_2.setStyleSheet("color: black; background-color: white;")
 
-
     def switch_to_statistic(self):
         self.stackedWidget.setCurrentIndex(0)
-
 
     def switch_to_top(self):
         self.stackedWidget.setCurrentIndex(2)
 
-
     def switch_to_work(self):
         self.stackedWidget.setCurrentIndex(1)
-
 
     def build_graph(self):
         self.graphicsView_statistic.clear()

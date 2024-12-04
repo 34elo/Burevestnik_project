@@ -32,7 +32,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap resource="../resourses.qrc">:/res/1732856356407-fotor-bg-remover-202411298154 — копия-fotor-20241202195841.png</pixmap>
+    <pixmap>:/res/1732856356407-fotor-bg-remover-202411298154 — копия-fotor-20241202195841.png</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -104,7 +104,7 @@
  </widget>
  <resources>
   <include location="../resourses.qrc"/>
-  <include location="resourses.qrc"/>
+  <include location="../resourses.qrc"/>
  </resources>
  <connections/>
 </ui>

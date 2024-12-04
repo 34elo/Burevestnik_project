@@ -67,5 +67,3 @@ def csv_report(name, statistic):
             writer.writerow(d)
 
     return 'Ваш отчет сохранился в ' + os.path.abspath(path)
-
-csv_report('drfg', 'year')

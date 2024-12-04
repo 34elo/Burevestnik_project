@@ -1,11 +1,9 @@
 import sqlite3
 from flask import request, jsonify
 
-from server.main import app
 from server.settings import DATABASE
 
 
-@app.route('/data/users', methods=['GET'])
 def get_data_users():
     conn = sqlite3.connect(DATABASE)
     cursor = conn.cursor()
@@ -29,7 +27,6 @@ def get_data_users():
                     for row in rows])
 
 
-@app.route('/data/hardware', methods=['GET'])
 def get_data_hardware():
     conn = sqlite3.connect(DATABASE)
     cursor = conn.cursor()
@@ -48,7 +45,6 @@ def get_data_hardware():
                     for row in rows])
 
 
-@app.route('/data/repair_hardware', methods=['GET'])
 def get_data_repair_hardware():
     conn = sqlite3.connect(DATABASE)
     cursor = conn.cursor()

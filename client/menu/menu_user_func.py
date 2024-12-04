@@ -7,7 +7,7 @@ from PyQt6.QtGui import QDesktopServices
 from PyQt6.QtWidgets import QMainWindow, QMessageBox
 
 from client.menu import menu_user
-from client.menu.extra_func import get_task
+from client.menu.extra_func import get_task, get_have_task
 from client.misc.func_with_time import time_now
 from client.settings import API_URL
 
@@ -56,8 +56,8 @@ def update_bad_status(self, nickname, comment_worker):
     response_repair_hardware_nickname = requests.get(f'{API_URL}/data/repair_hardware').json()
     id_repair_hardware_ = 0
     for row in response_repair_hardware_nickname:
-        if row.get('nickname') == nickname:
-            id_repair_hardware = row.get('id')
+        if row.get('nickname') == nickname and row.get('done') == 0:
+            id_repair_hardware_ = row.get('id')
             break
     if id_repair_hardware_ == 0:
         QMessageBox.critical(self, "Error", 'У тебя нет задач')
@@ -100,9 +100,22 @@ class Ui_MainWindow2(QMainWindow, menu_user.Ui_MainWindow):
             self.send_good_statement)  # Отправка отчета об успешной починке
         self.pushButton_send_order_unsucses.clicked.connect(
             self.send_bad_statement)  # Отправка отчета о неуспешной починке
-
+        self.pushButton_update_task.clicked.connect(self.update_task)
         self.widget_5.setHidden(True)
         self.account_page()
+        self.update_task()
+
+    def update_task(self):
+        if get_have_task(self.nickname):
+            information = get_task(self.nickname)
+            self.label_38.setText(
+                "У вас есть задание, которое необходимо выполнить. Ниже приведена информация, которая поможет вам при её выполнении")
+            self.label_number_machine.setText(str(information.get(str('id_hardware'))))
+            self.label_coment_disp.setText(str(information.get(str('comment_applicant'))))
+            return
+        self.label_38.setText("У вас сейчас нет задания")
+        self.label_number_machine.setText('-')
+        self.label_coment_disp.setText('-')
 
     def account_page(self):
         response = requests.get(f'{API_URL}/data/users').json()
@@ -122,12 +135,6 @@ class Ui_MainWindow2(QMainWindow, menu_user.Ui_MainWindow):
 
     def switch_to_money(self):
         self.stackedWidget.setCurrentIndex(0)  # Переключение на страницу "Деньги"
-
-    def update_task(self):
-        data = get_task(self.nickname)
-
-        self.label_coment_disp.setText(data.get('comment'))
-        self.label_number_machine.setText(data.get('id_hardware'))
 
     def open_link1(self):
         url = QUrl("https://dpoprof.ru/povyshenie/povyshenie-kvalifikacii-tokar/")
@@ -162,6 +169,6 @@ class Ui_MainWindow2(QMainWindow, menu_user.Ui_MainWindow):
         update_good_status(self, self.nickname)  # Обновление статуса хороших ремонтов
 
     def send_bad_statement(self):
-        comment_worker = self.pushButton_send_order_unsucses.toPlainText()  # Получение комментария о плохом состоянии
-        self.pushButton_send_order_unsucses.clear()  # Очистка текстового поля комментария
+        comment_worker = self.textEdit_com__unsucses.toPlainText()  # Получение комментария о плохом состоянии # Очистка текстового поля комментария
         update_bad_status(self, self.nickname, comment_worker)  # Обновление статуса с плохим ремонтом
+        self.textEdit_com__unsucses.clear()

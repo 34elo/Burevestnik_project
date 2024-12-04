@@ -1,12 +1,11 @@
+import asyncio
 import sqlite3
 from flask import request, jsonify
 
-from server.main import app
 from server.misc.func_password import my_hash
 from server.settings import DATABASE
 
 
-@app.route('/data/users', methods=['POST'])
 def add_data_users():
     data = request.get_json()
     nickname = data.get('nickname')
@@ -25,14 +24,15 @@ def add_data_users():
 
     conn = sqlite3.connect(DATABASE)
     cursor = conn.cursor()
-    cursor.execute("INSERT INTO users (nickname, password, middle_name, surname, name, post, age, telegram, skill_level, experience, busy, team, completed_task) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                   (nickname, password, middle_name, surname, name, post, age, telegram, skill_level, experience, busy, team, completed_task))
+    cursor.execute(
+        "INSERT INTO users (nickname, password, middle_name, surname, name, post, age, telegram, skill_level, experience, busy, team, completed_task) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        (nickname, password, middle_name, surname, name, post, age, telegram, skill_level, experience, busy, team,
+         completed_task))
     conn.commit()
     conn.close()
     return jsonify({'message': 'Data added successfully'}), 201
 
 
-@app.route('/data/repair_hardware', methods=['POST'])
 def add_data_repair_hardware():
     data = request.get_json()
     nickname = data.get('nickname')
@@ -44,14 +44,14 @@ def add_data_repair_hardware():
     done = data.get('done')
     conn = sqlite3.connect(DATABASE)
     cursor = conn.cursor()
-    cursor.execute("INSERT INTO repair_hardware (nickname, start, end, comment_work, comment_applicant, id_hardware, done) VALUES (?, ?, ?, ?, ?, ?, ?)",
-                   (nickname, start, end, comment_work, comment_applicant, id_hardware, done))
+    cursor.execute(
+        "INSERT INTO repair_hardware (nickname, start, end, comment_work, comment_applicant, id_hardware, done) VALUES (?, ?, ?, ?, ?, ?, ?)",
+        (nickname, start, end, comment_work, comment_applicant, id_hardware, done))
     conn.commit()
     conn.close()
     return jsonify({'message': 'Good'}), 201
 
 
-@app.route('/data/hardware', methods=['POST'])
 def add_data_hardware():
     data = request.get_json()
     name = data.get('name')
@@ -63,15 +63,14 @@ def add_data_hardware():
     repair = data.get('repair')
     conn = sqlite3.connect(DATABASE)
     cursor = conn.cursor()
-    cursor.execute("INSERT INTO repair_hardware (name, details, type, hard, country, year, repair) VALUES (?, ?, ?, ?, ?, ?, ?)",
-                   (name, details, type, hard, country, year, repair))
+    cursor.execute(
+        "INSERT INTO repair_hardware (name, details, type, hard, country, year, repair) VALUES (?, ?, ?, ?, ?, ?, ?)",
+        (name, details, type, hard, country, year, repair))
     conn.commit()
     conn.close()
     return jsonify({'message': 'Good'}), 201
 
 
-
-@app.route('/password', methods=['POST'])
 def hash_password():
     password_from_user = request.get_json()
     password_from_user = password_from_user.get('password')

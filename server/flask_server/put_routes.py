@@ -1,12 +1,9 @@
 import sqlite3
 from flask import request, jsonify
-
-from server.main import app
 from server.misc.func_password import my_hash
 from server.settings import DATABASE
 
 
-@app.route('/data/users/<string:data_nickname>', methods=['PUT'])
 def update_data_users(data_nickname):
     data = request.get_json()
     conn = sqlite3.connect(DATABASE)
@@ -55,7 +52,6 @@ def update_data_users(data_nickname):
         updates.append("completed_task = ?")
         params.append(data['completed_task'])
 
-
     if not updates:
         conn.close()
         return jsonify({'message': 'No fields to update'}), 400  # Или 204 No Content
@@ -73,7 +69,7 @@ def update_data_users(data_nickname):
         conn.close()
         return jsonify({'error': str(e)}), 500
 
-@app.route('/data/repair_hardware/<int:data_id>', methods=['PUT'])
+
 def update_data_repair_hardware(data_id):
     data = request.get_json()
     conn = sqlite3.connect(DATABASE)
@@ -106,7 +102,7 @@ def update_data_repair_hardware(data_id):
 
     if not updates:
         conn.close()
-        return jsonify({'message': 'No fields to update'}), 400 # Или 204 No Content
+        return jsonify({'message': 'No fields to update'}), 400  # Или 204 No Content
 
     sql = f"UPDATE repair_hardware SET {', '.join(updates)} WHERE id = ?"
     params.append(data_id)  # Добавляем ID в конце
@@ -116,7 +112,7 @@ def update_data_repair_hardware(data_id):
     conn.close()
     return jsonify({'message': 'Data updated successfully'}), 200
 
-@app.route('/data/hardware/<int:data_id>', methods=['PUT'])
+
 def update_data_hardware(data_id):
     data = request.get_json()
     conn = sqlite3.connect(DATABASE)
@@ -160,8 +156,6 @@ def update_data_hardware(data_id):
         conn.close()
         return jsonify({'message': 'Data updated successfully'}), 200
     except sqlite3.Error as e:
-        conn.rollback() # Отмена транзакции в случае ошибки
+        conn.rollback()  # Отмена транзакции в случае ошибки
         conn.close()
         return jsonify({'error': str(e)}),
-
-

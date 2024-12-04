@@ -468,7 +468,7 @@
  <resources>
   <include location="../resourses.qrc"/>
   <include location="../resourses.qrc"/>
-  <include location="resourses.qrc"/>
+  <include location="../resourses.qrc"/>
  </resources>
  <connections/>
 </ui>
