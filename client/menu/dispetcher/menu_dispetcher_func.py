@@ -7,14 +7,13 @@ from PyQt6.uic.properties import QtWidgets
 from pyqtgraph import DateAxisItem
 
 from client.exceptions import ReportException, EmptyLineError
-from client.menu import menu_dispetcher
+from client.menu.dispetcher import menu_dispetcher
 from client.menu.JSONTableModel import JsonTableModel
 from client.menu.extra_func import get_users, get_repair_hardware
-from client.misc.report_funcs import docs_report, csv_report
-from client.misc.func_with_time import get_dates
+from client.menu.report_funcs import docs_report, csv_report
+from client.menu.func_with_time import get_dates
 from client.settings import API_URL
-
-import pyqtgraph as pg
+from client.menu.DateAxisTime import DateAxisItem
 from datetime import datetime
 
 
@@ -93,17 +92,15 @@ def send_to_db(nickname, id_problem, self):  # Notification + send
     print(requests.post(f'{API_URL}/send_message', json=user).json())
 
 
-class DateAxisItem(pg.AxisItem):
-    def tickStrings(self, values, scale, spacing):
-        return [datetime.fromtimestamp(value).strftime('%Y-%m-%d') for value in values]
-
-
 class Ui_MainWindow1(QMainWindow, menu_dispetcher.Ui_MainWindow):
 
     def __init__(self):
         super().__init__()
         self.setupUi(self)
         self.statistic = 'month'
+        self.view()
+
+    def view(self):
         self.graphicsView_statistic.setBackground('w')
 
         self.pushButton_send_order.clicked.connect(self.send_order)
@@ -128,7 +125,29 @@ class Ui_MainWindow1(QMainWindow, menu_dispetcher.Ui_MainWindow):
 
         self.pushButton_graph.clicked.connect(self.build_graph)
 
-        self.pushButton_report_2.clicked.connect(self.get_report)
+        self.pushButton_report_2.clicked.connect(self.report)
+
+    def build_graph(self):
+        self.graphicsView_statistic.clear()
+        repair_hardware = get_repair_hardware()
+        all_dates = get_dates(self.statistic)
+        datas = [i for i in repair_hardware if i.get('done') == 1]
+        data = []
+        for i in all_dates:
+            res = 0
+            for j in datas:
+                if j.get('end')[:10] == i:
+                    res += 1
+            data.append((i, res))
+        x_data = [datetime.strptime(date_str.split()[0], '%Y-%m-%d').timestamp() for date_str, _ in data]
+        y_data = [count for _, count in data]
+
+        self.graphicsView_statistic.plot(x_data, y_data, pen='r', symbol='o')
+        self.graphicsView_statistic.setLabel('left', 'Количество работы')
+        self.graphicsView_statistic.setLabel('bottom', 'Дата')
+        self.graphicsView_statistic.showGrid(x=True, y=True)
+        self.graphicsView_statistic.setAxisItems({'bottom': DateAxisItem(orientation='bottom')})
+        self.graphicsView_statistic.setTitle("Статистика выполненной работы")
 
     def statistic_year(self):
         self.statistic = 'year'
@@ -144,7 +163,7 @@ class Ui_MainWindow1(QMainWindow, menu_dispetcher.Ui_MainWindow):
         id_problem = self.lineEdit_id_problem.text()
         send_to_db(nik_work, id_problem, self)
 
-    def get_report(self):
+    def report(self):
         docs = self.radioButton_2.isChecked()
         csv = self.radioButton.isChecked()
         name = self.lineEdit.text()
@@ -236,25 +255,3 @@ class Ui_MainWindow1(QMainWindow, menu_dispetcher.Ui_MainWindow):
 
     def switch_to_work(self):
         self.stackedWidget.setCurrentIndex(1)
-
-    def build_graph(self):
-        self.graphicsView_statistic.clear()
-        repair_hardware = get_repair_hardware()
-        all_dates = get_dates(self.statistic)
-        datas = [i for i in repair_hardware if i.get('done') == 1]
-        data = []
-        for i in all_dates:
-            res = 0
-            for j in datas:
-                if j.get('end')[:10] == i:
-                    res += 1
-            data.append((i, res))
-        x_data = [datetime.strptime(date_str.split()[0], '%Y-%m-%d').timestamp() for date_str, _ in data]
-        y_data = [count for _, count in data]
-
-        self.graphicsView_statistic.plot(x_data, y_data, pen='r', symbol='o')
-        self.graphicsView_statistic.setLabel('left', 'Количество работы')
-        self.graphicsView_statistic.setLabel('bottom', 'Дата')
-        self.graphicsView_statistic.showGrid(x=True, y=True)
-        self.graphicsView_statistic.setAxisItems({'bottom': DateAxisItem(orientation='bottom')})
-        self.graphicsView_statistic.setTitle("Статистика выполненной работы")

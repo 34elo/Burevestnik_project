@@ -3,10 +3,11 @@ import os
 from docx.shared import Pt
 
 from client.menu.extra_func import get_repair_hardware, get_good_dates_repair_hardware
-from client.misc.func_with_time import time_now, calculate_time_difference, compare_dates
-from client.misc.func_with_time import get_dates
+from client.menu.func_with_time import time_now, calculate_time_difference, compare_dates
+from client.menu.func_with_time import get_dates
 import csv
 from docx import Document
+
 
 def docs_report(name, statistic):
     document = Document()
@@ -20,7 +21,6 @@ def docs_report(name, statistic):
     unused_equipment = 0
     count_applications = 0
     repair_hardware = get_good_dates_repair_hardware(get_repair_hardware(), dates)
-
 
     for i in repair_hardware:
         start = i.get('start')

@@ -4,8 +4,8 @@ import requests
 from PyQt6.QtWidgets import QMainWindow, QMessageBox
 
 import client.login.login_window
-from client.menu.menu_dispetcher_func import Ui_MainWindow1
-from client.menu.menu_user_func import Ui_MainWindow2
+from client.menu.dispetcher.menu_dispetcher_func import Ui_MainWindow1
+from client.menu.user.menu_user_func import Ui_MainWindow2
 from client.settings import API_URL
 
 
@@ -31,16 +31,16 @@ class login_win(QMainWindow, client.login.login_window.Ui_reg2):
         for i in response.json():
             if i.get('nickname') == nickname_check and i.get('password') == password:
                 print('User login')
-                self.window = Ui_MainWindow2(nickname_check)  # Открывает основное окно для пользователя
+                self.window = Ui_MainWindow2(nickname_check)
                 self.window.show()
-                self.close()  # Закрывает окно входа
+                self.close()
 
                 return True
             elif nickname_check == 'admin' and password_check == 'admin':
                 print('Admin login')
-                self.window = Ui_MainWindow1()  # Открывает основное окно для пользователя
+                self.window = Ui_MainWindow1()
                 self.window.show()
-                self.close()  # Закрывает окно входа
+                self.close()
                 return True
         else:
             QMessageBox.critical(self, 'Ошибка', 'Неверный логин или пароль')

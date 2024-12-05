@@ -6,22 +6,10 @@ from PyQt6.QtCore import QUrl
 from PyQt6.QtGui import QDesktopServices
 from PyQt6.QtWidgets import QMainWindow, QMessageBox
 
-from client.menu import menu_user
-from client.menu.extra_func import get_task, get_have_task
-from client.misc.func_with_time import time_now
+from client.menu.user import menu_user
+from client.menu.extra_func import get_task, get_have_task, send_application
+from client.menu.func_with_time import time_now
 from client.settings import API_URL
-
-
-def send_application(id_hardware, comment_applicant):
-    start_time = time_now()
-    repair_hardware = {'comment_applicant': comment_applicant,
-                       'comment_work': None,
-                       'done': 0,
-                       'end': None,
-                       'id_hardware': id_hardware,
-                       'nickname': None,
-                       'start': start_time}
-    response = requests.post(f'{API_URL}/data/repair_hardware', json=repair_hardware)
 
 
 def update_good_status(self, nickname):
@@ -72,10 +60,15 @@ def update_bad_status(self, nickname, comment_worker):
 class Ui_MainWindow2(QMainWindow, menu_user.Ui_MainWindow):
     def __init__(self, nickname):
         super().__init__()
+        self.nickname = nickname
         self.setupUi(self)
         self.setWindowTitle('SideBar Menu')
+        self.view()
+        self.account_page()
+        self.update_task()
+
+    def view(self):
         self.pushButton_link1.clicked.connect(self.open_link1)
-        self.nickname = nickname
         self.label_nick2.setText(self.nickname)
         self.label_nick.setText(self.nickname)
 
@@ -98,8 +91,6 @@ class Ui_MainWindow2(QMainWindow, menu_user.Ui_MainWindow):
             self.send_bad_statement)
         self.pushButton_update_task.clicked.connect(self.update_task)
         self.widget_5.setHidden(True)
-        self.account_page()
-        self.update_task()
 
     def update_task(self):
         if get_have_task(self.nickname):

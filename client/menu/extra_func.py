@@ -1,6 +1,19 @@
 import requests
 
+from client.menu.func_with_time import time_now
 from client.settings import API_URL
+
+
+def send_application(id_hardware, comment_applicant):
+    start_time = time_now()
+    repair_hardware = {'comment_applicant': comment_applicant,
+                       'comment_work': None,
+                       'done': 0,
+                       'end': None,
+                       'id_hardware': id_hardware,
+                       'nickname': None,
+                       'start': start_time}
+    response = requests.post(f'{API_URL}/data/repair_hardware', json=repair_hardware)
 
 
 def get_users():
