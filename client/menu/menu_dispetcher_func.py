@@ -10,7 +10,7 @@ from client.exceptions import ReportException, EmptyLineError
 from client.menu import menu_dispetcher
 from client.menu.JSONTableModel import JsonTableModel
 from client.menu.extra_func import get_users, get_repair_hardware
-from client.menu.reporting import docs_report, csv_report
+from client.misc.report_funcs import docs_report, csv_report
 from client.misc.func_with_time import get_dates
 from client.settings import API_URL
 
@@ -19,27 +19,21 @@ from datetime import datetime
 
 
 def create_top_users(data):
-    # Проверка наличия необходимых ключей
     required_keys = ['name', 'middle_name', 'surname', 'completed_task', 'post']
     for item in data:
         if not all(key in item for key in required_keys):
             print(f"Ошибка: Отсутствуют необходимые ключи в словаре: {item}")
             return None
 
-    # Обработка completed_task (преобразование в число и обработка)
     for item in data:
         try:
             item['completed_task'] = int(item.get('completed_task', 0))
         except ValueError:
             pass
 
-    # Сортировка пользователей по completed_task в убывающем порядке
     sorted_users = sorted(data, key=lambda x: x['completed_task'], reverse=True)
-
-    # Создание списка названий столбцов
     columns = ['ФИО', 'Выполненные задания', 'Должность']
 
-    # Создание списка строк
     rows = [[
         f"{user['name']} {user['middle_name']} {user['surname']}",
         user['completed_task'],
@@ -65,12 +59,11 @@ def create_top_team(data):
         try:
             best_worker = max(team_members, key=lambda x: x.get('completed_task', 0))
             best_worker_fio = f"{best_worker['name']} {best_worker['middle_name']} {best_worker['surname']}"
-        except (ValueError, KeyError, TypeError):  # Обработка различных ошибок
+        except (ValueError, KeyError, TypeError):
             best_worker_fio = "N/A"
         team_data.append({'team': team_id, 'completed_tasks': completed_tasks, 'best_worker_fio': best_worker_fio})
     columns = ['team', 'completed_tasks', 'best_worker_fio']
 
-    # Создание списка строк
     rows = [[str(item['team']), str(item['completed_tasks']), item['best_worker_fio']] for item in team_data]
 
     return columns, sorted(rows, key=lambda x: x[1], reverse=True)
@@ -100,19 +93,19 @@ def send_to_db(nickname, id_problem, self):  # Notification + send
     print(requests.post(f'{API_URL}/send_message', json=user).json())
 
 
-class DateAxisItem(pg.AxisItem):  # Определение DateAxisItem здесь
+class DateAxisItem(pg.AxisItem):
     def tickStrings(self, values, scale, spacing):
         return [datetime.fromtimestamp(value).strftime('%Y-%m-%d') for value in values]
 
 
 class Ui_MainWindow1(QMainWindow, menu_dispetcher.Ui_MainWindow):
-    # Класс основного окна администратора
+
     def __init__(self):
         super().__init__()
         self.setupUi(self)
         self.statistic = 'month'
         self.graphicsView_statistic.setBackground('w')
-        # Подключение кнопок к соответствующим функциям
+
         self.pushButton_send_order.clicked.connect(self.send_order)
         self.refresh_btn.clicked.connect(self.refresh_bd)
         self.widget_5.setHidden(True)
@@ -147,10 +140,9 @@ class Ui_MainWindow1(QMainWindow, menu_dispetcher.Ui_MainWindow):
         self.statistic = 'week'
 
     def send_order(self):
-        # Отправка информации о заказе в базу данных
-        nik_work = self.lineEdit_nik_work.text()  # Получение ника работника
-        id_problem = self.lineEdit_id_problem.text()  # Получение ID проблемы
-        send_to_db(nik_work, id_problem, self)  # Отправка в базу данных
+        nik_work = self.lineEdit_nik_work.text()
+        id_problem = self.lineEdit_id_problem.text()
+        send_to_db(nik_work, id_problem, self)
 
     def get_report(self):
         docs = self.radioButton_2.isChecked()
@@ -188,7 +180,7 @@ class Ui_MainWindow1(QMainWindow, menu_dispetcher.Ui_MainWindow):
         repair_hardware = get_repair_hardware()
 
         try:
-            headers = list(repair_hardware[0].keys())  # Заголовки из ключей первого словаря
+            headers = list(repair_hardware[0].keys())
             rows = [[row[header] for header in headers if
                      row['done'] == 0 and (row['nickname'] == "" or row['nickname'] is None)] for row in
                     repair_hardware]

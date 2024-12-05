@@ -72,7 +72,7 @@ async def handle_send_message(request):
     except Exception as e:
         return {"error": str(e)}, 500
     finally:
-        conn.close()  # Закрываем соединение с БД
+        conn.close()
 
 
 @app.route('/send_message', methods=['POST'])

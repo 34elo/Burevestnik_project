@@ -70,19 +70,15 @@ def update_bad_status(self, nickname, comment_worker):
 
 
 class Ui_MainWindow2(QMainWindow, menu_user.Ui_MainWindow):
-    # Класс основного окна пользователя
     def __init__(self, nickname):
         super().__init__()
         self.setupUi(self)
         self.setWindowTitle('SideBar Menu')
         self.pushButton_link1.clicked.connect(self.open_link1)
-
-        # все что связано с ником
         self.nickname = nickname
         self.label_nick2.setText(self.nickname)
         self.label_nick.setText(self.nickname)
 
-        # Подключение кнопок к их функционалу
         self.pushButton_education1us.clicked.connect(self.switch_to_money)
         self.pushButton_education2_us.clicked.connect(self.switch_to_money)
 
@@ -95,11 +91,11 @@ class Ui_MainWindow2(QMainWindow, menu_user.Ui_MainWindow):
         self.pushButton_orde1_2.clicked.connect(self.switch_to_order)
         self.pushButton_order2_2.clicked.connect(self.switch_to_order)
 
-        self.pushButton_send_order.clicked.connect(self.send_application)  # Отправка заявки на починку
+        self.pushButton_send_order.clicked.connect(self.send_application)
         self.pushButton_send_order_sucses.clicked.connect(
-            self.send_good_statement)  # Отправка отчета об успешной починке
+            self.send_good_statement)
         self.pushButton_send_order_unsucses.clicked.connect(
-            self.send_bad_statement)  # Отправка отчета о неуспешной починке
+            self.send_bad_statement)
         self.pushButton_update_task.clicked.connect(self.update_task)
         self.widget_5.setHidden(True)
         self.account_page()
@@ -134,7 +130,7 @@ class Ui_MainWindow2(QMainWindow, menu_user.Ui_MainWindow):
         self.label_exp.setText(str(req['experience']))
 
     def switch_to_money(self):
-        self.stackedWidget.setCurrentIndex(0)  # Переключение на страницу "Деньги"
+        self.stackedWidget.setCurrentIndex(0)
 
     def open_link1(self):
         url = QUrl("https://dpoprof.ru/povyshenie/povyshenie-kvalifikacii-tokar/")
@@ -149,26 +145,25 @@ class Ui_MainWindow2(QMainWindow, menu_user.Ui_MainWindow):
         QDesktopServices.openUrl(url)
 
     def switch_to_trackng(self):
-        self.stackedWidget.setCurrentIndex(1)  # Переключение на страницу "Отслеживание"
+        self.stackedWidget.setCurrentIndex(1)
 
     def switch_to_order(self):
-        self.stackedWidget.setCurrentIndex(2)  # Переключение на страницу "Заказ"
+        self.stackedWidget.setCurrentIndex(2)
 
     def switch_to_notifications(self):
         self.stackedWidget.setCurrentIndex(3)
 
     def send_application(self):
-        # Отправка деталей заявки в базу данных
         id_hardware = self.lineEdit_id_input.text()
         comment_applicant = self.textEdit_com_1.toPlainText()
-        send_application(id_hardware, comment_applicant)  # Вызов функции для отправки заявки
-        self.textEdit_com_1.clear()  # Очистка текстового поля комментария
-        self.lineEdit_id_input.clear()  # Очистка текстового поля ввода ID оборудования
+        send_application(id_hardware, comment_applicant)
+        self.textEdit_com_1.clear()
+        self.lineEdit_id_input.clear()
 
     def send_good_statement(self):
-        update_good_status(self, self.nickname)  # Обновление статуса хороших ремонтов
+        update_good_status(self, self.nickname)
 
     def send_bad_statement(self):
-        comment_worker = self.textEdit_com__unsucses.toPlainText()  # Получение комментария о плохом состоянии # Очистка текстового поля комментария
-        update_bad_status(self, self.nickname, comment_worker)  # Обновление статуса с плохим ремонтом
+        comment_worker = self.textEdit_com__unsucses.toPlainText()
+        update_bad_status(self, self.nickname, comment_worker)
         self.textEdit_com__unsucses.clear()

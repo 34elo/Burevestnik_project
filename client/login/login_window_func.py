@@ -19,6 +19,7 @@ class login_win(QMainWindow, client.login.login_window.Ui_reg2):
     def login_in_system(self):
         nickname_check = self.lineEdit_log_log.text()
         password_check = self.lineEdit_passwor_log.text()
+
         try:
             password = requests.post(f'{API_URL}/password', json={'password': password_check}).json()
             response = requests.get(f'{API_URL}/data/users')

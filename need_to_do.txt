@@ -1,0 +1,12 @@
+General:
+-fix application architecture
+-fix images
+-do clean code
+-fix tables(top_user, top_teams)
+-fix graphs
+
+
+Additional:
+-AI(Llama) for education users*
+-Schedule with production losses*
+-Information about production losses*
