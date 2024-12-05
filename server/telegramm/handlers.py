@@ -32,9 +32,9 @@ async def cmd_start(message: types.Message):
 async def cmd_login(message: types.Message):
     await state.set_state(Login.name)
     await message.answer(ANSWER_ABOUT_LOGIN)
+'''
 
-
-@router.message(state=Login.name)
+@router.message()
 async def reg_name(message: Message, state: FSMContext):
     await state.update_data(name=message.text)
     await state.set_state(Login.password)
@@ -43,3 +43,5 @@ async def reg_name(message: Message, state: FSMContext):
 
 @router.message(state=Login.password)
 async def reg(message: Message, state: FSMContext):
+    pass
+'''
