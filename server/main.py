@@ -1,11 +1,11 @@
 import asyncio
 import sqlite3
-import sys
 import threading
 
+import aiohttp
 from aiogram import Bot, Dispatcher
 from flask import Flask, request, jsonify
-import aiohttp
+
 from server.flask_server.get_routes import get_data_users, get_data_repair_hardware, get_data_hardware
 from server.flask_server.post_routes import hash_password, add_data_users, add_data_repair_hardware, add_data_hardware
 from server.flask_server.put_routes import update_data_users, update_data_repair_hardware, update_data_hardware

@@ -1,6 +1,7 @@
 import sys
 
 from PyQt6.QtWidgets import QApplication
+
 from welcome.welcome_window_func import welcome_win
 
 

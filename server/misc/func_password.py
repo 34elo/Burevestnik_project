@@ -1,4 +1,5 @@
 import hashlib
+
 from server.settings import HASH_SALT
 
 

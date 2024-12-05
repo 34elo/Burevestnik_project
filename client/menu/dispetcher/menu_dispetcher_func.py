@@ -1,20 +1,17 @@
-import os
+from datetime import datetime
 
 import requests
-
-from PyQt6.QtWidgets import QMainWindow, QMessageBox, QTableWidgetItem
-from PyQt6.uic.properties import QtWidgets
+from PyQt6.QtWidgets import QMainWindow, QMessageBox
 from pyqtgraph import DateAxisItem
 
-from client.exceptions import ReportException, EmptyLineError
-from client.menu.dispetcher import menu_dispetcher
-from client.menu.JSONTableModel import JsonTableModel
-from client.menu.extra_func import get_users, get_repair_hardware
-from client.menu.report_funcs import docs_report, csv_report
-from client.menu.func_with_time import get_dates
-from client.settings import API_URL
+from client.exceptions import ReportException
 from client.menu.DateAxisTime import DateAxisItem
-from datetime import datetime
+from client.menu.JSONTableModel import JsonTableModel
+from client.menu.dispetcher import menu_dispetcher
+from client.menu.extra_func import get_users, get_repair_hardware
+from client.menu.func_with_time import get_dates
+from client.menu.report_funcs import docs_report, csv_report
+from client.settings import API_URL
 
 
 def create_top_users(data):

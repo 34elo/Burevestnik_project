@@ -1,14 +1,11 @@
-from http.client import responses
-from turtledemo.penrose import start
-
 import requests
 from PyQt6.QtCore import QUrl
 from PyQt6.QtGui import QDesktopServices
 from PyQt6.QtWidgets import QMainWindow, QMessageBox
 
-from client.menu.user import menu_user
 from client.menu.extra_func import get_task, get_have_task, send_application
 from client.menu.func_with_time import time_now
+from client.menu.user import menu_user
 from client.settings import API_URL
 
 

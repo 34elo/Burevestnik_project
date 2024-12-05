@@ -1,12 +1,12 @@
+import csv
 import os
 
+from docx import Document
 from docx.shared import Pt
 
 from client.menu.extra_func import get_repair_hardware, get_good_dates_repair_hardware
-from client.menu.func_with_time import time_now, calculate_time_difference, compare_dates
 from client.menu.func_with_time import get_dates
-import csv
-from docx import Document
+from client.menu.func_with_time import time_now, calculate_time_difference, compare_dates
 
 
 def docs_report(name, statistic):

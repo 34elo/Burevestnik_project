@@ -1,5 +1,5 @@
-import asyncio
 import sqlite3
+
 from flask import request, jsonify
 
 from server.misc.func_password import my_hash

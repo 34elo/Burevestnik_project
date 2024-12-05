@@ -1,5 +1,6 @@
 import sqlite3
-from flask import request, jsonify
+
+from flask import jsonify
 
 from server.settings import DATABASE
 

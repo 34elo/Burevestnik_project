@@ -1,6 +1,6 @@
-from datetime import datetime
-import time
 import datetime
+import time
+from datetime import datetime
 
 
 def time_now():
