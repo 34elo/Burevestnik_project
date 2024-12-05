@@ -1,15 +1,12 @@
 import requests
-import asyncio
-import logging
-import sys
 from aiogram import F, Router, types
 from aiogram.types import Message
 from aiogram.filters import CommandStart
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
-import server.telegramm.keyboards as kb
-from server.settings import API_URL
-from server.telegramm.messages import *
+import telegramm.keyboards as kb
+from telegramm.settings import API_URL
+from telegramm.messages import *
 
 router = Router()
 
@@ -24,7 +21,6 @@ class Login(StatesGroup):
 async def start(message: types.Message):
     await message.answer_sticker(sticker="CAACAgIAAxkBAAKWQGYwoJnQtmM453xUE46hATztgheOAAKsEwACOJ4hS9HIZVrp3vjbNAQ")
     await message.answer(START_MESSAGE_ANSWER, reply_markup=kb.main)
-    # message.from_user.id
 
 
 @router.message(F.text == "Вход")

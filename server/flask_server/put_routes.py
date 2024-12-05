@@ -161,3 +161,15 @@ def update_data_hardware(data_id):
         conn.rollback()
         conn.close()
         return jsonify({'error': str(e)}),
+
+
+def success_send_message(data_nickname):
+    data = request.get_json()
+    conn = sqlite3.connect(DATABASE)
+    cursor = conn.cursor()
+
+    updates = []
+    params = []
+
+    cursor.execute('UPDATE repair_hardware SET done = 1 WHERE nickname = ?', (data_nickname))
+    cursor.execute('UPDATE users SET busy ')

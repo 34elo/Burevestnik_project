@@ -96,10 +96,16 @@ class Ui_MainWindow2(QMainWindow, menu_user.Ui_MainWindow):
                 "У вас есть задание, которое необходимо выполнить. Ниже приведена информация, которая поможет вам при её выполнении")
             self.label_number_machine.setText(str(information.get(str('id_hardware'))))
             self.label_coment_disp.setText(str(information.get(str('comment_applicant'))))
+            self.frame_2.setHidden(True)
+            self.frame.setHidden(False)
+
             return
         self.label_38.setText("У вас сейчас нет задания")
         self.label_number_machine.setText('-')
         self.label_coment_disp.setText('-')
+        self.frame_2.setHidden(False)
+        self.frame.setHidden(True)
+
 
     def account_page(self):
         response = requests.get(f'{API_URL}/data/users').json()

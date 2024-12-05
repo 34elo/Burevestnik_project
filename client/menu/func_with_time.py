@@ -4,7 +4,7 @@ from datetime import datetime
 
 
 def time_now():
-    return f"{datetime.date.today()} {time.strftime('%H')}"
+    return f"{date.today()} {time.strftime('%H')}"
 
 
 def compare_dates(date_str1, date_str2):

@@ -86,7 +86,6 @@ def send_to_db(nickname, id_problem, self):  # Notification + send
     requests.put(f'{API_URL}/data/repair_hardware/{id_problem}',
                  json=repair_hardware)
     requests.put(f'{API_URL}/data/users/{nickname}', json=user)
-    print(requests.post(f'{API_URL}/send_message', json=user).json())
 
 
 class Ui_MainWindow1(QMainWindow, menu_dispetcher.Ui_MainWindow):
@@ -98,6 +97,7 @@ class Ui_MainWindow1(QMainWindow, menu_dispetcher.Ui_MainWindow):
         self.view()
 
     def view(self):
+        self.pushButton_24.setHidden(True)
         self.graphicsView_statistic.setBackground('w')
 
         self.pushButton_send_order.clicked.connect(self.send_order)
@@ -209,7 +209,6 @@ class Ui_MainWindow1(QMainWindow, menu_dispetcher.Ui_MainWindow):
                     rows.remove([])
         except ValueError:
             pass
-        print(rows)
         if not rows:
             print('not_rows')
             model_users = JsonTableModel([['']])
@@ -231,9 +230,7 @@ class Ui_MainWindow1(QMainWindow, menu_dispetcher.Ui_MainWindow):
                     rows.remove([])
         except ValueError:
             pass
-        print(rows)
         if not rows:
-            print('not_rows')
             model_users = JsonTableModel([['']])
             model_users._headers = ['Отсутсвуют']
             self.tableView_2.setModel(model_users)
