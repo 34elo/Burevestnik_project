@@ -63,10 +63,12 @@ def get_data_repair_hardware():
                      }
                     for row in rows])
 
+
 def send_message():
     conn = sqlite3.connect(DATABASE)
     cursor = conn.cursor()
-    resp = cursor.execute('SELECT users.telegram, users.nickname FROM repair_hardware INNER JOIN users ON users.nickname = repair_hardware.nickname WHERE repair_hardware.done = 0 and repair_hardware.notification = 0').fetchall()
+    resp = cursor.execute(
+        'SELECT users.telegram, users.nickname FROM repair_hardware INNER JOIN users ON users.nickname = repair_hardware.nickname WHERE repair_hardware.done = 0 and repair_hardware.notification = 0').fetchall()
     for i in resp:
         cursor.execute('update repair_hardware set notification = 1 where nickname = ?', (i[1],)).fetchall()
         conn.commit()

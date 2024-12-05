@@ -27,4 +27,5 @@ def get():
 def put():
     response = requests.put('http://127.0.0.1:5000/data/users/ben', json=new_data)
 
+
 print(requests.get(f'{API_URL}/send_message').json())

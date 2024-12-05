@@ -106,7 +106,6 @@ class Ui_MainWindow2(QMainWindow, menu_user.Ui_MainWindow):
         self.frame_2.setHidden(False)
         self.frame.setHidden(True)
 
-
     def account_page(self):
         response = requests.get(f'{API_URL}/data/users').json()
         req: dict = {}

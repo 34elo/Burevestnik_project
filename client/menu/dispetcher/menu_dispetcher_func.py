@@ -87,7 +87,6 @@ def send_to_db(nickname, id_problem, self):  # Notification + send
                  json=repair_hardware)
     requests.put(f'{API_URL}/data/users/{nickname}', json=user)
 
-
 class Ui_MainWindow1(QMainWindow, menu_dispetcher.Ui_MainWindow):
 
     def __init__(self):
