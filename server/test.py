@@ -25,3 +25,4 @@ def get():
 
 def put():
     response = requests.put('http://127.0.0.1:5000/data/users/ben', json=new_data)
+

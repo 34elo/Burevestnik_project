@@ -4,7 +4,7 @@ from server.settings import TOKEN
 
 
 async def run_flask_server():
-    process = subprocess.Popen(['python', 'flask_app.py', TOKEN])  # Передаём токен
+    process = subprocess.Popen(['python', 'flask_app.py', TOKEN])
     try:
         await asyncio.sleep(3600)
         process.terminate()
@@ -15,7 +15,6 @@ async def run_flask_server():
 
 async def main():
     await asyncio.gather(
-        # Не нужно запускать бота здесь, он запущен в flask_app.py
         run_flask_server()
     )
 

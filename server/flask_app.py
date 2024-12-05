@@ -1,5 +1,7 @@
+import asyncio
 import sqlite3
 import sys
+import threading
 
 from aiogram import Bot, Dispatcher
 from flask import Flask, request, jsonify
@@ -17,9 +19,14 @@ if len(sys.argv) != 2:
     sys.exit(1)
 
 bot_token = sys.argv[1]
-bot = Bot(token=bot_token) # Создаём бота используя токен из командной строки
+bot = Bot(token=bot_token)
 dp = Dispatcher()
 dp.include_router(router)
+
+
+async def telegram():
+    await dp.start_polling(bot)
+    print('fd')
 
 app.add_url_rule('/password', view_func=hash_password, methods=['POST'])
 
@@ -46,7 +53,7 @@ async def send_telegram_message(user_id, message):
 
 async def handle_send_message(request):
     try:
-        data = request.json  # Убрано ()
+        data = request.json()
         nickname = data.get('nickname')
         conn = sqlite3.connect(DATABASE)
         cursor = conn.cursor()
@@ -67,10 +74,16 @@ async def handle_send_message(request):
     finally:
         conn.close()  # Закрываем соединение с БД
 
+
 @app.route('/send_message', methods=['POST'])
 async def send_message():
     async with aiohttp.ClientSession() as session:
         return jsonify(await handle_send_message(request))
 
-if __name__ == "__main__":
+def run_flask_server():
     app.run(port=5000, use_reloader=False)
+
+if __name__ == "__main__":
+    flask_thread = threading.Thread(target=run_flask_server, daemon=True)
+    flask_thread.start()
+    asyncio.run(telegram())
