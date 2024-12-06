@@ -8,7 +8,7 @@
 
 
 from PyQt6 import QtCore, QtGui, QtWidgets
-import os
+
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
@@ -19,7 +19,7 @@ class Ui_Dialog(object):
         self.label = QtWidgets.QLabel(parent=Dialog)
         self.label.setGeometry(QtCore.QRect(110, 80, 211, 171))
         self.label.setText("")
-        self.label.setPixmap(QtGui.QPixmap(os.path.abspath("res/1732856356407-fotor-bg-remover-202411298154 — копия-fotor-20241202195841.png")))
+        self.label.setPixmap(QtGui.QPixmap("Burevestnik_project11/res/1732856356407-fotor-bg-remover-202411298154 — копия-fotor-20241202195841.png"))
         self.label.setScaledContents(True)
         self.label.setObjectName("label")
         self.pushButton_login_reg = QtWidgets.QPushButton(parent=Dialog)
