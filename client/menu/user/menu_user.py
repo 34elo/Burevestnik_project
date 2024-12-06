@@ -7,6 +7,7 @@
 
 
 from PyQt6 import QtCore, QtGui, QtWidgets
+import os
 
 
 class Ui_MainWindow(object):
@@ -17,8 +18,8 @@ class Ui_MainWindow(object):
         font.setPointSize(16)
         MainWindow.setFont(font)
         MainWindow.setStyleSheet("background-color: rgb(45, 44, 44);\n"
-"                color: white\n"
-"            ")
+                                 "                color: white\n"
+                                 "            ")
         self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
@@ -28,24 +29,24 @@ class Ui_MainWindow(object):
         self.gridLayout.setObjectName("gridLayout")
         self.widget_4 = QtWidgets.QWidget(parent=self.centralwidget)
         self.widget_4.setStyleSheet("QWidget{\n"
-"                                background-color: rgb(0, 85, 0);\n"
-"                                border-top-right-radius:20px;\n"
-"                                }\n"
-"                                QPushButton{\n"
-"                                color: white;\n"
-"\n"
-"                                height: 30px;\n"
-"                                border:none;\n"
-"                                border-radius: 10px;\n"
-"                                border-bottom-radius: 10px;\n"
-"\n"
-"                                }\n"
-"                                QPushButton:checked{\n"
-"                                color: rgb(0, 85, 0);\n"
-"                                background-color: white;\n"
-"\n"
-"                                }\n"
-"                            ")
+                                    "                                background-color: rgb(0, 85, 0);\n"
+                                    "                                border-top-right-radius:20px;\n"
+                                    "                                }\n"
+                                    "                                QPushButton{\n"
+                                    "                                color: white;\n"
+                                    "\n"
+                                    "                                height: 30px;\n"
+                                    "                                border:none;\n"
+                                    "                                border-radius: 10px;\n"
+                                    "                                border-bottom-radius: 10px;\n"
+                                    "\n"
+                                    "                                }\n"
+                                    "                                QPushButton:checked{\n"
+                                    "                                color: rgb(0, 85, 0);\n"
+                                    "                                background-color: white;\n"
+                                    "\n"
+                                    "                                }\n"
+                                    "                            ")
         self.widget_4.setObjectName("widget_4")
         self.verticalLayout_4 = QtWidgets.QVBoxLayout(self.widget_4)
         self.verticalLayout_4.setObjectName("verticalLayout_4")
@@ -54,7 +55,8 @@ class Ui_MainWindow(object):
         self.label_3 = QtWidgets.QLabel(parent=self.widget_4)
         self.label_3.setMaximumSize(QtCore.QSize(55, 55))
         self.label_3.setText("")
-        self.label_3.setPixmap(QtGui.QPixmap(":/res/kisspng-user-profile-2018-in-sight-user-conference-expo-5b554c0968c377.0307553315323166814291-fotor-bg-remover-20241102121640.png"))
+        self.label_3.setPixmap(QtGui.QPixmap(os.path.abspath(
+            "/res/kisspng-user-profile-2018-in-sight-user-conference-expo-5b554c0968c377.0307553315323166814291-fotor-bg-remover-20241102121640.png")))
         self.label_3.setScaledContents(True)
         self.label_3.setObjectName("label_3")
         self.verticalLayout.addWidget(self.label_3)
@@ -68,8 +70,12 @@ class Ui_MainWindow(object):
         self.pushButton_acc1_us = QtWidgets.QPushButton(parent=self.widget_4)
         self.pushButton_acc1_us.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(":/res/add_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        icon.addPixmap(QtGui.QPixmap(":/res/add_24dp_005500_FILL0_wght400_GRAD0_opsz24.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.On)
+        icon.addPixmap(QtGui.QPixmap(os.path.abspath("/res/add_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png")),
+                       QtGui.QIcon.Mode.Normal,
+                       QtGui.QIcon.State.Off)
+        icon.addPixmap(QtGui.QPixmap(os.path.abspath("/res/add_24dp_005500_FILL0_wght400_GRAD0_opsz24.png")),
+                       QtGui.QIcon.Mode.Normal,
+                       QtGui.QIcon.State.On)
         self.pushButton_acc1_us.setIcon(icon)
         self.pushButton_acc1_us.setCheckable(True)
         self.pushButton_acc1_us.setAutoExclusive(True)
@@ -78,8 +84,10 @@ class Ui_MainWindow(object):
         self.pushButton_education1us = QtWidgets.QPushButton(parent=self.widget_4)
         self.pushButton_education1us.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap(":/res/school_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        icon1.addPixmap(QtGui.QPixmap(":/res/school_24dp_005500_FILL0_wght400_GRAD0_opsz24.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.On)
+        icon1.addPixmap(QtGui.QPixmap(os.path.abspath("/res/school_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png")),
+                        QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon1.addPixmap(QtGui.QPixmap(os.path.abspath("/res/school_24dp_005500_FILL0_wght400_GRAD0_opsz24.png")),
+                        QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.On)
         self.pushButton_education1us.setIcon(icon1)
         self.pushButton_education1us.setCheckable(True)
         self.pushButton_education1us.setAutoExclusive(True)
@@ -88,8 +96,10 @@ class Ui_MainWindow(object):
         self.pushButton_orde1_2 = QtWidgets.QPushButton(parent=self.widget_4)
         self.pushButton_orde1_2.setText("")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap(":/res/summarize_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        icon2.addPixmap(QtGui.QPixmap(":/res/summarize_24dp_005500_FILL0_wght400_GRAD0_opsz24.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.On)
+        icon2.addPixmap(QtGui.QPixmap(os.path.abspath("/res/summarize_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png")),
+                        QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon2.addPixmap(QtGui.QPixmap(os.path.abspath("/res/summarize_24dp_005500_FILL0_wght400_GRAD0_opsz24.png")),
+                        QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.On)
         self.pushButton_orde1_2.setIcon(icon2)
         self.pushButton_orde1_2.setCheckable(True)
         self.pushButton_orde1_2.setAutoExclusive(True)
@@ -98,21 +108,28 @@ class Ui_MainWindow(object):
         self.pushButton_task1 = QtWidgets.QPushButton(parent=self.widget_4)
         self.pushButton_task1.setText("")
         icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap(":/res/work_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        icon3.addPixmap(QtGui.QPixmap(":/res/work_24dp_005500_FILL0_wght400_GRAD0_opsz24.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.On)
+        icon3.addPixmap(QtGui.QPixmap(os.path.abspath("/res/work_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png")),
+                        QtGui.QIcon.Mode.Normal,
+                        QtGui.QIcon.State.Off)
+        icon3.addPixmap(QtGui.QPixmap(os.path.abspath("/res/work_24dp_005500_FILL0_wght400_GRAD0_opsz24.png")),
+                        QtGui.QIcon.Mode.Normal,
+                        QtGui.QIcon.State.On)
         self.pushButton_task1.setIcon(icon3)
         self.pushButton_task1.setCheckable(True)
         self.pushButton_task1.setAutoExclusive(True)
         self.pushButton_task1.setObjectName("pushButton_task1")
         self.verticalLayout_7.addWidget(self.pushButton_task1)
         self.verticalLayout_4.addLayout(self.verticalLayout_7)
-        spacerItem = QtWidgets.QSpacerItem(20, 278, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
+        spacerItem = QtWidgets.QSpacerItem(20, 278, QtWidgets.QSizePolicy.Policy.Minimum,
+                                           QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_4.addItem(spacerItem)
         self.pushButton_logout1 = QtWidgets.QPushButton(parent=self.widget_4)
         self.pushButton_logout1.setText("")
         icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap(":/res/logout_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        icon4.addPixmap(QtGui.QPixmap(":/res/logout_24dp_005500_FILL0_wght400_GRAD0_opsz24.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.On)
+        icon4.addPixmap(QtGui.QPixmap(os.path.abspath("/res/logout_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png")),
+                        QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon4.addPixmap(QtGui.QPixmap(os.path.abspath("/res/logout_24dp_005500_FILL0_wght400_GRAD0_opsz24.png")),
+                        QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.On)
         self.pushButton_logout1.setIcon(icon4)
         self.pushButton_logout1.setCheckable(True)
         self.pushButton_logout1.setAutoExclusive(True)
@@ -128,10 +145,12 @@ class Ui_MainWindow(object):
         self.pushButton = QtWidgets.QPushButton(parent=self.widget_2)
         self.pushButton.setMaximumSize(QtCore.QSize(40, 40))
         self.pushButton.setStyleSheet("border:none;\n"
-"                                                ")
+                                      "                                                ")
         self.pushButton.setText("")
         icon5 = QtGui.QIcon()
-        icon5.addPixmap(QtGui.QPixmap(":/res/menu_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon5.addPixmap(QtGui.QPixmap(os.path.abspath("/res/menu_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png")),
+                        QtGui.QIcon.Mode.Normal,
+                        QtGui.QIcon.State.Off)
         self.pushButton.setIcon(icon5)
         self.pushButton.setIconSize(QtCore.QSize(50, 50))
         self.pushButton.setCheckable(True)
@@ -139,7 +158,8 @@ class Ui_MainWindow(object):
         self.pushButton.setObjectName("pushButton")
         self.verticalLayout_8.addWidget(self.pushButton)
         self.horizontalLayout_4.addLayout(self.verticalLayout_8)
-        spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding,
+                                            QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout_4.addItem(spacerItem1)
         self.label = QtWidgets.QLabel(parent=self.widget_2)
         font = QtGui.QFont()
@@ -147,14 +167,16 @@ class Ui_MainWindow(object):
         self.label.setFont(font)
         self.label.setObjectName("label")
         self.horizontalLayout_4.addWidget(self.label)
-        spacerItem2 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        spacerItem2 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding,
+                                            QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout_4.addItem(spacerItem2)
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.pushButton_13 = QtWidgets.QPushButton(parent=self.widget_2)
         self.pushButton_13.setText("")
         icon6 = QtGui.QIcon()
-        icon6.addPixmap(QtGui.QPixmap(":/res/remove_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon6.addPixmap(QtGui.QPixmap(os.path.abspath("/res/remove_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png")),
+                        QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.pushButton_13.setIcon(icon6)
         self.pushButton_13.setCheckable(True)
         self.pushButton_13.setObjectName("pushButton_13")
@@ -162,7 +184,9 @@ class Ui_MainWindow(object):
         self.pushButton_24 = QtWidgets.QPushButton(parent=self.widget_2)
         self.pushButton_24.setText("")
         icon7 = QtGui.QIcon()
-        icon7.addPixmap(QtGui.QPixmap(":/res/check_box_outline_blank_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon7.addPixmap(
+            QtGui.QPixmap(os.path.abspath("/res/check_box_outline_blank_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png")),
+            QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.pushButton_24.setIcon(icon7)
         self.pushButton_24.setCheckable(True)
         self.pushButton_24.setObjectName("pushButton_24")
@@ -176,7 +200,8 @@ class Ui_MainWindow(object):
         self.pushButton_23 = QtWidgets.QPushButton(parent=self.widget_2)
         self.pushButton_23.setText("")
         icon8 = QtGui.QIcon()
-        icon8.addPixmap(QtGui.QPixmap(":/res/close_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon8.addPixmap(QtGui.QPixmap(os.path.abspath("/res/close_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png")),
+                        QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.pushButton_23.setIcon(icon8)
         self.pushButton_23.setCheckable(True)
         self.pushButton_23.setAutoExclusive(True)
@@ -186,25 +211,25 @@ class Ui_MainWindow(object):
         self.gridLayout.addWidget(self.widget_2, 0, 0, 1, 4)
         self.widget_5 = QtWidgets.QWidget(parent=self.centralwidget)
         self.widget_5.setStyleSheet("QWidget{\n"
-"                                background-color: rgb(0, 85, 0);\n"
-"                                border-top-right-radius:20px;\n"
-"                                }\n"
-"\n"
-"                                QPushButton{\n"
-"                                color: white;\n"
-"                                text-align:left;\n"
-"                                height: 30px;\n"
-"                                border:none;\n"
-"                                border-radius: 10px;\n"
-"                                border-bottom-radius: 10px;\n"
-"\n"
-"                                }\n"
-"                                QPushButton:checked{\n"
-"                                color: rgb(0, 85, 0);\n"
-"                                background-color: white;\n"
-"\n"
-"                                }\n"
-"                            ")
+                                    "                                background-color: rgb(0, 85, 0);\n"
+                                    "                                border-top-right-radius:20px;\n"
+                                    "                                }\n"
+                                    "\n"
+                                    "                                QPushButton{\n"
+                                    "                                color: white;\n"
+                                    "                                text-align:left;\n"
+                                    "                                height: 30px;\n"
+                                    "                                border:none;\n"
+                                    "                                border-radius: 10px;\n"
+                                    "                                border-bottom-radius: 10px;\n"
+                                    "\n"
+                                    "                                }\n"
+                                    "                                QPushButton:checked{\n"
+                                    "                                color: rgb(0, 85, 0);\n"
+                                    "                                background-color: white;\n"
+                                    "\n"
+                                    "                                }\n"
+                                    "                            ")
         self.widget_5.setObjectName("widget_5")
         self.verticalLayout_5 = QtWidgets.QVBoxLayout(self.widget_5)
         self.verticalLayout_5.setObjectName("verticalLayout_5")
@@ -213,7 +238,8 @@ class Ui_MainWindow(object):
         self.label_5 = QtWidgets.QLabel(parent=self.widget_5)
         self.label_5.setMaximumSize(QtCore.QSize(55, 55))
         self.label_5.setText("")
-        self.label_5.setPixmap(QtGui.QPixmap(":/res/kisspng-user-profile-2018-in-sight-user-conference-expo-5b554c0968c377.0307553315323166814291-fotor-bg-remover-20241102121640.png"))
+        self.label_5.setPixmap(QtGui.QPixmap(os.path.abspath(
+            "/res/kisspng-user-profile-2018-in-sight-user-conference-expo-5b554c0968c377.0307553315323166814291-fotor-bg-remover-20241102121640.png")))
         self.label_5.setScaledContents(True)
         self.label_5.setObjectName("label_5")
         self.verticalLayout_3.addWidget(self.label_5)
@@ -249,7 +275,8 @@ class Ui_MainWindow(object):
         self.pushButton_tasks2.setObjectName("pushButton_tasks2")
         self.verticalLayout_2.addWidget(self.pushButton_tasks2)
         self.verticalLayout_5.addLayout(self.verticalLayout_2)
-        spacerItem3 = QtWidgets.QSpacerItem(20, 273, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
+        spacerItem3 = QtWidgets.QSpacerItem(20, 273, QtWidgets.QSizePolicy.Policy.Minimum,
+                                            QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_5.addItem(spacerItem3)
         self.pushButton_12 = QtWidgets.QPushButton(parent=self.widget_5)
         self.pushButton_12.setStyleSheet("")
@@ -276,50 +303,50 @@ class Ui_MainWindow(object):
         self.label_12.setMinimumSize(QtCore.QSize(261, 291))
         self.label_12.setMaximumSize(QtCore.QSize(261, 291))
         self.label_12.setStyleSheet("border-radius:20px;\n"
-"                                                ")
+                                    "                                                ")
         self.label_12.setText("")
-        self.label_12.setPixmap(QtGui.QPixmap(":/res/dude.png"))
+        self.label_12.setPixmap(QtGui.QPixmap(os.path.abspath("/res/dude.png")))
         self.label_12.setScaledContents(True)
         self.label_12.setObjectName("label_12")
         self.label_17 = QtWidgets.QLabel(parent=self.education_page)
         self.label_17.setGeometry(QtCore.QRect(290, 50, 281, 291))
         self.label_17.setText("")
-        self.label_17.setPixmap(QtGui.QPixmap(":/res/dude2.png"))
+        self.label_17.setPixmap(QtGui.QPixmap(os.path.abspath("/res/dude2.png")))
         self.label_17.setScaledContents(True)
         self.label_17.setObjectName("label_17")
         self.label_25 = QtWidgets.QLabel(parent=self.education_page)
         self.label_25.setGeometry(QtCore.QRect(590, 50, 271, 291))
         self.label_25.setText("")
-        self.label_25.setPixmap(QtGui.QPixmap(":/res/dude1.png"))
+        self.label_25.setPixmap(QtGui.QPixmap(os.path.abspath("/res/dude1.png")))
         self.label_25.setScaledContents(True)
         self.label_25.setObjectName("label_25")
         self.pushButton_link1 = QtWidgets.QPushButton(parent=self.education_page)
         self.pushButton_link1.setGeometry(QtCore.QRect(20, 510, 261, 41))
         self.pushButton_link1.setStyleSheet("background-color: rgb(0, 153, 81);\n"
-"                                                    color: white;\n"
-"                                                    border-radius: 20px;\n"
-"                                                ")
+                                            "                                                    color: white;\n"
+                                            "                                                    border-radius: 20px;\n"
+                                            "                                                ")
         self.pushButton_link1.setObjectName("pushButton_link1")
         self.pushButton_link2 = QtWidgets.QPushButton(parent=self.education_page)
         self.pushButton_link2.setGeometry(QtCore.QRect(310, 510, 261, 41))
         self.pushButton_link2.setStyleSheet("background-color: rgb(0, 153, 81);\n"
-"                                                    color: white;\n"
-"                                                    border-radius: 20px;\n"
-"                                                ")
+                                            "                                                    color: white;\n"
+                                            "                                                    border-radius: 20px;\n"
+                                            "                                                ")
         self.pushButton_link2.setObjectName("pushButton_link2")
         self.pushButton_link3 = QtWidgets.QPushButton(parent=self.education_page)
         self.pushButton_link3.setGeometry(QtCore.QRect(590, 510, 261, 41))
         self.pushButton_link3.setStyleSheet("background-color: rgb(0, 153, 81);\n"
-"                                                    color: white;\n"
-"                                                    border-radius: 20px;\n"
-"                                                ")
+                                            "                                                    color: white;\n"
+                                            "                                                    border-radius: 20px;\n"
+                                            "                                                ")
         self.pushButton_link3.setObjectName("pushButton_link3")
         self.label_31 = QtWidgets.QLabel(parent=self.education_page)
         self.label_31.setGeometry(QtCore.QRect(10, 360, 271, 121))
         self.label_31.setStyleSheet("QLabel{\n"
-"                                                    setWordWrap(true);\n"
-"                                                    }\n"
-"                                                ")
+                                    "                                                    setWordWrap(true);\n"
+                                    "                                                    }\n"
+                                    "                                                ")
         self.label_31.setWordWrap(True)
         self.label_31.setObjectName("label_31")
         self.label_32 = QtWidgets.QLabel(parent=self.education_page)
@@ -342,7 +369,8 @@ class Ui_MainWindow(object):
         self.label_30.setFont(font)
         self.label_30.setObjectName("label_30")
         self.horizontalLayout_2.addWidget(self.label_30)
-        spacerItem4 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        spacerItem4 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding,
+                                            QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout_2.addItem(spacerItem4)
         self.stackedWidget.addWidget(self.education_page)
         self.acc_page = QtWidgets.QWidget()
@@ -361,7 +389,8 @@ class Ui_MainWindow(object):
         self.label_8.setMinimumSize(QtCore.QSize(270, 270))
         self.label_8.setMaximumSize(QtCore.QSize(270, 270))
         self.label_8.setText("")
-        self.label_8.setPixmap(QtGui.QPixmap(":/res/kisspng-user-profile-2018-in-sight-user-conference-expo-5b554c0968c377.0307553315323166814291-fotor-bg-remover-20241102121640.png"))
+        self.label_8.setPixmap(QtGui.QPixmap(os.path.abspath(
+            "/res/kisspng-user-profile-2018-in-sight-user-conference-expo-5b554c0968c377.0307553315323166814291-fotor-bg-remover-20241102121640.png")))
         self.label_8.setScaledContents(True)
         self.label_8.setObjectName("label_8")
         self.horizontalLayout_25.addWidget(self.label_8)
@@ -443,7 +472,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout_8.addWidget(self.label_post)
         self.verticalLayout_9.addLayout(self.horizontalLayout_8)
         self.horizontalLayout_25.addLayout(self.verticalLayout_9)
-        spacerItem5 = QtWidgets.QSpacerItem(270, 270, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        spacerItem5 = QtWidgets.QSpacerItem(270, 270, QtWidgets.QSizePolicy.Policy.Expanding,
+                                            QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout_25.addItem(spacerItem5)
         self.verticalLayout_15.addLayout(self.horizontalLayout_25)
         self.horizontalLayout_24 = QtWidgets.QHBoxLayout()
@@ -481,7 +511,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout_11.addWidget(self.label_level)
         self.horizontalLayout_15.addLayout(self.horizontalLayout_11)
         self.horizontalLayout_24.addLayout(self.horizontalLayout_15)
-        spacerItem6 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        spacerItem6 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding,
+                                            QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout_24.addItem(spacerItem6)
         self.verticalLayout_15.addLayout(self.horizontalLayout_24)
         self.horizontalLayout_23 = QtWidgets.QHBoxLayout()
@@ -501,7 +532,8 @@ class Ui_MainWindow(object):
         self.label_exp.setObjectName("label_exp")
         self.horizontalLayout_12.addWidget(self.label_exp)
         self.horizontalLayout_23.addLayout(self.horizontalLayout_12)
-        spacerItem7 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        spacerItem7 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding,
+                                            QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout_23.addItem(spacerItem7)
         self.verticalLayout_15.addLayout(self.horizontalLayout_23)
         self.verticalLayout_14 = QtWidgets.QVBoxLayout()
@@ -514,14 +546,15 @@ class Ui_MainWindow(object):
         self.label_34.setFont(font)
         self.label_34.setObjectName("label_34")
         self.horizontalLayout_22.addWidget(self.label_34)
-        spacerItem8 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        spacerItem8 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding,
+                                            QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout_22.addItem(spacerItem8)
         self.verticalLayout_14.addLayout(self.horizontalLayout_22)
         self.textEdit_pfil = QtWidgets.QTextEdit(parent=self.acc_page)
         self.textEdit_pfil.setStyleSheet("border: 2px solid white;\n"
-"                                                    border-radius: 10px;\n"
-"                                                    color: white;\n"
-"                                                ")
+                                         "                                                    border-radius: 10px;\n"
+                                         "                                                    color: white;\n"
+                                         "                                                ")
         self.textEdit_pfil.setObjectName("textEdit_pfil")
         self.verticalLayout_14.addWidget(self.textEdit_pfil)
         self.verticalLayout_15.addLayout(self.verticalLayout_14)
@@ -543,7 +576,8 @@ class Ui_MainWindow(object):
         self.label_7 = QtWidgets.QLabel(parent=self.order_page)
         self.label_7.setObjectName("label_7")
         self.horizontalLayout_17.addWidget(self.label_7)
-        spacerItem9 = QtWidgets.QSpacerItem(244, 17, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        spacerItem9 = QtWidgets.QSpacerItem(244, 17, QtWidgets.QSizePolicy.Policy.Expanding,
+                                            QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout_17.addItem(spacerItem9)
         self.verticalLayout_10.addLayout(self.horizontalLayout_17)
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout()
@@ -555,15 +589,16 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.lineEdit_id_input.sizePolicy().hasHeightForWidth())
         self.lineEdit_id_input.setSizePolicy(sizePolicy)
         self.lineEdit_id_input.setStyleSheet("QLineEdit {\n"
-"                                                    border: 2px solid white;\n"
-"                                                    border-radius: 10px;\n"
-"                                                    color: white;\n"
-"\n"
-"                                                    }\n"
-"                                                ")
+                                             "                                                    border: 2px solid white;\n"
+                                             "                                                    border-radius: 10px;\n"
+                                             "                                                    color: white;\n"
+                                             "\n"
+                                             "                                                    }\n"
+                                             "                                                ")
         self.lineEdit_id_input.setObjectName("lineEdit_id_input")
         self.horizontalLayout_3.addWidget(self.lineEdit_id_input)
-        spacerItem10 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        spacerItem10 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding,
+                                             QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout_3.addItem(spacerItem10)
         self.verticalLayout_10.addLayout(self.horizontalLayout_3)
         self.verticalLayout_12.addLayout(self.verticalLayout_10)
@@ -574,33 +609,35 @@ class Ui_MainWindow(object):
         self.label_6 = QtWidgets.QLabel(parent=self.order_page)
         self.label_6.setObjectName("label_6")
         self.horizontalLayout_10.addWidget(self.label_6)
-        spacerItem11 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        spacerItem11 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding,
+                                             QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout_10.addItem(spacerItem11)
         self.verticalLayout_11.addLayout(self.horizontalLayout_10)
         self.textEdit_com_1 = QtWidgets.QTextEdit(parent=self.order_page)
         self.textEdit_com_1.setStyleSheet("border: 2px solid white;\n"
-"                                                    border-radius: 10px;\n"
-"                                                    color: white;\n"
-"                                                ")
+                                          "                                                    border-radius: 10px;\n"
+                                          "                                                    color: white;\n"
+                                          "                                                ")
         self.textEdit_com_1.setObjectName("textEdit_com_1")
         self.verticalLayout_11.addWidget(self.textEdit_com_1)
         self.horizontalLayout_16 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_16.setObjectName("horizontalLayout_16")
         self.pushButton_send_order = QtWidgets.QPushButton(parent=self.order_page)
         self.pushButton_send_order.setStyleSheet("\n"
-"                                                                QPushButton{\n"
-"                                                                color: white;\n"
-"                                                                text-align:left;\n"
-"                                                                background-color: rgb(0, 153, 81);\n"
-"                                                                height: 30px;\n"
-"                                                                border:none;\n"
-"                                                                border-radius: 10px;\n"
-"                                                                border-bottom-radius: 10px;\n"
-"                                                                }\n"
-"                                                            ")
+                                                 "                                                                QPushButton{\n"
+                                                 "                                                                color: white;\n"
+                                                 "                                                                text-align:left;\n"
+                                                 "                                                                background-color: rgb(0, 153, 81);\n"
+                                                 "                                                                height: 30px;\n"
+                                                 "                                                                border:none;\n"
+                                                 "                                                                border-radius: 10px;\n"
+                                                 "                                                                border-bottom-radius: 10px;\n"
+                                                 "                                                                }\n"
+                                                 "                                                            ")
         self.pushButton_send_order.setObjectName("pushButton_send_order")
         self.horizontalLayout_16.addWidget(self.pushButton_send_order)
-        spacerItem12 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        spacerItem12 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding,
+                                             QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout_16.addItem(spacerItem12)
         self.verticalLayout_11.addLayout(self.horizontalLayout_16)
         self.verticalLayout_12.addLayout(self.verticalLayout_11)
@@ -621,25 +658,27 @@ class Ui_MainWindow(object):
         self.label_19.setFont(font)
         self.label_19.setObjectName("label_19")
         self.horizontalLayout_32.addWidget(self.label_19)
-        spacerItem13 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        spacerItem13 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding,
+                                             QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout_32.addItem(spacerItem13)
         self.pushButton_update_task = QtWidgets.QPushButton(parent=self.tasks_page)
         self.pushButton_update_task.setStyleSheet("\n"
-"                                                                QPushButton{\n"
-"                                                                color: white;\n"
-"                                                                text-align:left;\n"
-"                                                                background-color: rgb(0, 153, 81);\n"
-"                                                                height: 30px;\n"
-"                                                                border:none;\n"
-"                                                                border-radius: 10px;\n"
-"                                                                border-bottom-radius: 10px;\n"
-"                                                                }\n"
-"                                                            ")
+                                                  "                                                                QPushButton{\n"
+                                                  "                                                                color: white;\n"
+                                                  "                                                                text-align:left;\n"
+                                                  "                                                                background-color: rgb(0, 153, 81);\n"
+                                                  "                                                                height: 30px;\n"
+                                                  "                                                                border:none;\n"
+                                                  "                                                                border-radius: 10px;\n"
+                                                  "                                                                border-bottom-radius: 10px;\n"
+                                                  "                                                                }\n"
+                                                  "                                                            ")
         self.pushButton_update_task.setObjectName("pushButton_update_task")
         self.horizontalLayout_32.addWidget(self.pushButton_update_task)
         self.verticalLayout_19.addLayout(self.horizontalLayout_32)
         self.frame_2 = QtWidgets.QFrame(parent=self.tasks_page)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Expanding)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding,
+                                           QtWidgets.QSizePolicy.Policy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.frame_2.sizePolicy().hasHeightForWidth())
@@ -657,7 +696,8 @@ class Ui_MainWindow(object):
         self.verticalLayout_24.addWidget(self.label_38)
         self.verticalLayout_19.addWidget(self.frame_2)
         self.frame = QtWidgets.QFrame(parent=self.tasks_page)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Expanding)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding,
+                                           QtWidgets.QSizePolicy.Policy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.frame.sizePolicy().hasHeightForWidth())
@@ -681,7 +721,8 @@ class Ui_MainWindow(object):
         self.label_number_machine.setFont(font)
         self.label_number_machine.setObjectName("label_number_machine")
         self.horizontalLayout_39.addWidget(self.label_number_machine)
-        spacerItem14 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        spacerItem14 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding,
+                                             QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout_39.addItem(spacerItem14)
         self.verticalLayout_23.addLayout(self.horizontalLayout_39)
         self.verticalLayout_22 = QtWidgets.QVBoxLayout()
@@ -691,7 +732,8 @@ class Ui_MainWindow(object):
         self.label_41 = QtWidgets.QLabel(parent=self.frame)
         self.label_41.setObjectName("label_41")
         self.horizontalLayout_40.addWidget(self.label_41)
-        spacerItem15 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        spacerItem15 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding,
+                                             QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout_40.addItem(spacerItem15)
         self.verticalLayout_22.addLayout(self.horizontalLayout_40)
         self.label_coment_disp = QtWidgets.QLabel(parent=self.frame)
@@ -728,33 +770,35 @@ class Ui_MainWindow(object):
         self.label_22.setFont(font)
         self.label_22.setObjectName("label_22")
         self.horizontalLayout_28.addWidget(self.label_22)
-        spacerItem16 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        spacerItem16 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding,
+                                             QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout_28.addItem(spacerItem16)
         self.verticalLayout_16.addLayout(self.horizontalLayout_28)
         self.textEdit_com__unsucses = QtWidgets.QTextEdit(parent=self.tasks_page)
         self.textEdit_com__unsucses.setStyleSheet("border: 2px solid white;\n"
-"                                                    border-radius: 10px;\n"
-"                                                    color: white;\n"
-"                                                ")
+                                                  "                                                    border-radius: 10px;\n"
+                                                  "                                                    color: white;\n"
+                                                  "                                                ")
         self.textEdit_com__unsucses.setObjectName("textEdit_com__unsucses")
         self.verticalLayout_16.addWidget(self.textEdit_com__unsucses)
         self.horizontalLayout_29 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_29.setObjectName("horizontalLayout_29")
         self.pushButton_send_order_unsucses = QtWidgets.QPushButton(parent=self.tasks_page)
         self.pushButton_send_order_unsucses.setStyleSheet("\n"
-"                                                                QPushButton{\n"
-"                                                                color: white;\n"
-"                                                                text-align:left;\n"
-"                                                                background-color: rgb(0, 153, 81);\n"
-"                                                                height: 30px;\n"
-"                                                                border:none;\n"
-"                                                                border-radius: 10px;\n"
-"                                                                border-bottom-radius: 10px;\n"
-"                                                                }\n"
-"                                                            ")
+                                                          "                                                                QPushButton{\n"
+                                                          "                                                                color: white;\n"
+                                                          "                                                                text-align:left;\n"
+                                                          "                                                                background-color: rgb(0, 153, 81);\n"
+                                                          "                                                                height: 30px;\n"
+                                                          "                                                                border:none;\n"
+                                                          "                                                                border-radius: 10px;\n"
+                                                          "                                                                border-bottom-radius: 10px;\n"
+                                                          "                                                                }\n"
+                                                          "                                                            ")
         self.pushButton_send_order_unsucses.setObjectName("pushButton_send_order_unsucses")
         self.horizontalLayout_29.addWidget(self.pushButton_send_order_unsucses)
-        spacerItem17 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        spacerItem17 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding,
+                                             QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout_29.addItem(spacerItem17)
         self.verticalLayout_16.addLayout(self.horizontalLayout_29)
         self.horizontalLayout_31.addLayout(self.verticalLayout_16)
@@ -767,7 +811,8 @@ class Ui_MainWindow(object):
         self.verticalLayout_17 = QtWidgets.QVBoxLayout()
         self.verticalLayout_17.setObjectName("verticalLayout_17")
         self.label_2 = QtWidgets.QLabel(parent=self.tasks_page)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Preferred)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding,
+                                           QtWidgets.QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
@@ -781,22 +826,24 @@ class Ui_MainWindow(object):
         self.horizontalLayout_30.setObjectName("horizontalLayout_30")
         self.pushButton_send_order_sucses = QtWidgets.QPushButton(parent=self.tasks_page)
         self.pushButton_send_order_sucses.setStyleSheet("\n"
-"                                                                QPushButton{\n"
-"                                                                color: white;\n"
-"                                                                text-align:left;\n"
-"                                                                background-color: rgb(0, 153, 81);\n"
-"                                                                height: 30px;\n"
-"                                                                border:none;\n"
-"                                                                border-radius: 10px;\n"
-"                                                                border-bottom-radius: 10px;\n"
-"                                                                }\n"
-"                                                            ")
+                                                        "                                                                QPushButton{\n"
+                                                        "                                                                color: white;\n"
+                                                        "                                                                text-align:left;\n"
+                                                        "                                                                background-color: rgb(0, 153, 81);\n"
+                                                        "                                                                height: 30px;\n"
+                                                        "                                                                border:none;\n"
+                                                        "                                                                border-radius: 10px;\n"
+                                                        "                                                                border-bottom-radius: 10px;\n"
+                                                        "                                                                }\n"
+                                                        "                                                            ")
         self.pushButton_send_order_sucses.setObjectName("pushButton_send_order_sucses")
         self.horizontalLayout_30.addWidget(self.pushButton_send_order_sucses)
-        spacerItem18 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        spacerItem18 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding,
+                                             QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout_30.addItem(spacerItem18)
         self.verticalLayout_17.addLayout(self.horizontalLayout_30)
-        spacerItem19 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
+        spacerItem19 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum,
+                                             QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_17.addItem(spacerItem19)
         self.horizontalLayout_31.addLayout(self.verticalLayout_17)
         self.verticalLayout_13.addLayout(self.horizontalLayout_31)
@@ -807,26 +854,26 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         self.stackedWidget.setCurrentIndex(3)
-        self.pushButton.toggled['bool'].connect(self.widget_4.setHidden) # type: ignore
-        self.pushButton.toggled['bool'].connect(self.widget_5.setVisible) # type: ignore
-        self.pushButton_education1us.toggled['bool'].connect(self.pushButton_education2_us.setChecked) # type: ignore
-        self.pushButton_acc1_us.toggled['bool'].connect(self.pushButton_acc2_us.setChecked) # type: ignore
-        self.pushButton_acc2_us.toggled['bool'].connect(self.pushButton_acc1_us.setChecked) # type: ignore
-        self.pushButton_education2_us.toggled['bool'].connect(self.pushButton_education1us.setChecked) # type: ignore
-        self.pushButton_23.toggled['bool'].connect(MainWindow.close) # type: ignore
-        self.pushButton_logout1.toggled['bool'].connect(self.pushButton_12.setChecked) # type: ignore
-        self.pushButton_12.toggled['bool'].connect(self.pushButton_logout1.setChecked) # type: ignore
-        self.pushButton_order2_2.toggled['bool'].connect(self.pushButton_orde1_2.setChecked) # type: ignore
-        self.pushButton_orde1_2.toggled['bool'].connect(self.pushButton_order2_2.setChecked) # type: ignore
-        self.pushButton_tasks2.toggled['bool'].connect(self.pushButton_task1.setChecked) # type: ignore
-        self.pushButton_task1.toggled['bool'].connect(self.pushButton_tasks2.setChecked) # type: ignore
-        self.pushButton_22.toggled['bool'].connect(MainWindow.showMaximized) # type: ignore
-        self.pushButton_22.toggled['bool'].connect(self.pushButton_22.hide) # type: ignore
-        self.pushButton_24.toggled['bool'].connect(MainWindow.showNormal) # type: ignore
-        self.pushButton_24.toggled['bool'].connect(self.pushButton_24.hide) # type: ignore
-        self.pushButton_24.toggled['bool'].connect(self.pushButton_22.show) # type: ignore
-        self.pushButton_22.toggled['bool'].connect(self.pushButton_24.show) # type: ignore
-        self.pushButton_13.toggled['bool'].connect(MainWindow.setHidden) # type: ignore
+        self.pushButton.toggled['bool'].connect(self.widget_4.setHidden)  # type: ignore
+        self.pushButton.toggled['bool'].connect(self.widget_5.setVisible)  # type: ignore
+        self.pushButton_education1us.toggled['bool'].connect(self.pushButton_education2_us.setChecked)  # type: ignore
+        self.pushButton_acc1_us.toggled['bool'].connect(self.pushButton_acc2_us.setChecked)  # type: ignore
+        self.pushButton_acc2_us.toggled['bool'].connect(self.pushButton_acc1_us.setChecked)  # type: ignore
+        self.pushButton_education2_us.toggled['bool'].connect(self.pushButton_education1us.setChecked)  # type: ignore
+        self.pushButton_23.toggled['bool'].connect(MainWindow.close)  # type: ignore
+        self.pushButton_logout1.toggled['bool'].connect(self.pushButton_12.setChecked)  # type: ignore
+        self.pushButton_12.toggled['bool'].connect(self.pushButton_logout1.setChecked)  # type: ignore
+        self.pushButton_order2_2.toggled['bool'].connect(self.pushButton_orde1_2.setChecked)  # type: ignore
+        self.pushButton_orde1_2.toggled['bool'].connect(self.pushButton_order2_2.setChecked)  # type: ignore
+        self.pushButton_tasks2.toggled['bool'].connect(self.pushButton_task1.setChecked)  # type: ignore
+        self.pushButton_task1.toggled['bool'].connect(self.pushButton_tasks2.setChecked)  # type: ignore
+        self.pushButton_22.toggled['bool'].connect(MainWindow.showMaximized)  # type: ignore
+        self.pushButton_22.toggled['bool'].connect(self.pushButton_22.hide)  # type: ignore
+        self.pushButton_24.toggled['bool'].connect(MainWindow.showNormal)  # type: ignore
+        self.pushButton_24.toggled['bool'].connect(self.pushButton_24.hide)  # type: ignore
+        self.pushButton_24.toggled['bool'].connect(self.pushButton_22.show)  # type: ignore
+        self.pushButton_22.toggled['bool'].connect(self.pushButton_24.show)  # type: ignore
+        self.pushButton_13.toggled['bool'].connect(MainWindow.setHidden)  # type: ignore
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -843,9 +890,12 @@ class Ui_MainWindow(object):
         self.pushButton_link1.setText(_translate("MainWindow", "Повысить квалификацию"))
         self.pushButton_link2.setText(_translate("MainWindow", "Повысить квалификацию"))
         self.pushButton_link3.setText(_translate("MainWindow", "Повысить квалификацию"))
-        self.label_31.setText(_translate("MainWindow", "На курсе вы узнаете про устройство и эксплуатацию токарныx станков, правилам заточки и термообработки, а также вспомните основные свойства обрабатываемых материалов. После вы сможете применять эти знания непосредственно на практике.                                                "))
-        self.label_32.setText(_translate("MainWindow", "Курс обучает методам консервации и хранения техники, предотвращению её повреждения и безопасной транспортировке. Слушатели освоят технологии, материалы и принципы сохранения техники"))
-        self.label_33.setText(_translate("MainWindow", "Специалисты на производстве, стройплощадках, станциях технического обслуживания и других объектах сваривают и режут металлические или полимерные изделия. Наладчики оборудования и операторы установок контролируют режимы работы и исправность спецтехники."))
+        self.label_31.setText(_translate("MainWindow",
+                                         "На курсе вы узнаете про устройство и эксплуатацию токарныx станков, правилам заточки и термообработки, а также вспомните основные свойства обрабатываемых материалов. После вы сможете применять эти знания непосредственно на практике.                                                "))
+        self.label_32.setText(_translate("MainWindow",
+                                         "Курс обучает методам консервации и хранения техники, предотвращению её повреждения и безопасной транспортировке. Слушатели освоят технологии, материалы и принципы сохранения техники"))
+        self.label_33.setText(_translate("MainWindow",
+                                         "Специалисты на производстве, стройплощадках, станциях технического обслуживания и других объектах сваривают и режут металлические или полимерные изделия. Наладчики оборудования и операторы установок контролируют режимы работы и исправность спецтехники."))
         self.label_30.setText(_translate("MainWindow", "Повышение квалификация"))
         self.label_18.setText(_translate("MainWindow", "Никнейм"))
         self.label_nik.setText(_translate("MainWindow", "TextLabel"))

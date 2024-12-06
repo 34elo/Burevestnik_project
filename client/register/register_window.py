@@ -7,7 +7,7 @@
 
 
 from PyQt6 import QtCore, QtGui, QtWidgets
-
+import os
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
@@ -28,7 +28,7 @@ class Ui_Dialog(object):
         self.label_58.setMinimumSize(QtCore.QSize(40, 40))
         self.label_58.setMaximumSize(QtCore.QSize(270, 270))
         self.label_58.setText("")
-        self.label_58.setPixmap(QtGui.QPixmap(":/res/kisspng-user-profile-2018-in-sight-user-conference-expo-5b554c0968c377.0307553315323166814291-fotor-bg-remover-20241102121640.png"))
+        self.label_58.setPixmap(QtGui.QPixmap(os.path.abspath("/res/kisspng-user-profile-2018-in-sight-user-conference-expo-5b554c0968c377.0307553315323166814291-fotor-bg-remover-20241102121640.png")))
         self.label_58.setScaledContents(True)
         self.label_58.setObjectName("label_58")
         self.verticalLayout_4.addWidget(self.label_58)
