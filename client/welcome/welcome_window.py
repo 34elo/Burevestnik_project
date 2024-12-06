@@ -1,4 +1,3 @@
-
 # Form implementation generated from reading ui file 'welcome_window.ui'
 #
 # Created by: PyQt6 UI code generator 6.7.1
@@ -8,6 +7,7 @@
 
 
 from PyQt6 import QtCore, QtGui, QtWidgets
+import os
 
 
 class Ui_Dialog(object):
@@ -19,29 +19,30 @@ class Ui_Dialog(object):
         self.label = QtWidgets.QLabel(parent=Dialog)
         self.label.setGeometry(QtCore.QRect(110, 80, 211, 171))
         self.label.setText("")
-        self.label.setPixmap(QtGui.QPixmap(":/res/1732856356407-fotor-bg-remover-202411298154 — копия-fotor-20241202195841.png"))
+        self.label.setPixmap(QtGui.QPixmap(
+            os.path.abspath("/res/1732856356407-fotor-bg-remover-202411298154 — копия-fotor-20241202195841.png")))
         self.label.setScaledContents(True)
         self.label.setObjectName("label")
         self.pushButton_login_reg = QtWidgets.QPushButton(parent=Dialog)
         self.pushButton_login_reg.setGeometry(QtCore.QRect(150, 280, 131, 41))
         self.pushButton_login_reg.setStyleSheet("background-color: rgb(0, 153, 81);\n"
-"                    color: white;\n"
-"                    border-radius: 20px;\n"
-"                ")
+                                                "                    color: white;\n"
+                                                "                    border-radius: 20px;\n"
+                                                "                ")
         self.pushButton_login_reg.setObjectName("pushButton_login_reg")
         self.pushButton_registration = QtWidgets.QPushButton(parent=Dialog)
         self.pushButton_registration.setGeometry(QtCore.QRect(150, 330, 131, 41))
         self.pushButton_registration.setStyleSheet("background-color: rgb(0, 153, 81);\n"
-"                    color: white;\n"
-"                    border-radius: 20px;\n"
-"                ")
+                                                   "                    color: white;\n"
+                                                   "                    border-radius: 20px;\n"
+                                                   "                ")
         self.pushButton_registration.setObjectName("pushButton_registration")
         self.pushButton_forgot = QtWidgets.QPushButton(parent=Dialog)
         self.pushButton_forgot.setGeometry(QtCore.QRect(150, 370, 131, 31))
         self.pushButton_forgot.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.ArrowCursor))
         self.pushButton_forgot.setStyleSheet("border-radius: 20px;\n"
-"                    color: rgb(6, 255, 172);\n"
-"                ")
+                                             "                    color: rgb(6, 255, 172);\n"
+                                             "                ")
         self.pushButton_forgot.setObjectName("pushButton_forgot")
         self.pushButton_forgot.raise_()
         self.label.raise_()
