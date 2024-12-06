@@ -90,6 +90,8 @@ class Ui_MainWindow2(QMainWindow, menu_user.Ui_MainWindow):
         self.pushButton_send_order_unsucses.clicked.connect(
             self.send_bad_statement)
         self.pushButton_update_task.clicked.connect(self.update_task)
+        self.pushButton_12.clicked.connect(self.exit_menu)
+        self.pushButton_logout1.clicked.connect(self.exit_menu)
         self.widget_5.setHidden(True)
 
     def update_task(self):
@@ -166,3 +168,6 @@ class Ui_MainWindow2(QMainWindow, menu_user.Ui_MainWindow):
         comment_worker = self.textEdit_com__unsucses.toPlainText()
         update_bad_status(self, self.nickname, comment_worker)
         self.textEdit_com__unsucses.clear()
+
+    def exit_menu(self):
+        self.close()

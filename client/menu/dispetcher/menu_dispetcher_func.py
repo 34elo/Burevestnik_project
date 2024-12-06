@@ -76,16 +76,20 @@ def send_to_db(nickname, id_problem, self):  # Notification + send
     repair_hardware = {'nickname': nickname}
     user = {'nickname': nickname, 'busy': 1}
     response_repair_hardware_nickname = requests.get(f'{API_URL}/data/users').json()
-
+    if nickname == '' or id_problem == '':
+        QMessageBox.critical(self, 'Critical', 'Заполни поля')
     for row in response_repair_hardware_nickname:
         if row.get('nickname') == nickname:
             if row.get('busy') == 1:
                 QMessageBox.critical(self, 'Critical', 'Работник уже занят, выберите другого')
                 return
 
-    requests.put(f'{API_URL}/data/repair_hardware/{id_problem}',
-                 json=repair_hardware)
-    requests.put(f'{API_URL}/data/users/{nickname}', json=user)
+    response_repair_hardware = requests.put(f'{API_URL}/data/repair_hardware/{id_problem}',
+                                            json=repair_hardware)
+    response_users = requests.put(f'{API_URL}/data/users/{nickname}', json=user)
+    if response_users.status_code == 200 and response_repair_hardware.status_code == 200:
+        QMessageBox.information(self, "Успех", 'Данные успешно отправлены')
+
 
 class Ui_MainWindow1(QMainWindow, menu_dispetcher.Ui_MainWindow):
 
@@ -120,7 +124,8 @@ class Ui_MainWindow1(QMainWindow, menu_dispetcher.Ui_MainWindow):
         self.pushButton_graph_9.clicked.connect(self.statistic_year)
 
         self.pushButton_graph.clicked.connect(self.build_graph)
-
+        self.pushButton_12.clicked.connect(self.exit_menu)
+        self.pushButton_logout1.clicked.connect(self.exit_menu)
         self.pushButton_report_2.clicked.connect(self.report)
 
     def build_graph(self):
@@ -165,11 +170,11 @@ class Ui_MainWindow1(QMainWindow, menu_dispetcher.Ui_MainWindow):
         name = self.lineEdit.text()
         statistic = self.statistic
         if name == '':
-            QMessageBox.critical(self, 'Critical', 'Заполни поля, дебил')
+            QMessageBox.critical(self, 'Critical', 'Заполни поля')
         else:
             try:
                 message = do_report(name, statistic, csv=csv, docs=docs)
-                QMessageBox.information(self, 'Успех', message)
+                QMessageBox.information(self, 'Отчет', message)
             except ReportException:
                 QMessageBox.critical(self, 'Critical', 'Error')
 
@@ -248,3 +253,7 @@ class Ui_MainWindow1(QMainWindow, menu_dispetcher.Ui_MainWindow):
 
     def switch_to_loose_money(self):
         self.stackedWidget.setCurrentIndex(0)
+
+    def exit_menu(self):
+        self.close()
+
