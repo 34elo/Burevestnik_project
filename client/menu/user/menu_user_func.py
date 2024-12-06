@@ -67,11 +67,13 @@ class Ui_MainWindow2(QMainWindow, menu_user.Ui_MainWindow):
 
     def view(self):
         self.pushButton_link1.clicked.connect(self.open_link1)
+        self.pushButton_link2.clicked.connect(self.open_link2)
+        self.pushButton_link3.clicked.connect(self.open_link3)
         self.label_nick2.setText(self.nickname)
         self.label_nick.setText(self.nickname)
 
         self.pushButton_education1us.clicked.connect(self.switch_to_education)
-        self.pushButton_education2_us.clicked.connect(self.switch_to_education())
+        self.pushButton_education2_us.clicked.connect(self.switch_to_education)
 
         self.pushButton_acc2_us.clicked.connect(self.switch_to_acc)
         self.pushButton_acc1_us.clicked.connect(self.switch_to_acc)

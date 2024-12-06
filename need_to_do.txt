@@ -1,9 +1,11 @@
 General:
--fix application architecture
--fix images
--do clean code
--fix tables(top_user, top_teams)
--fix graphs
+-фикс сайдбар ин юзер
+-фикс админ текст_лабел = никнейм
+-ду выход
+-фикс свернуть-кнопка
+-фикс репорты
+-ду кнопка месседж бокс для Успех-выбрать исполнителя
+
 
 
 Additional:
