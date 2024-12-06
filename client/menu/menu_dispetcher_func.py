@@ -117,14 +117,14 @@ class Ui_MainWindow1(QMainWindow, menu_dispetcher.Ui_MainWindow):
         self.refresh_btn.clicked.connect(self.refresh_bd)
         self.widget_5.setHidden(True)
 
-        self.pushButton_tracing1.clicked.connect(self.switch_to_work)
-        self.pushButton_tracing2.clicked.connect(self.switch_to_work)
+        self.pushButton_tracing1.clicked.connect(self.switch_to_report())
+        self.pushButton_tracing2.clicked.connect(self.switch_to_report())
 
-        self.pushButton_team.clicked.connect(self.switch_to_top)
-        self.pushButton_team2.clicked.connect(self.switch_to_top)
+        self.pushButton_team.clicked.connect(self.switch_to_team())
+        self.pushButton_team2.clicked.connect(self.switch_to_team())
 
-        self.pushButton_money1.clicked.connect(self.switch_to_statistic)
-        self.pushButton_money2.clicked.connect(self.switch_to_statistic)
+        self.pushButton_money1.clicked.connect(self.switch_to_loose_money())
+        self.pushButton_money2.clicked.connect(self.switch_to_loose_money())
 
         self.pushButton_graph_4.clicked.connect(self.refresh_top_team)
         self.pushButton_graph_5.clicked.connect(self.refresh_top_users)
@@ -236,14 +236,14 @@ class Ui_MainWindow1(QMainWindow, menu_dispetcher.Ui_MainWindow):
             self.tableView_2.setModel(model_users)
             self.tableView_2.setStyleSheet("color: black; background-color: white;")
 
-    def switch_to_statistic(self):
-        self.stackedWidget.setCurrentIndex(0)
+    def switch_to_report(self):
+        self.stackedWidget.setCurrentIndex(1)
 
-    def switch_to_top(self):
+    def switch_to_team(self):
         self.stackedWidget.setCurrentIndex(2)
 
-    def switch_to_work(self):
-        self.stackedWidget.setCurrentIndex(1)
+    def switch_to_loose_money(self):
+        self.stackedWidget.setCurrentIndex(0)
 
     def build_graph(self):
         self.graphicsView_statistic.clear()

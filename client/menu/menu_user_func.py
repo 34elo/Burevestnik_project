@@ -83,14 +83,14 @@ class Ui_MainWindow2(QMainWindow, menu_user.Ui_MainWindow):
         self.label_nick.setText(self.nickname)
 
         # Подключение кнопок к их функционалу
-        self.pushButton_education1us.clicked.connect(self.switch_to_money)
-        self.pushButton_education2_us.clicked.connect(self.switch_to_money)
+        self.pushButton_education1us.clicked.connect(self.switch_to_education())
+        self.pushButton_education2_us.clicked.connect(self.switch_to_education())
 
-        self.pushButton_acc2_us.clicked.connect(self.switch_to_trackng)
-        self.pushButton_acc1_us.clicked.connect(self.switch_to_trackng)
+        self.pushButton_acc2_us.clicked.connect(self.switch_to_acc())
+        self.pushButton_acc1_us.clicked.connect(self.switch_to_acc())
 
-        self.pushButton_tasks2.clicked.connect(self.switch_to_notifications)
-        self.pushButton_task1.clicked.connect(self.switch_to_notifications)
+        self.pushButton_tasks2.clicked.connect(self.switch_to_task())
+        self.pushButton_task1.clicked.connect(self.switch_to_task())
 
         self.pushButton_orde1_2.clicked.connect(self.switch_to_order)
         self.pushButton_order2_2.clicked.connect(self.switch_to_order)
@@ -133,28 +133,30 @@ class Ui_MainWindow2(QMainWindow, menu_user.Ui_MainWindow):
         self.label_level.setText(str(req['skill_level']))
         self.label_exp.setText(str(req['experience']))
 
-    def switch_to_money(self):
-        self.stackedWidget.setCurrentIndex(0)  # Переключение на страницу "Деньги"
+
 
     def open_link1(self):
         url = QUrl("https://dpoprof.ru/povyshenie/povyshenie-kvalifikacii-tokar/")
         QDesktopServices.openUrl(url)
 
     def open_link2(self):
-        url = QUrl("")
+        url = QUrl("https://modskill.ru/course/inzhener-mexanik/?yclid=3238079132332195839")
         QDesktopServices.openUrl(url)
 
     def open_link3(self):
-        url = QUrl("")
+        url = QUrl("https://rostbk.com/catalog/povyshenie-kvalifikacii/pk-svarochnoe-proizvodstvo/")
         QDesktopServices.openUrl(url)
 
-    def switch_to_trackng(self):
+    def switch_to_education(self):
+        self.stackedWidget.setCurrentIndex(0)  # Переключение на страницу "Деньги"
+
+    def switch_to_acc(self):
         self.stackedWidget.setCurrentIndex(1)  # Переключение на страницу "Отслеживание"
 
     def switch_to_order(self):
         self.stackedWidget.setCurrentIndex(2)  # Переключение на страницу "Заказ"
 
-    def switch_to_notifications(self):
+    def switch_to_task(self):
         self.stackedWidget.setCurrentIndex(3)
 
     def send_application(self):
