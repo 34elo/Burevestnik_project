@@ -56,7 +56,7 @@ class Ui_MainWindow(object):
         self.label_3.setMaximumSize(QtCore.QSize(55, 55))
         self.label_3.setText("")
         self.label_3.setPixmap(QtGui.QPixmap(os.path.abspath(
-            "/res/kisspng-user-profile-2018-in-sight-user-conference-expo-5b554c0968c377.0307553315323166814291-fotor-bg-remover-20241102121640.png")))
+            "res/kisspng-user-profile-2018-in-sight-user-conference-expo-5b554c0968c377.0307553315323166814291-fotor-bg-remover-20241102121640.png")))
         self.label_3.setScaledContents(True)
         self.label_3.setObjectName("label_3")
         self.verticalLayout.addWidget(self.label_3)
@@ -70,10 +70,10 @@ class Ui_MainWindow(object):
         self.pushButton_acc1_us = QtWidgets.QPushButton(parent=self.widget_4)
         self.pushButton_acc1_us.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(os.path.abspath("/res/add_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png")),
+        icon.addPixmap(QtGui.QPixmap(os.path.abspath("res/add_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png")),
                        QtGui.QIcon.Mode.Normal,
                        QtGui.QIcon.State.Off)
-        icon.addPixmap(QtGui.QPixmap(os.path.abspath("/res/add_24dp_005500_FILL0_wght400_GRAD0_opsz24.png")),
+        icon.addPixmap(QtGui.QPixmap(os.path.abspath("res/add_24dp_005500_FILL0_wght400_GRAD0_opsz24.png")),
                        QtGui.QIcon.Mode.Normal,
                        QtGui.QIcon.State.On)
         self.pushButton_acc1_us.setIcon(icon)
@@ -84,9 +84,9 @@ class Ui_MainWindow(object):
         self.pushButton_education1us = QtWidgets.QPushButton(parent=self.widget_4)
         self.pushButton_education1us.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap(os.path.abspath("/res/school_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png")),
+        icon1.addPixmap(QtGui.QPixmap(os.path.abspath("res/school_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png")),
                         QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        icon1.addPixmap(QtGui.QPixmap(os.path.abspath("/res/school_24dp_005500_FILL0_wght400_GRAD0_opsz24.png")),
+        icon1.addPixmap(QtGui.QPixmap(os.path.abspath("res/school_24dp_005500_FILL0_wght400_GRAD0_opsz24.png")),
                         QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.On)
         self.pushButton_education1us.setIcon(icon1)
         self.pushButton_education1us.setCheckable(True)
@@ -96,9 +96,9 @@ class Ui_MainWindow(object):
         self.pushButton_orde1_2 = QtWidgets.QPushButton(parent=self.widget_4)
         self.pushButton_orde1_2.setText("")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap(os.path.abspath("/res/summarize_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png")),
+        icon2.addPixmap(QtGui.QPixmap(os.path.abspath("res/summarize_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png")),
                         QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        icon2.addPixmap(QtGui.QPixmap(os.path.abspath("/res/summarize_24dp_005500_FILL0_wght400_GRAD0_opsz24.png")),
+        icon2.addPixmap(QtGui.QPixmap(os.path.abspath("res/summarize_24dp_005500_FILL0_wght400_GRAD0_opsz24.png")),
                         QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.On)
         self.pushButton_orde1_2.setIcon(icon2)
         self.pushButton_orde1_2.setCheckable(True)
@@ -108,10 +108,10 @@ class Ui_MainWindow(object):
         self.pushButton_task1 = QtWidgets.QPushButton(parent=self.widget_4)
         self.pushButton_task1.setText("")
         icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap(os.path.abspath("/res/work_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png")),
+        icon3.addPixmap(QtGui.QPixmap(os.path.abspath("res/work_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png")),
                         QtGui.QIcon.Mode.Normal,
                         QtGui.QIcon.State.Off)
-        icon3.addPixmap(QtGui.QPixmap(os.path.abspath("/res/work_24dp_005500_FILL0_wght400_GRAD0_opsz24.png")),
+        icon3.addPixmap(QtGui.QPixmap(os.path.abspath("res/work_24dp_005500_FILL0_wght400_GRAD0_opsz24.png")),
                         QtGui.QIcon.Mode.Normal,
                         QtGui.QIcon.State.On)
         self.pushButton_task1.setIcon(icon3)
@@ -126,9 +126,9 @@ class Ui_MainWindow(object):
         self.pushButton_logout1 = QtWidgets.QPushButton(parent=self.widget_4)
         self.pushButton_logout1.setText("")
         icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap(os.path.abspath("/res/logout_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png")),
+        icon4.addPixmap(QtGui.QPixmap(os.path.abspath("res/logout_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png")),
                         QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        icon4.addPixmap(QtGui.QPixmap(os.path.abspath("/res/logout_24dp_005500_FILL0_wght400_GRAD0_opsz24.png")),
+        icon4.addPixmap(QtGui.QPixmap(os.path.abspath("res/logout_24dp_005500_FILL0_wght400_GRAD0_opsz24.png")),
                         QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.On)
         self.pushButton_logout1.setIcon(icon4)
         self.pushButton_logout1.setCheckable(True)
@@ -148,7 +148,7 @@ class Ui_MainWindow(object):
                                       "                                                ")
         self.pushButton.setText("")
         icon5 = QtGui.QIcon()
-        icon5.addPixmap(QtGui.QPixmap(os.path.abspath("/res/menu_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png")),
+        icon5.addPixmap(QtGui.QPixmap(os.path.abspath("res/menu_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png")),
                         QtGui.QIcon.Mode.Normal,
                         QtGui.QIcon.State.Off)
         self.pushButton.setIcon(icon5)
@@ -175,7 +175,7 @@ class Ui_MainWindow(object):
         self.pushButton_13 = QtWidgets.QPushButton(parent=self.widget_2)
         self.pushButton_13.setText("")
         icon6 = QtGui.QIcon()
-        icon6.addPixmap(QtGui.QPixmap(os.path.abspath("/res/remove_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png")),
+        icon6.addPixmap(QtGui.QPixmap(os.path.abspath("res/remove_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png")),
                         QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.pushButton_13.setIcon(icon6)
         self.pushButton_13.setCheckable(True)
@@ -185,7 +185,7 @@ class Ui_MainWindow(object):
         self.pushButton_24.setText("")
         icon7 = QtGui.QIcon()
         icon7.addPixmap(
-            QtGui.QPixmap(os.path.abspath("/res/check_box_outline_blank_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png")),
+            QtGui.QPixmap(os.path.abspath("res/check_box_outline_blank_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png")),
             QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.pushButton_24.setIcon(icon7)
         self.pushButton_24.setCheckable(True)
@@ -200,7 +200,7 @@ class Ui_MainWindow(object):
         self.pushButton_23 = QtWidgets.QPushButton(parent=self.widget_2)
         self.pushButton_23.setText("")
         icon8 = QtGui.QIcon()
-        icon8.addPixmap(QtGui.QPixmap(os.path.abspath("/res/close_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png")),
+        icon8.addPixmap(QtGui.QPixmap(os.path.abspath("res/close_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png")),
                         QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.pushButton_23.setIcon(icon8)
         self.pushButton_23.setCheckable(True)
@@ -239,7 +239,7 @@ class Ui_MainWindow(object):
         self.label_5.setMaximumSize(QtCore.QSize(55, 55))
         self.label_5.setText("")
         self.label_5.setPixmap(QtGui.QPixmap(os.path.abspath(
-            "/res/kisspng-user-profile-2018-in-sight-user-conference-expo-5b554c0968c377.0307553315323166814291-fotor-bg-remover-20241102121640.png")))
+            "res/kisspng-user-profile-2018-in-sight-user-conference-expo-5b554c0968c377.0307553315323166814291-fotor-bg-remover-20241102121640.png")))
         self.label_5.setScaledContents(True)
         self.label_5.setObjectName("label_5")
         self.verticalLayout_3.addWidget(self.label_5)
@@ -305,19 +305,19 @@ class Ui_MainWindow(object):
         self.label_12.setStyleSheet("border-radius:20px;\n"
                                     "                                                ")
         self.label_12.setText("")
-        self.label_12.setPixmap(QtGui.QPixmap(os.path.abspath("/res/dude.png")))
+        self.label_12.setPixmap(QtGui.QPixmap(os.path.abspath("res/dude.png")))
         self.label_12.setScaledContents(True)
         self.label_12.setObjectName("label_12")
         self.label_17 = QtWidgets.QLabel(parent=self.education_page)
         self.label_17.setGeometry(QtCore.QRect(290, 50, 281, 291))
         self.label_17.setText("")
-        self.label_17.setPixmap(QtGui.QPixmap(os.path.abspath("/res/dude2.png")))
+        self.label_17.setPixmap(QtGui.QPixmap(os.path.abspath("res/dude2.png")))
         self.label_17.setScaledContents(True)
         self.label_17.setObjectName("label_17")
         self.label_25 = QtWidgets.QLabel(parent=self.education_page)
         self.label_25.setGeometry(QtCore.QRect(590, 50, 271, 291))
         self.label_25.setText("")
-        self.label_25.setPixmap(QtGui.QPixmap(os.path.abspath("/res/dude1.png")))
+        self.label_25.setPixmap(QtGui.QPixmap(os.path.abspath("res/dude1.png")))
         self.label_25.setScaledContents(True)
         self.label_25.setObjectName("label_25")
         self.pushButton_link1 = QtWidgets.QPushButton(parent=self.education_page)
@@ -390,7 +390,7 @@ class Ui_MainWindow(object):
         self.label_8.setMaximumSize(QtCore.QSize(270, 270))
         self.label_8.setText("")
         self.label_8.setPixmap(QtGui.QPixmap(os.path.abspath(
-            "/res/kisspng-user-profile-2018-in-sight-user-conference-expo-5b554c0968c377.0307553315323166814291-fotor-bg-remover-20241102121640.png")))
+            "res/kisspng-user-profile-2018-in-sight-user-conference-expo-5b554c0968c377.0307553315323166814291-fotor-bg-remover-20241102121640.png")))
         self.label_8.setScaledContents(True)
         self.label_8.setObjectName("label_8")
         self.horizontalLayout_25.addWidget(self.label_8)

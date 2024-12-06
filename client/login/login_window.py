@@ -28,7 +28,7 @@ class Ui_reg2(object):
         self.label.setGeometry(QtCore.QRect(120, 50, 211, 171))
         self.label.setText("")
         self.label.setPixmap(QtGui.QPixmap(
-            os.path.abspath("/res/1732856356407-fotor-bg-remover-202411298154 — копия-fotor-20241202195841.png")))
+            os.path.abspath("res/1732856356407-fotor-bg-remover-202411298154 — копия-fotor-20241202195841.png")))
         self.label.setScaledContents(True)
         self.label.setObjectName("label")
         self.pushButton_login_log = QtWidgets.QPushButton(parent=reg2)
