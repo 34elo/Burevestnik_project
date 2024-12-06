@@ -9,14 +9,12 @@ from client.settings import API_URL
 
 
 class register_win(QMainWindow, client.register.register_window.Ui_Dialog):
-    # Класс окна регистрации
     def __init__(self):
         super().__init__()
         self.setupUi(self)
         self.pushButton_reg_reg_2.clicked.connect(self.registration)
 
     def registration(self):
-        # Регистрация нового пользователя
         experience = self.lineEdit_expirience_reg_3.text()
         skill_level = self.lineEdit_level_reg_3.text()
         nickname = self.lineEdit_login_reg_3.text()

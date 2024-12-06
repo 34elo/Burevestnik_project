@@ -1,3 +1,4 @@
+
 # Form implementation generated from reading ui file 'welcome_window.ui'
 #
 # Created by: PyQt6 UI code generator 6.7.1

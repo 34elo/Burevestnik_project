@@ -1,5 +1,5 @@
-import asyncio
 import sqlite3
+
 from flask import request, jsonify
 
 from server.misc.func_password import my_hash
@@ -45,8 +45,8 @@ def add_data_repair_hardware():
     conn = sqlite3.connect(DATABASE)
     cursor = conn.cursor()
     cursor.execute(
-        "INSERT INTO repair_hardware (nickname, start, end, comment_work, comment_applicant, id_hardware, done) VALUES (?, ?, ?, ?, ?, ?, ?)",
-        (nickname, start, end, comment_work, comment_applicant, id_hardware, done))
+        "INSERT INTO repair_hardware (nickname, start, end, comment_work, comment_applicant, id_hardware, done, notification) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+        (nickname, start, end, comment_work, comment_applicant, id_hardware, done, 0))
     conn.commit()
     conn.close()
     return jsonify({'message': 'Good'}), 201

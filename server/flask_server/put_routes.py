@@ -1,5 +1,7 @@
 import sqlite3
+
 from flask import request, jsonify
+
 from server.misc.func_password import my_hash
 from server.settings import DATABASE
 
@@ -54,7 +56,7 @@ def update_data_users(data_nickname):
 
     if not updates:
         conn.close()
-        return jsonify({'message': 'No fields to update'}), 400  # Или 204 No Content
+        return jsonify({'message': 'No fields to update'}), 400
 
     sql = f"UPDATE users SET {', '.join(updates)} WHERE nickname = ?"
     params.append(data_nickname)
@@ -156,6 +158,18 @@ def update_data_hardware(data_id):
         conn.close()
         return jsonify({'message': 'Data updated successfully'}), 200
     except sqlite3.Error as e:
-        conn.rollback()  # Отмена транзакции в случае ошибки
+        conn.rollback()
         conn.close()
         return jsonify({'error': str(e)}),
+
+
+def success_send_message(data_nickname):
+    data = request.get_json()
+    conn = sqlite3.connect(DATABASE)
+    cursor = conn.cursor()
+
+    updates = []
+    params = []
+
+    cursor.execute('UPDATE repair_hardware SET done = 1 WHERE nickname = ?', (data_nickname))
+    cursor.execute('UPDATE users SET busy ')
