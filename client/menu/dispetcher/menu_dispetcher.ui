@@ -47,7 +47,7 @@
           <string notr="true">background-color: rgb(45, 44, 44);</string>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>2</number>
          </property>
          <widget class="QWidget" name="money_page">
           <layout class="QVBoxLayout" name="verticalLayout_12">
@@ -368,7 +368,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>825</width>
+                <width>833</width>
                 <height>263</height>
                </rect>
               </property>
@@ -419,7 +419,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>825</width>
+                <width>833</width>
                 <height>263</height>
                </rect>
               </property>
@@ -582,63 +582,7 @@
            <item>
             <layout class="QVBoxLayout" name="verticalLayout_19">
              <item>
-              <widget class="QFrame" name="frame">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="frameShape">
-                <enum>QFrame::StyledPanel</enum>
-               </property>
-               <property name="frameShadow">
-                <enum>QFrame::Raised</enum>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_17">
-               <item>
-                <widget class="QPushButton" name="pushButton_graph_3">
-                 <property name="minimumSize">
-                  <size>
-                   <width>200</width>
-                   <height>35</height>
-                  </size>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">
-                                                                QPushButton{
-                                                                color: white;
-                                                                text-align:left;
-                                                                background-color: rgb(0, 153, 81);
-                                                                height: 30px;
-                                                                border:none;
-                                                                border-radius: 10px;
-                                                                border-bottom-radius: 10px;
-                                                                }
-                                                            </string>
-                 </property>
-                 <property name="text">
-                  <string>  Построить график лучших бригад</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <spacer name="horizontalSpacer_13">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-              </layout>
+              <layout class="QHBoxLayout" name="horizontalLayout_17"/>
              </item>
             </layout>
            </item>
@@ -660,16 +604,11 @@
                  <property name="frameShadow">
                   <enum>QFrame::Raised</enum>
                  </property>
-                 <widget class="QTableView" name="tableView_top_team">
-                  <property name="geometry">
-                   <rect>
-                    <x>90</x>
-                    <y>50</y>
-                    <width>256</width>
-                    <height>192</height>
-                   </rect>
-                  </property>
-                 </widget>
+                 <layout class="QVBoxLayout" name="verticalLayout_13">
+                  <item>
+                   <widget class="QTableView" name="tableView_top_team"/>
+                  </item>
+                 </layout>
                 </widget>
                </item>
                <item>
@@ -733,16 +672,11 @@
                  <property name="frameShadow">
                   <enum>QFrame::Raised</enum>
                  </property>
-                 <widget class="QTableView" name="tableView_top_useres">
-                  <property name="geometry">
-                   <rect>
-                    <x>170</x>
-                    <y>100</y>
-                    <width>256</width>
-                    <height>192</height>
-                   </rect>
-                  </property>
-                 </widget>
+                 <layout class="QVBoxLayout" name="verticalLayout_14">
+                  <item>
+                   <widget class="QTableView" name="tableView_top_useres"/>
+                  </item>
+                 </layout>
                 </widget>
                </item>
                <item>
@@ -837,7 +771,7 @@
             <string/>
            </property>
            <property name="pixmap">
-            <pixmap resource="../resourses.qrc">:/res/kisspng-user-profile-2018-in-sight-user-conference-expo-5b554c0968c377.0307553315323166814291-fotor-bg-remover-20241102121640.png</pixmap>
+            <pixmap>:/res/kisspng-user-profile-2018-in-sight-user-conference-expo-5b554c0968c377.0307553315323166814291-fotor-bg-remover-20241102121640.png</pixmap>
            </property>
            <property name="scaledContents">
             <bool>true</bool>
@@ -864,7 +798,7 @@
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="../resourses.qrc">
+            <iconset>
              <normaloff>:/res/paid_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png</normaloff>
              <normalon>:/res/paid_24dp_005500_FILL0_wght400_GRAD0_opsz24.png</normalon>:/res/paid_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png</iconset>
            </property>
@@ -882,7 +816,7 @@
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="../resourses.qrc">
+            <iconset>
              <normaloff>:/res/query_stats_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png</normaloff>
              <normalon>:/res/query_stats_24dp_005500_FILL0_wght400_GRAD0_opsz24.png</normalon>:/res/query_stats_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png</iconset>
            </property>
@@ -900,7 +834,7 @@
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="../resourses.qrc">
+            <iconset>
              <normaloff>:/res/groups_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png</normaloff>
              <normalon>:/res/groups_24dp_005500_FILL0_wght400_GRAD0_opsz24.png</normalon>:/res/groups_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png</iconset>
            </property>
@@ -933,7 +867,7 @@
           <string/>
          </property>
          <property name="icon">
-          <iconset resource="../resourses.qrc">
+          <iconset>
            <normaloff>:/res/logout_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png</normaloff>
            <normalon>:/res/logout_24dp_005500_FILL0_wght400_GRAD0_opsz24.png</normalon>:/res/logout_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png</iconset>
          </property>
@@ -987,7 +921,7 @@
             <string/>
            </property>
            <property name="pixmap">
-            <pixmap resource="../resourses.qrc">:/res/kisspng-user-profile-2018-in-sight-user-conference-expo-5b554c0968c377.0307553315323166814291-fotor-bg-remover-20241102121640.png</pixmap>
+            <pixmap>:/res/kisspng-user-profile-2018-in-sight-user-conference-expo-5b554c0968c377.0307553315323166814291-fotor-bg-remover-20241102121640.png</pixmap>
            </property>
            <property name="scaledContents">
             <bool>true</bool>
@@ -1014,7 +948,7 @@
             <string>Потеренные деньги</string>
            </property>
            <property name="icon">
-            <iconset resource="../resourses.qrc">
+            <iconset>
              <normaloff>:/res/paid_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png</normaloff>
              <normalon>:/res/paid_24dp_005500_FILL0_wght400_GRAD0_opsz24.png</normalon>:/res/paid_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png</iconset>
            </property>
@@ -1032,7 +966,7 @@
             <string>Отслеживание</string>
            </property>
            <property name="icon">
-            <iconset resource="../resourses.qrc">
+            <iconset>
              <normaloff>:/res/query_stats_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png</normaloff>
              <normalon>:/res/query_stats_24dp_005500_FILL0_wght400_GRAD0_opsz24.png</normalon>:/res/query_stats_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png</iconset>
            </property>
@@ -1050,7 +984,7 @@
             <string>Бригады</string>
            </property>
            <property name="icon">
-            <iconset resource="../resourses.qrc">
+            <iconset>
              <normaloff>:/res/groups_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png</normaloff>
              <normalon>:/res/groups_24dp_005500_FILL0_wght400_GRAD0_opsz24.png</normalon>:/res/groups_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png</iconset>
            </property>
@@ -1086,7 +1020,7 @@
           <string>Выход</string>
          </property>
          <property name="icon">
-          <iconset resource="../resourses.qrc">
+          <iconset>
            <normaloff>:/res/logout_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png</normaloff>
            <normalon>:/res/logout_24dp_005500_FILL0_wght400_GRAD0_opsz24.png</normalon>:/res/logout_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png</iconset>
          </property>
@@ -1122,7 +1056,7 @@
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="../resourses.qrc">
+            <iconset>
              <normaloff>:/res/menu_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png</normaloff>:/res/menu_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png</iconset>
            </property>
            <property name="iconSize">
@@ -1187,7 +1121,7 @@
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="../resourses.qrc">
+            <iconset>
              <normaloff>:/res/remove_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png</normaloff>:/res/remove_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png</iconset>
            </property>
            <property name="checkable">
@@ -1201,7 +1135,7 @@
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="../resourses.qrc">
+            <iconset>
              <normaloff>:/res/check_box_outline_blank_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png</normaloff>:/res/check_box_outline_blank_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png</iconset>
            </property>
            <property name="checkable">
@@ -1215,7 +1149,7 @@
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="../resourses.qrc">
+            <iconset>
              <normaloff>:/res/check_box_outline_blank_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png</normaloff>:/res/check_box_outline_blank_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png</iconset>
            </property>
            <property name="checkable">
@@ -1229,7 +1163,7 @@
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="../resourses.qrc">
+            <iconset>
              <normaloff>:/res/close_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png</normaloff>:/res/close_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png</iconset>
            </property>
            <property name="checkable">

@@ -7,6 +7,7 @@
 
 
 from PyQt6 import QtCore, QtGui, QtWidgets
+import os
 
 
 class Ui_reg2(object):
@@ -14,47 +15,48 @@ class Ui_reg2(object):
         reg2.setObjectName("reg2")
         reg2.resize(409, 502)
         reg2.setStyleSheet("background-color: rgb(45, 44, 44);\n"
-"                color: white;\n"
-"            ")
+                           "                color: white;\n"
+                           "            ")
         self.pushButton_forgot_log = QtWidgets.QPushButton(parent=reg2)
         self.pushButton_forgot_log.setGeometry(QtCore.QRect(150, 390, 131, 31))
         self.pushButton_forgot_log.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.ArrowCursor))
         self.pushButton_forgot_log.setStyleSheet("border-radius: 20px;\n"
-"                    color: rgb(6, 255, 172);\n"
-"                ")
+                                                 "                    color: rgb(6, 255, 172);\n"
+                                                 "                ")
         self.pushButton_forgot_log.setObjectName("pushButton_forgot_log")
         self.label = QtWidgets.QLabel(parent=reg2)
         self.label.setGeometry(QtCore.QRect(120, 50, 211, 171))
         self.label.setText("")
-        self.label.setPixmap(QtGui.QPixmap(":/res/1732856356407-fotor-bg-remover-202411298154 — копия-fotor-20241202195841.png"))
+        self.label.setPixmap(QtGui.QPixmap(
+            os.path.abspath("res/1732856356407-fotor-bg-remover-202411298154 — копия-fotor-20241202195841.png")))
         self.label.setScaledContents(True)
         self.label.setObjectName("label")
         self.pushButton_login_log = QtWidgets.QPushButton(parent=reg2)
         self.pushButton_login_log.setGeometry(QtCore.QRect(150, 350, 131, 41))
         self.pushButton_login_log.setStyleSheet("background-color: rgb(0, 153, 81);\n"
-"                    color: white;\n"
-"                    border-radius: 20px;\n"
-"                ")
+                                                "                    color: white;\n"
+                                                "                    border-radius: 20px;\n"
+                                                "                ")
         self.pushButton_login_log.setObjectName("pushButton_login_log")
         self.lineEdit_log_log = QtWidgets.QLineEdit(parent=reg2)
         self.lineEdit_log_log.setGeometry(QtCore.QRect(140, 250, 161, 30))
         self.lineEdit_log_log.setStyleSheet("QLineEdit {\n"
-"                    border: 2px solid white;\n"
-"                    border-radius: 10px;\n"
-"                    color: white;\n"
-"\n"
-"                    }\n"
-"                ")
+                                            "                    border: 2px solid white;\n"
+                                            "                    border-radius: 10px;\n"
+                                            "                    color: white;\n"
+                                            "\n"
+                                            "                    }\n"
+                                            "                ")
         self.lineEdit_log_log.setObjectName("lineEdit_log_log")
         self.lineEdit_passwor_log = QtWidgets.QLineEdit(parent=reg2)
         self.lineEdit_passwor_log.setGeometry(QtCore.QRect(140, 300, 161, 30))
         self.lineEdit_passwor_log.setStyleSheet("QLineEdit {\n"
-"                    border: 2px solid white;\n"
-"                    border-radius: 10px;\n"
-"                    color: white;\n"
-"\n"
-"                    }\n"
-"                ")
+                                                "                    border: 2px solid white;\n"
+                                                "                    border-radius: 10px;\n"
+                                                "                    color: white;\n"
+                                                "\n"
+                                                "                    }\n"
+                                                "                ")
         self.lineEdit_passwor_log.setText("")
         self.lineEdit_passwor_log.setObjectName("lineEdit_passwor_log")
         self.label_2 = QtWidgets.QLabel(parent=reg2)

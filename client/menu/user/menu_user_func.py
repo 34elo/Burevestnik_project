@@ -63,20 +63,21 @@ class Ui_MainWindow2(QMainWindow, menu_user.Ui_MainWindow):
         self.view()
         self.account_page()
         self.update_task()
+        self.pushButton_24.setHidden(True)
 
     def view(self):
         self.pushButton_link1.clicked.connect(self.open_link1)
         self.label_nick2.setText(self.nickname)
         self.label_nick.setText(self.nickname)
 
-        self.pushButton_education1us.clicked.connect(self.switch_to_money)
-        self.pushButton_education2_us.clicked.connect(self.switch_to_money)
+        self.pushButton_education1us.clicked.connect(self.switch_to_education)
+        self.pushButton_education2_us.clicked.connect(self.switch_to_education())
 
-        self.pushButton_acc2_us.clicked.connect(self.switch_to_trackng)
-        self.pushButton_acc1_us.clicked.connect(self.switch_to_trackng)
+        self.pushButton_acc2_us.clicked.connect(self.switch_to_acc)
+        self.pushButton_acc1_us.clicked.connect(self.switch_to_acc)
 
-        self.pushButton_tasks2.clicked.connect(self.switch_to_notifications)
-        self.pushButton_task1.clicked.connect(self.switch_to_notifications)
+        self.pushButton_tasks2.clicked.connect(self.switch_to_task)
+        self.pushButton_task1.clicked.connect(self.switch_to_task)
 
         self.pushButton_orde1_2.clicked.connect(self.switch_to_order)
         self.pushButton_order2_2.clicked.connect(self.switch_to_order)
@@ -130,20 +131,23 @@ class Ui_MainWindow2(QMainWindow, menu_user.Ui_MainWindow):
         QDesktopServices.openUrl(url)
 
     def open_link2(self):
-        url = QUrl("")
+        url = QUrl("https://modskill.ru/course/inzhener-mexanik/?yclid=3238079132332195839")
         QDesktopServices.openUrl(url)
 
     def open_link3(self):
-        url = QUrl("")
+        url = QUrl("https://rostbk.com/catalog/povyshenie-kvalifikacii/pk-svarochnoe-proizvodstvo/")
         QDesktopServices.openUrl(url)
 
-    def switch_to_trackng(self):
-        self.stackedWidget.setCurrentIndex(1)
+    def switch_to_education(self):
+        self.stackedWidget.setCurrentIndex(0)  # Переключение на страницу "Деньги"
+
+    def switch_to_acc(self):
+        self.stackedWidget.setCurrentIndex(1)  # Переключение на страницу "Отслеживание"
 
     def switch_to_order(self):
-        self.stackedWidget.setCurrentIndex(2)
+        self.stackedWidget.setCurrentIndex(2)  # Переключение на страницу "Заказ"
 
-    def switch_to_notifications(self):
+    def switch_to_task(self):
         self.stackedWidget.setCurrentIndex(3)
 
     def send_application(self):
