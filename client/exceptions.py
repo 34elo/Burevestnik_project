@@ -8,3 +8,7 @@ class ReportException(ClientException):
 
 class EmptyLineError(ClientException):
     pass
+
+
+class PendingDeprecationWarning(ClientException):
+    pass

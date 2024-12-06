@@ -25,7 +25,7 @@ class login_win(QMainWindow, client.login.login_window.Ui_reg2):
             response = requests.get(f'{API_URL}/data/users')
         except Exception as e:
             print(e)
-            QMessageBox.critical(self, 'Critical', 'Прод упал, попробуйте позже')
+            QMessageBox.critical(self, 'Critical', 'Прод упал,  бурундук гей попробуйте позже')
         password = password.get('password')
 
         for i in response.json():

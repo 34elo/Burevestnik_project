@@ -1,35 +1,45 @@
-from datetime import datetime
+import os
 
 import requests
-from PyQt6.QtWidgets import QMainWindow, QMessageBox
+
+from PyQt6.QtWidgets import QMainWindow, QMessageBox, QTableWidgetItem
+from PyQt6.uic.properties import QtWidgets
 from pyqtgraph import DateAxisItem
 
-from client.exceptions import ReportException
-from client.menu.DateAxisTime import DateAxisItem
+from client.exceptions import ReportException, EmptyLineError
+from client.menu import menu_dispetcher
 from client.menu.JSONTableModel import JsonTableModel
-from client.menu.dispetcher import menu_dispetcher
 from client.menu.extra_func import get_users, get_repair_hardware
-from client.menu.func_with_time import get_dates
-from client.menu.report_funcs import docs_report, csv_report
+from client.menu.reporting import docs_report, csv_report
+from client.misc.func_with_time import get_dates
 from client.settings import API_URL
+
+import pyqtgraph as pg
+from datetime import datetime
 
 
 def create_top_users(data):
+    # Проверка наличия необходимых ключей
     required_keys = ['name', 'middle_name', 'surname', 'completed_task', 'post']
     for item in data:
         if not all(key in item for key in required_keys):
             print(f"Ошибка: Отсутствуют необходимые ключи в словаре: {item}")
             return None
 
+    # Обработка completed_task (преобразование в число и обработка)
     for item in data:
         try:
             item['completed_task'] = int(item.get('completed_task', 0))
         except ValueError:
             pass
 
+    # Сортировка пользователей по completed_task в убывающем порядке
     sorted_users = sorted(data, key=lambda x: x['completed_task'], reverse=True)
+
+    # Создание списка названий столбцов
     columns = ['ФИО', 'Выполненные задания', 'Должность']
 
+    # Создание списка строк
     rows = [[
         f"{user['name']} {user['middle_name']} {user['surname']}",
         user['completed_task'],
@@ -55,11 +65,12 @@ def create_top_team(data):
         try:
             best_worker = max(team_members, key=lambda x: x.get('completed_task', 0))
             best_worker_fio = f"{best_worker['name']} {best_worker['middle_name']} {best_worker['surname']}"
-        except (ValueError, KeyError, TypeError):
+        except (ValueError, KeyError, TypeError):  # Обработка различных ошибок
             best_worker_fio = "N/A"
         team_data.append({'team': team_id, 'completed_tasks': completed_tasks, 'best_worker_fio': best_worker_fio})
     columns = ['team', 'completed_tasks', 'best_worker_fio']
 
+    # Создание списка строк
     rows = [[str(item['team']), str(item['completed_tasks']), item['best_worker_fio']] for item in team_data]
 
     return columns, sorted(rows, key=lambda x: x[1], reverse=True)
@@ -86,31 +97,34 @@ def send_to_db(nickname, id_problem, self):  # Notification + send
     requests.put(f'{API_URL}/data/repair_hardware/{id_problem}',
                  json=repair_hardware)
     requests.put(f'{API_URL}/data/users/{nickname}', json=user)
+    print(requests.post(f'{API_URL}/send_message', json=user).json())
+
+
+class DateAxisItem(pg.AxisItem):  # Определение DateAxisItem здесь
+    def tickStrings(self, values, scale, spacing):
+        return [datetime.fromtimestamp(value).strftime('%Y-%m-%d') for value in values]
+
 
 class Ui_MainWindow1(QMainWindow, menu_dispetcher.Ui_MainWindow):
-
+    # Класс основного окна администратора
     def __init__(self):
         super().__init__()
         self.setupUi(self)
         self.statistic = 'month'
-        self.view()
-
-    def view(self):
-        self.pushButton_24.setHidden(True)
         self.graphicsView_statistic.setBackground('w')
-
+        # Подключение кнопок к соответствующим функциям
         self.pushButton_send_order.clicked.connect(self.send_order)
         self.refresh_btn.clicked.connect(self.refresh_bd)
         self.widget_5.setHidden(True)
 
-        self.pushButton_tracing1.clicked.connect(self.switch_to_work)
-        self.pushButton_tracing2.clicked.connect(self.switch_to_work)
+        self.pushButton_tracing1.clicked.connect(self.switch_to_report())
+        self.pushButton_tracing2.clicked.connect(self.switch_to_report())
 
-        self.pushButton_team.clicked.connect(self.switch_to_top)
-        self.pushButton_team2.clicked.connect(self.switch_to_top)
+        self.pushButton_team.clicked.connect(self.switch_to_team())
+        self.pushButton_team2.clicked.connect(self.switch_to_team())
 
-        self.pushButton_money1.clicked.connect(self.switch_to_statistic)
-        self.pushButton_money2.clicked.connect(self.switch_to_statistic)
+        self.pushButton_money1.clicked.connect(self.switch_to_loose_money())
+        self.pushButton_money2.clicked.connect(self.switch_to_loose_money())
 
         self.pushButton_graph_4.clicked.connect(self.refresh_top_team)
         self.pushButton_graph_5.clicked.connect(self.refresh_top_users)
@@ -121,29 +135,7 @@ class Ui_MainWindow1(QMainWindow, menu_dispetcher.Ui_MainWindow):
 
         self.pushButton_graph.clicked.connect(self.build_graph)
 
-        self.pushButton_report_2.clicked.connect(self.report)
-
-    def build_graph(self):
-        self.graphicsView_statistic.clear()
-        repair_hardware = get_repair_hardware()
-        all_dates = get_dates(self.statistic)
-        datas = [i for i in repair_hardware if i.get('done') == 1]
-        data = []
-        for i in all_dates:
-            res = 0
-            for j in datas:
-                if j.get('end')[:10] == i:
-                    res += 1
-            data.append((i, res))
-        x_data = [datetime.strptime(date_str.split()[0], '%Y-%m-%d').timestamp() for date_str, _ in data]
-        y_data = [count for _, count in data]
-
-        self.graphicsView_statistic.plot(x_data, y_data, pen='r', symbol='o')
-        self.graphicsView_statistic.setLabel('left', 'Количество работы')
-        self.graphicsView_statistic.setLabel('bottom', 'Дата')
-        self.graphicsView_statistic.showGrid(x=True, y=True)
-        self.graphicsView_statistic.setAxisItems({'bottom': DateAxisItem(orientation='bottom')})
-        self.graphicsView_statistic.setTitle("Статистика выполненной работы")
+        self.pushButton_report_2.clicked.connect(self.get_report)
 
     def statistic_year(self):
         self.statistic = 'year'
@@ -155,11 +147,12 @@ class Ui_MainWindow1(QMainWindow, menu_dispetcher.Ui_MainWindow):
         self.statistic = 'week'
 
     def send_order(self):
-        nik_work = self.lineEdit_nik_work.text()
-        id_problem = self.lineEdit_id_problem.text()
-        send_to_db(nik_work, id_problem, self)
+        # Отправка информации о заказе в базу данных
+        nik_work = self.lineEdit_nik_work.text()  # Получение ника работника
+        id_problem = self.lineEdit_id_problem.text()  # Получение ID проблемы
+        send_to_db(nik_work, id_problem, self)  # Отправка в базу данных
 
-    def report(self):
+    def get_report(self):
         docs = self.radioButton_2.isChecked()
         csv = self.radioButton.isChecked()
         name = self.lineEdit.text()
@@ -195,7 +188,7 @@ class Ui_MainWindow1(QMainWindow, menu_dispetcher.Ui_MainWindow):
         repair_hardware = get_repair_hardware()
 
         try:
-            headers = list(repair_hardware[0].keys())
+            headers = list(repair_hardware[0].keys())  # Заголовки из ключей первого словаря
             rows = [[row[header] for header in headers if
                      row['done'] == 0 and (row['nickname'] == "" or row['nickname'] is None)] for row in
                     repair_hardware]
@@ -208,6 +201,7 @@ class Ui_MainWindow1(QMainWindow, menu_dispetcher.Ui_MainWindow):
                     rows.remove([])
         except ValueError:
             pass
+        print(rows)
         if not rows:
             print('not_rows')
             model_users = JsonTableModel([['']])
@@ -229,7 +223,9 @@ class Ui_MainWindow1(QMainWindow, menu_dispetcher.Ui_MainWindow):
                     rows.remove([])
         except ValueError:
             pass
+        print(rows)
         if not rows:
+            print('not_rows')
             model_users = JsonTableModel([['']])
             model_users._headers = ['Отсутсвуют']
             self.tableView_2.setModel(model_users)
@@ -240,11 +236,33 @@ class Ui_MainWindow1(QMainWindow, menu_dispetcher.Ui_MainWindow):
             self.tableView_2.setModel(model_users)
             self.tableView_2.setStyleSheet("color: black; background-color: white;")
 
-    def switch_to_statistic(self):
-        self.stackedWidget.setCurrentIndex(0)
+    def switch_to_report(self):
+        self.stackedWidget.setCurrentIndex(1)
 
-    def switch_to_top(self):
+    def switch_to_team(self):
         self.stackedWidget.setCurrentIndex(2)
 
-    def switch_to_work(self):
-        self.stackedWidget.setCurrentIndex(1)
+    def switch_to_loose_money(self):
+        self.stackedWidget.setCurrentIndex(0)
+
+    def build_graph(self):
+        self.graphicsView_statistic.clear()
+        repair_hardware = get_repair_hardware()
+        all_dates = get_dates(self.statistic)
+        datas = [i for i in repair_hardware if i.get('done') == 1]
+        data = []
+        for i in all_dates:
+            res = 0
+            for j in datas:
+                if j.get('end')[:10] == i:
+                    res += 1
+            data.append((i, res))
+        x_data = [datetime.strptime(date_str.split()[0], '%Y-%m-%d').timestamp() for date_str, _ in data]
+        y_data = [count for _, count in data]
+
+        self.graphicsView_statistic.plot(x_data, y_data, pen='r', symbol='o')
+        self.graphicsView_statistic.setLabel('left', 'Количество работы')
+        self.graphicsView_statistic.setLabel('bottom', 'Дата')
+        self.graphicsView_statistic.showGrid(x=True, y=True)
+        self.graphicsView_statistic.setAxisItems({'bottom': DateAxisItem(orientation='bottom')})
+        self.graphicsView_statistic.setTitle("Статистика выполненной работы")

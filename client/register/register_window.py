@@ -7,15 +7,15 @@
 
 
 from PyQt6 import QtCore, QtGui, QtWidgets
-
+import os
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
         Dialog.resize(760, 474)
         Dialog.setStyleSheet("background-color: rgb(45, 44, 44);\n"
-"                color: white;\n"
-"            ")
+                             "                color: white;\n"
+                             "            ")
         self.layoutWidget = QtWidgets.QWidget(parent=Dialog)
         self.layoutWidget.setGeometry(QtCore.QRect(20, 10, 731, 391))
         self.layoutWidget.setObjectName("layoutWidget")
@@ -28,11 +28,13 @@ class Ui_Dialog(object):
         self.label_58.setMinimumSize(QtCore.QSize(40, 40))
         self.label_58.setMaximumSize(QtCore.QSize(270, 270))
         self.label_58.setText("")
-        self.label_58.setPixmap(QtGui.QPixmap(":/res/kisspng-user-profile-2018-in-sight-user-conference-expo-5b554c0968c377.0307553315323166814291-fotor-bg-remover-20241102121640.png"))
+        self.label_58.setPixmap(QtGui.QPixmap(os.path.abspath(
+            "/res/kisspng-user-profile-2018-in-sight-user-conference-expo-5b554c0968c377.0307553315323166814291-fotor-bg-remover-20241102121640.png")))
         self.label_58.setScaledContents(True)
         self.label_58.setObjectName("label_58")
         self.verticalLayout_4.addWidget(self.label_58)
-        spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
+        spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum,
+                                           QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_4.addItem(spacerItem)
         self.horizontalLayout_31 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_31.setObjectName("horizontalLayout_31")
@@ -46,12 +48,12 @@ class Ui_Dialog(object):
         self.lineEdit_level_reg_3.setMaximumSize(QtCore.QSize(250, 16777215))
         self.lineEdit_level_reg_3.setSizeIncrement(QtCore.QSize(0, 0))
         self.lineEdit_level_reg_3.setStyleSheet("QLineEdit {\n"
-"                                        border: 2px solid white;\n"
-"                                        border-radius: 10px;\n"
-"                                        color: white;\n"
-"\n"
-"                                        }\n"
-"                                    ")
+                                                "                                        border: 2px solid white;\n"
+                                                "                                        border-radius: 10px;\n"
+                                                "                                        color: white;\n"
+                                                "\n"
+                                                "                                        }\n"
+                                                "                                    ")
         self.lineEdit_level_reg_3.setObjectName("lineEdit_level_reg_3")
         self.horizontalLayout_31.addWidget(self.lineEdit_level_reg_3)
         self.verticalLayout_4.addLayout(self.horizontalLayout_31)
@@ -67,12 +69,12 @@ class Ui_Dialog(object):
         self.lineEdit_age_reg_3.setMaximumSize(QtCore.QSize(250, 16777215))
         self.lineEdit_age_reg_3.setSizeIncrement(QtCore.QSize(0, 0))
         self.lineEdit_age_reg_3.setStyleSheet("QLineEdit {\n"
-"                                        border: 2px solid white;\n"
-"                                        border-radius: 10px;\n"
-"                                        color: white;\n"
-"\n"
-"                                        }\n"
-"                                    ")
+                                              "                                        border: 2px solid white;\n"
+                                              "                                        border-radius: 10px;\n"
+                                              "                                        color: white;\n"
+                                              "\n"
+                                              "                                        }\n"
+                                              "                                    ")
         self.lineEdit_age_reg_3.setObjectName("lineEdit_age_reg_3")
         self.horizontalLayout_6.addWidget(self.lineEdit_age_reg_3)
         self.verticalLayout_4.addLayout(self.horizontalLayout_6)
@@ -88,12 +90,12 @@ class Ui_Dialog(object):
         self.lineEdit_expirience_reg_3.setMaximumSize(QtCore.QSize(250, 16777215))
         self.lineEdit_expirience_reg_3.setSizeIncrement(QtCore.QSize(0, 0))
         self.lineEdit_expirience_reg_3.setStyleSheet("QLineEdit {\n"
-"                                        border: 2px solid white;\n"
-"                                        border-radius: 10px;\n"
-"                                        color: white;\n"
-"\n"
-"                                        }\n"
-"                                    ")
+                                                     "                                        border: 2px solid white;\n"
+                                                     "                                        border-radius: 10px;\n"
+                                                     "                                        color: white;\n"
+                                                     "\n"
+                                                     "                                        }\n"
+                                                     "                                    ")
         self.lineEdit_expirience_reg_3.setObjectName("lineEdit_expirience_reg_3")
         self.horizontalLayout_44.addWidget(self.lineEdit_expirience_reg_3)
         self.verticalLayout_4.addLayout(self.horizontalLayout_44)
@@ -112,12 +114,12 @@ class Ui_Dialog(object):
         self.lineEdit_login_reg_3.setMaximumSize(QtCore.QSize(250, 16777215))
         self.lineEdit_login_reg_3.setSizeIncrement(QtCore.QSize(0, 0))
         self.lineEdit_login_reg_3.setStyleSheet("QLineEdit {\n"
-"                                                border: 2px solid white;\n"
-"                                                border-radius: 10px;\n"
-"                                                color: white;\n"
-"\n"
-"                                                }\n"
-"                                            ")
+                                                "                                                border: 2px solid white;\n"
+                                                "                                                border-radius: 10px;\n"
+                                                "                                                color: white;\n"
+                                                "\n"
+                                                "                                                }\n"
+                                                "                                            ")
         self.lineEdit_login_reg_3.setObjectName("lineEdit_login_reg_3")
         self.horizontalLayout_45.addWidget(self.lineEdit_login_reg_3)
         self.verticalLayout_13.addLayout(self.horizontalLayout_45)
@@ -133,12 +135,12 @@ class Ui_Dialog(object):
         self.lineEdit_paswword_reg_3.setMaximumSize(QtCore.QSize(250, 16777215))
         self.lineEdit_paswword_reg_3.setSizeIncrement(QtCore.QSize(0, 0))
         self.lineEdit_paswword_reg_3.setStyleSheet("QLineEdit {\n"
-"                                                border: 2px solid white;\n"
-"                                                border-radius: 10px;\n"
-"                                                color: white;\n"
-"\n"
-"                                                }\n"
-"                                            ")
+                                                   "                                                border: 2px solid white;\n"
+                                                   "                                                border-radius: 10px;\n"
+                                                   "                                                color: white;\n"
+                                                   "\n"
+                                                   "                                                }\n"
+                                                   "                                            ")
         self.lineEdit_paswword_reg_3.setObjectName("lineEdit_paswword_reg_3")
         self.horizontalLayout_46.addWidget(self.lineEdit_paswword_reg_3)
         self.verticalLayout_13.addLayout(self.horizontalLayout_46)
@@ -154,12 +156,12 @@ class Ui_Dialog(object):
         self.lineEdit_midlname_reg_3.setMaximumSize(QtCore.QSize(250, 16777215))
         self.lineEdit_midlname_reg_3.setSizeIncrement(QtCore.QSize(0, 0))
         self.lineEdit_midlname_reg_3.setStyleSheet("QLineEdit {\n"
-"                                                border: 2px solid white;\n"
-"                                                border-radius: 10px;\n"
-"                                                color: white;\n"
-"\n"
-"                                                }\n"
-"                                            ")
+                                                   "                                                border: 2px solid white;\n"
+                                                   "                                                border-radius: 10px;\n"
+                                                   "                                                color: white;\n"
+                                                   "\n"
+                                                   "                                                }\n"
+                                                   "                                            ")
         self.lineEdit_midlname_reg_3.setObjectName("lineEdit_midlname_reg_3")
         self.horizontalLayout_47.addWidget(self.lineEdit_midlname_reg_3)
         self.verticalLayout_13.addLayout(self.horizontalLayout_47)
@@ -175,12 +177,12 @@ class Ui_Dialog(object):
         self.lineEdit_secondname_reg_3.setMaximumSize(QtCore.QSize(250, 16777215))
         self.lineEdit_secondname_reg_3.setSizeIncrement(QtCore.QSize(0, 0))
         self.lineEdit_secondname_reg_3.setStyleSheet("QLineEdit {\n"
-"                                                border: 2px solid white;\n"
-"                                                border-radius: 10px;\n"
-"                                                color: white;\n"
-"\n"
-"                                                }\n"
-"                                            ")
+                                                     "                                                border: 2px solid white;\n"
+                                                     "                                                border-radius: 10px;\n"
+                                                     "                                                color: white;\n"
+                                                     "\n"
+                                                     "                                                }\n"
+                                                     "                                            ")
         self.lineEdit_secondname_reg_3.setObjectName("lineEdit_secondname_reg_3")
         self.horizontalLayout_48.addWidget(self.lineEdit_secondname_reg_3)
         self.verticalLayout_13.addLayout(self.horizontalLayout_48)
@@ -196,12 +198,12 @@ class Ui_Dialog(object):
         self.lineEdit_name_reg_3.setMaximumSize(QtCore.QSize(250, 16777215))
         self.lineEdit_name_reg_3.setSizeIncrement(QtCore.QSize(0, 0))
         self.lineEdit_name_reg_3.setStyleSheet("QLineEdit {\n"
-"                                                border: 2px solid white;\n"
-"                                                border-radius: 10px;\n"
-"                                                color: white;\n"
-"\n"
-"                                                }\n"
-"                                            ")
+                                               "                                                border: 2px solid white;\n"
+                                               "                                                border-radius: 10px;\n"
+                                               "                                                color: white;\n"
+                                               "\n"
+                                               "                                                }\n"
+                                               "                                            ")
         self.lineEdit_name_reg_3.setObjectName("lineEdit_name_reg_3")
         self.horizontalLayout_49.addWidget(self.lineEdit_name_reg_3)
         self.verticalLayout_13.addLayout(self.horizontalLayout_49)
@@ -217,12 +219,12 @@ class Ui_Dialog(object):
         self.lineEdit_post_reg_3.setMaximumSize(QtCore.QSize(250, 16777215))
         self.lineEdit_post_reg_3.setSizeIncrement(QtCore.QSize(0, 0))
         self.lineEdit_post_reg_3.setStyleSheet("QLineEdit {\n"
-"                                                border: 2px solid white;\n"
-"                                                border-radius: 10px;\n"
-"                                                color: white;\n"
-"\n"
-"                                                }\n"
-"                                            ")
+                                               "                                                border: 2px solid white;\n"
+                                               "                                                border-radius: 10px;\n"
+                                               "                                                color: white;\n"
+                                               "\n"
+                                               "                                                }\n"
+                                               "                                            ")
         self.lineEdit_post_reg_3.setObjectName("lineEdit_post_reg_3")
         self.horizontalLayout_50.addWidget(self.lineEdit_post_reg_3)
         self.verticalLayout_13.addLayout(self.horizontalLayout_50)
@@ -230,9 +232,9 @@ class Ui_Dialog(object):
         self.pushButton_reg_reg_2 = QtWidgets.QPushButton(parent=Dialog)
         self.pushButton_reg_reg_2.setGeometry(QtCore.QRect(30, 420, 721, 41))
         self.pushButton_reg_reg_2.setStyleSheet("background-color: rgb(0, 153, 81);\n"
-"                            color: white;\n"
-"                            border-radius: 20px;\n"
-"                        ")
+                                                "                            color: white;\n"
+                                                "                            border-radius: 20px;\n"
+                                                "                        ")
         self.pushButton_reg_reg_2.setObjectName("pushButton_reg_reg_2")
 
         self.retranslateUi(Dialog)
