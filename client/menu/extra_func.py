@@ -1,6 +1,6 @@
 import requests
 
-from client.menu.func_with_time import time_now
+from client.menu.func_with_time import time_now, get_dates
 from client.settings import API_URL
 
 
@@ -47,6 +47,13 @@ def get_have_task(nickname):
 def get_good_dates_repair_hardware(dates, in_dates):
     result = []
     for i in dates:
+        if i.get('start') is None:
+            return None
         if i.get('start')[:10] in in_dates:
             result.append(i)
     return result
+
+
+dates = get_dates('year')
+repair_hardware = get_good_dates_repair_hardware(get_repair_hardware(), dates)
+print(repair_hardware)

@@ -21,7 +21,8 @@ def docs_report(name, statistic):
     unused_equipment = 0
     count_applications = 0
     repair_hardware = get_good_dates_repair_hardware(get_repair_hardware(), dates)
-
+    if repair_hardware is None:
+        return "Данные за указанный период отсутствуют"
     for i in repair_hardware:
         start = i.get('start')
         end = i.get('end')
