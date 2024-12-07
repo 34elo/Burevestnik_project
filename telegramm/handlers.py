@@ -1,12 +1,13 @@
 import requests
 from aiogram import F, Router, types
-from aiogram.types import Message
 from aiogram.filters import CommandStart
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
-import telegramm.keyboards as kb
-from telegramm.settings import API_URL
-from telegramm.messages import *
+from aiogram.types import Message
+
+import keyboards as kb
+from messages import *
+from settings import API_URL
 
 router = Router()
 

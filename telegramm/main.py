@@ -2,8 +2,8 @@ import asyncio
 
 import requests
 from aiogram import Bot, Dispatcher
-from server.settings import TOKEN, API_URL
-from telegramm.handlers import router
+from settings import TOKEN, API_URL
+from handlers import router
 
 bot = Bot(token=TOKEN)
 dp = Dispatcher()

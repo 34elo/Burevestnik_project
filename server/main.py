@@ -1,7 +1,7 @@
 from flask import Flask
-from server.flask_server.get_routes import get_data_users, get_data_repair_hardware, get_data_hardware, send_message
-from server.flask_server.post_routes import hash_password, add_data_users, add_data_repair_hardware, add_data_hardware
-from server.flask_server.put_routes import update_data_users, update_data_repair_hardware, update_data_hardware
+from flask_server.get_routes import get_data_users, get_data_repair_hardware, get_data_hardware, send_message
+from flask_server.post_routes import hash_password, add_data_users, add_data_repair_hardware, add_data_hardware
+from flask_server.put_routes import update_data_users, update_data_repair_hardware, update_data_hardware
 
 app = Flask(__name__)
 
@@ -22,7 +22,7 @@ app.add_url_rule('/data/hardware/<int:data_id>', view_func=update_data_hardware,
 
 
 def run_flask():
-    app.run(port=5000, use_reloader=False, debug=True)
+    app.run(port=5000, debug=True, host='0.0.0.0')
 
 
 if __name__ == "__main__":
