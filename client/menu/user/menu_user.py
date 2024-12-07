@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file 'menu_user.ui'
+# Form implementation generated from reading ui file 'C:\Users\kkhoc\PycharmProjects\Burevestnik_project11\client\menu\user\menu_user.ui'
 #
 # Created by: PyQt6 UI code generator 6.7.1
 #
@@ -13,13 +13,14 @@ import os
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1152, 815)
+        MainWindow.resize(1012, 815)
         font = QtGui.QFont()
         font.setPointSize(16)
         MainWindow.setFont(font)
         MainWindow.setStyleSheet("background-color: rgb(45, 44, 44);\n"
                                  "                color: white\n"
                                  "            ")
+        MainWindow.setAnimated(True)
         self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
@@ -71,11 +72,9 @@ class Ui_MainWindow(object):
         self.pushButton_acc1_us.setText("")
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(os.path.abspath("res/add_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png")),
-                       QtGui.QIcon.Mode.Normal,
-                       QtGui.QIcon.State.Off)
+                       QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         icon.addPixmap(QtGui.QPixmap(os.path.abspath("res/add_24dp_005500_FILL0_wght400_GRAD0_opsz24.png")),
-                       QtGui.QIcon.Mode.Normal,
-                       QtGui.QIcon.State.On)
+                       QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.On)
         self.pushButton_acc1_us.setIcon(icon)
         self.pushButton_acc1_us.setCheckable(True)
         self.pushButton_acc1_us.setAutoExclusive(True)
@@ -109,11 +108,9 @@ class Ui_MainWindow(object):
         self.pushButton_task1.setText("")
         icon3 = QtGui.QIcon()
         icon3.addPixmap(QtGui.QPixmap(os.path.abspath("res/work_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png")),
-                        QtGui.QIcon.Mode.Normal,
-                        QtGui.QIcon.State.Off)
+                        QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         icon3.addPixmap(QtGui.QPixmap(os.path.abspath("res/work_24dp_005500_FILL0_wght400_GRAD0_opsz24.png")),
-                        QtGui.QIcon.Mode.Normal,
-                        QtGui.QIcon.State.On)
+                        QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.On)
         self.pushButton_task1.setIcon(icon3)
         self.pushButton_task1.setCheckable(True)
         self.pushButton_task1.setAutoExclusive(True)
@@ -142,22 +139,32 @@ class Ui_MainWindow(object):
         self.horizontalLayout_4.setObjectName("horizontalLayout_4")
         self.verticalLayout_8 = QtWidgets.QVBoxLayout()
         self.verticalLayout_8.setObjectName("verticalLayout_8")
+        self.horizontalLayout_4.addLayout(self.verticalLayout_8)
+        self.pushButton_2 = QtWidgets.QPushButton(parent=self.widget_2)
+        self.pushButton_2.setMaximumSize(QtCore.QSize(40, 40))
+        self.pushButton_2.setStyleSheet("border:none;\n"
+                                        "                                                ")
+        self.pushButton_2.setText("")
+        icon5 = QtGui.QIcon()
+        icon5.addPixmap(QtGui.QPixmap(os.path.abspath("res/menu_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png")),
+                        QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.pushButton_2.setIcon(icon5)
+        self.pushButton_2.setIconSize(QtCore.QSize(50, 50))
+        self.pushButton_2.setCheckable(True)
+        self.pushButton_2.setAutoExclusive(True)
+        self.pushButton_2.setObjectName("pushButton_2")
+        self.horizontalLayout_4.addWidget(self.pushButton_2)
         self.pushButton = QtWidgets.QPushButton(parent=self.widget_2)
         self.pushButton.setMaximumSize(QtCore.QSize(40, 40))
         self.pushButton.setStyleSheet("border:none;\n"
                                       "                                                ")
         self.pushButton.setText("")
-        icon5 = QtGui.QIcon()
-        icon5.addPixmap(QtGui.QPixmap(os.path.abspath("res/menu_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png")),
-                        QtGui.QIcon.Mode.Normal,
-                        QtGui.QIcon.State.Off)
         self.pushButton.setIcon(icon5)
         self.pushButton.setIconSize(QtCore.QSize(50, 50))
         self.pushButton.setCheckable(True)
         self.pushButton.setAutoExclusive(True)
         self.pushButton.setObjectName("pushButton")
-        self.verticalLayout_8.addWidget(self.pushButton)
-        self.horizontalLayout_4.addLayout(self.verticalLayout_8)
+        self.horizontalLayout_4.addWidget(self.pushButton)
         spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding,
                                             QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout_4.addItem(spacerItem1)
@@ -854,8 +861,6 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         self.stackedWidget.setCurrentIndex(3)
-        self.pushButton.toggled['bool'].connect(self.widget_4.setHidden)  # type: ignore
-        self.pushButton.toggled['bool'].connect(self.widget_5.setVisible)  # type: ignore
         self.pushButton_education1us.toggled['bool'].connect(self.pushButton_education2_us.setChecked)  # type: ignore
         self.pushButton_acc1_us.toggled['bool'].connect(self.pushButton_acc2_us.setChecked)  # type: ignore
         self.pushButton_acc2_us.toggled['bool'].connect(self.pushButton_acc1_us.setChecked)  # type: ignore
@@ -873,7 +878,16 @@ class Ui_MainWindow(object):
         self.pushButton_24.toggled['bool'].connect(self.pushButton_24.hide)  # type: ignore
         self.pushButton_24.toggled['bool'].connect(self.pushButton_22.show)  # type: ignore
         self.pushButton_22.toggled['bool'].connect(self.pushButton_24.show)  # type: ignore
-        self.pushButton_13.toggled['bool'].connect(MainWindow.setHidden)  # type: ignore
+        self.pushButton_2.toggled['bool'].connect(self.widget_4.setHidden)  # type: ignore
+        self.pushButton_2.toggled['bool'].connect(self.widget_5.setVisible)  # type: ignore
+        self.pushButton.toggled['bool'].connect(self.widget_5.setHidden)  # type: ignore
+        self.pushButton.toggled['bool'].connect(self.widget_4.setVisible)  # type: ignore
+        self.pushButton_2.toggled['bool'].connect(self.pushButton.setHidden)  # type: ignore
+        self.pushButton_2.toggled['bool'].connect(self.pushButton.setVisible)  # type: ignore
+        self.pushButton.toggled['bool'].connect(self.pushButton_2.setHidden)  # type: ignore
+        self.pushButton.toggled['bool'].connect(self.pushButton_2.setVisible)  # type: ignore
+        self.pushButton_13.toggled['bool'].connect(MainWindow.showMinimized)  # type: ignore
+
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
