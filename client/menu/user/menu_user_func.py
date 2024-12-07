@@ -64,6 +64,7 @@ class Ui_MainWindow2(QMainWindow, menu_user.Ui_MainWindow):
         self.account_page()
         self.update_task()
         self.pushButton_24.setHidden(True)
+        self.pushButton_2.setHidden(True)
 
     def view(self):
         self.pushButton_link1.clicked.connect(self.open_link1)
