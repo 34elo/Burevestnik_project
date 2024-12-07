@@ -932,7 +932,7 @@ class Ui_MainWindow(object):
         self.label_6.setText(_translate("MainWindow", "Введите личный коментарий(по желанию)"))
         self.pushButton_send_order.setText(_translate("MainWindow", "Отправить заявку"))
         self.label_19.setText(_translate("MainWindow", "Твоя задача"))
-        self.pushButton_update_task.setText(_translate("MainWindow", "Отправить заявку"))
+        self.pushButton_update_task.setText(_translate("MainWindow", "Обновить задачу"))
         self.label_38.setText(_translate("MainWindow", "Пока у тебя не задач отдыхый)"))
         self.label_39.setText(_translate("MainWindow", "Починка станка №:"))
         self.label_number_machine.setText(_translate("MainWindow", "TextLabel"))
@@ -942,3 +942,5 @@ class Ui_MainWindow(object):
         self.pushButton_send_order_unsucses.setText(_translate("MainWindow", "Отправить заявку"))
         self.label_2.setText(_translate("MainWindow", "Сделал работу? Молодец! отправь отчёт."))
         self.pushButton_send_order_sucses.setText(_translate("MainWindow", "Отправить заявку"))
+
+

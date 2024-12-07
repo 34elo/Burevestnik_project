@@ -68,11 +68,13 @@ class Ui_MainWindow2(QMainWindow, menu_user.Ui_MainWindow):
 
     def view(self):
         self.pushButton_link1.clicked.connect(self.open_link1)
+        self.pushButton_link2.clicked.connect(self.open_link2)
+        self.pushButton_link3.clicked.connect(self.open_link3)
         self.label_nick2.setText(self.nickname)
         self.label_nick.setText(self.nickname)
 
         self.pushButton_education1us.clicked.connect(self.switch_to_education)
-        self.pushButton_education2_us.clicked.connect(self.switch_to_education())
+        self.pushButton_education2_us.clicked.connect(self.switch_to_education)
 
         self.pushButton_acc2_us.clicked.connect(self.switch_to_acc)
         self.pushButton_acc1_us.clicked.connect(self.switch_to_acc)
@@ -89,6 +91,8 @@ class Ui_MainWindow2(QMainWindow, menu_user.Ui_MainWindow):
         self.pushButton_send_order_unsucses.clicked.connect(
             self.send_bad_statement)
         self.pushButton_update_task.clicked.connect(self.update_task)
+        self.pushButton_12.clicked.connect(self.exit_menu)
+        self.pushButton_logout1.clicked.connect(self.exit_menu)
         self.widget_5.setHidden(True)
 
     def update_task(self):
@@ -165,3 +169,6 @@ class Ui_MainWindow2(QMainWindow, menu_user.Ui_MainWindow):
         comment_worker = self.textEdit_com__unsucses.toPlainText()
         update_bad_status(self, self.nickname, comment_worker)
         self.textEdit_com__unsucses.clear()
+
+    def exit_menu(self):
+        self.close()
