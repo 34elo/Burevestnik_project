@@ -22,7 +22,7 @@ app.add_url_rule('/data/hardware/<int:data_id>', view_func=update_data_hardware,
 
 
 def run_flask():
-    app.run(port=5000, debug=True, host='0.0.0.0')
+    app.run(port=5000, debug=False, host='0.0.0.0')
 
 
 if __name__ == "__main__":

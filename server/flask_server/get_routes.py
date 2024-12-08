@@ -18,7 +18,7 @@ def get_data_users():
                      'name': row[4],
                      'post': row[5],
                      'age': row[6],
-                     'telegramm': row[7],
+                     'telegram': row[7],
                      'skill_level': row[8],
                      'experience': row[9],
                      'busy': row[10],
