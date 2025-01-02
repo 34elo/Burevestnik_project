@@ -16,6 +16,7 @@ def main():
 
     app = QApplication(sys.argv)
     w = welcome_win()
+    w.setWindowTitle("Авторизация")
     w.show()
     print('Start app')
     app.exec()
@@ -24,4 +25,4 @@ def main():
 if __name__ == '__main__':
     main()
 
-example = {'nickname': 'mun', 'password': 'xxZxzxczxczcz'}
+    example = {'nickname': 'mun', 'password': 'xxZxzxczxczcz'}

@@ -98,6 +98,7 @@ class Ui_MainWindow1(QMainWindow, menu_dispetcher.Ui_MainWindow):
         self.setupUi(self)
         self.statistic = 'month'
         self.view()
+        self.setWindowTitle('Окно диспетчера')
 
     def view(self):
         self.pushButton_24.setHidden(True)
